@@ -32,22 +32,22 @@ Vue.component('jpn-component', require('./components/JapanComponent.vue').defaul
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+const main = new Vue({
+    el: '#main',
 });
 
-const app1 = new Vue({
-    el: '#app1',
+const login = new Vue({
+    el: '#login',
 });
 
-const app2 = new Vue({
-    el: '#app2',
+const join = new Vue({
+    el: '#join',
 });
 
-const app3 = new Vue({
-    el: '#app3',
+const member = new Vue({
+    el: '#member',
 });
 
-const app4 = new Vue({
-    el: '#app4',
+const japan = new Vue({
+    el: '#japan',
 });
