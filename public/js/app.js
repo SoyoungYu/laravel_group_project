@@ -1870,6 +1870,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -1911,21 +1946,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -1943,21 +1963,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2030,24 +2035,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2065,6 +2052,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37452,60 +37454,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "title" }, [_c("h2", [_vm._v("8")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navi" }, [
-        _c("div", { attrs: { id: "navibar" } }, [
-          _c("a", { attrs: { href: "/../member" } }, [_vm._v("조원소개")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "/../japan" } }, [_vm._v("현지학기제")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("QnA")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navilog" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("a", { attrs: { href: "/../login" } }, [_vm._v("로그인")])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "btn-group" }, [
+        _c("div", { staticClass: "btn-group", attrs: { id: "menu" } }, [
           _c(
             "button",
             {
               staticClass: "mocean-modal-button",
-              attrs: { "data-mocean-type": "slide-in-top" }
+              attrs: { "data-mocean-type": "slide-in-top", id: "japan_week1" }
             },
-            [_vm._v("weak 1")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "mocean-modal-button",
-              attrs: { "data-mocean-type": "slide-in-right" }
-            },
-            [_vm._v("weak 2")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "mocean-modal-button",
-              attrs: { "data-mocean-type": "slide-in-bottom" }
-            },
-            [_vm._v("weak 3")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "mocean-modal-button",
-              attrs: { "data-mocean-type": "slide-in-left" }
-            },
-            [_vm._v("weak 4")]
+            [_vm._v("week 1")]
           ),
           _vm._v(" "),
           _c(
@@ -37513,11 +37470,12 @@ var staticRenderFns = [
             {
               staticClass: "mocean-modal-button",
               attrs: {
-                "data-mocean-type": "slide-in-top",
-                "data-mocean-out-type": "slide-out-bottom"
+                "data-mocean-type": "slide-in-right",
+                onclick: "myFunction()",
+                id: "japan_week2"
               }
             },
-            [_vm._v("weak 5")]
+            [_vm._v("week 2")]
           ),
           _vm._v(" "),
           _c(
@@ -37526,10 +37484,46 @@ var staticRenderFns = [
               staticClass: "mocean-modal-button",
               attrs: {
                 "data-mocean-type": "slide-in-bottom",
-                "data-mocean-out-type": "slide-out-top"
+                onclick: "myFunction()",
+                id: "japan_week3"
               }
             },
-            [_vm._v("weak 6")]
+            [_vm._v("week 3")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "mocean-modal-button",
+              attrs: { "data-mocean-type": "slide-in-left", id: "japan_week4" }
+            },
+            [_vm._v("week 4")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "mocean-modal-button",
+              attrs: {
+                "data-mocean-type": "slide-in-top",
+                "data-mocean-out-type": "slide-out-bottom",
+                id: "japan_week5"
+              }
+            },
+            [_vm._v("week 5")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "mocean-modal-button",
+              attrs: {
+                "data-mocean-type": "slide-in-bottom",
+                "data-mocean-out-type": "slide-out-top",
+                id: "japan_week6"
+              }
+            },
+            [_vm._v("week 6")]
           ),
           _vm._v(" "),
           _c(
@@ -37538,11 +37532,154 @@ var staticRenderFns = [
               staticClass: "mocean-modal-button",
               attrs: {
                 "data-mocean-type": "slide-in-left",
-                "data-mocean-out-type": "slide-out-right"
+                "data-mocean-out-type": "slide-out-right",
+                id: "japan_week7"
               }
             },
-            [_vm._v("weak 7")]
+            [_vm._v("week 7")]
           )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "japan_hiddenIntro" }, [
+          _c("div", { attrs: { id: "japan_week1Hidden" } }, [
+            _c("h2", [_vm._v("1주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week1Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week1Content" } }, [
+              _vm._v("1주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week1Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week1Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week2Hidden" } }, [
+            _c("h2", [_vm._v("2주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week2Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week2Content" } }, [
+              _vm._v("2주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week2Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week2Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week3Hidden" } }, [
+            _c("h2", [_vm._v("3주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week3Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week3Content" } }, [
+              _vm._v("3주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week3Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week3Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week4Hidden" } }, [
+            _c("h2", [_vm._v("4주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week4Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week4Content" } }, [
+              _vm._v("4주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week4Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week4Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week5Hidden" } }, [
+            _c("h2", [_vm._v("5주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week5Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week5Content" } }, [
+              _vm._v("5주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week5Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week5Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week6Hidden" } }, [
+            _c("h2", [_vm._v("6주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week6Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week6Content" } }, [
+              _vm._v("6주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week6Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week6Delete" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "japan_week7Hidden" } }, [
+            _c("h2", [_vm._v("7주차")]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "/image/mung.jpg", id: "japan_week7Image" }
+            }),
+            _vm._v(" "),
+            _c("p", { attrs: { id: "japan_week7Content" } }, [
+              _vm._v("7주차 내용")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "수정", id: "japan_week7Modify" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "button", value: "삭제", id: "japan_week7Delete" }
+            })
+          ])
         ])
       ])
     ])
@@ -37577,58 +37714,55 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "title" }, [_c("h2", [_vm._v("8")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navi" }, [
-        _c("div", { attrs: { id: "navibar" } }, [
-          _c("a", { attrs: { href: "/../member" } }, [_vm._v("조원소개")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("현지학기제")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("QnA")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navilog" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("a", { attrs: { href: "/../login" } }, [_vm._v("로그인")])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "body" }, [
         _c("div", { staticClass: "join" }, [
           _c("p", [_vm._v("회원가입")]),
           _vm._v(" "),
           _c("div", { staticClass: "user" }, [
             _vm._v("\n                ID"),
-            _c("input", { attrs: { type: "text", name: "id" } }),
+            _c("input", { attrs: { type: "text", name: "id", id: "join_id" } }),
             _vm._v(" "),
             _c("br"),
             _vm._v("\n                PW"),
-            _c("input", { attrs: { type: "password", name: "password" } }),
+            _c("input", {
+              attrs: { type: "password", name: "password", id: "join_pw" }
+            }),
             _vm._v(" "),
             _c("br"),
             _vm._v("\n                PW 확인"),
-            _c("input", { attrs: { type: "password", name: "password2" } }),
+            _c("input", {
+              attrs: {
+                type: "password",
+                name: "password2",
+                id: "join_pw_check"
+              }
+            }),
             _vm._v(" "),
             _c("br"),
             _vm._v("\n                이름"),
-            _c("input", { attrs: { type: "text", name: "name" } }),
+            _c("input", {
+              attrs: { type: "text", name: "name", id: "join_username" }
+            }),
             _vm._v(" "),
             _c("br"),
             _vm._v("\n                이메일"),
-            _c("input", { attrs: { type: "email", name: "email" } })
+            _c("input", {
+              attrs: { type: "email", name: "email", id: "join_email" }
+            })
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ok" }, [
-          _c("input", { attrs: { type: "button", value: "확인" } }),
+          _c("input", {
+            attrs: { type: "button", value: "확인", id: "join_ok" }
+          }),
           _vm._v(" "),
           _c("input", {
             attrs: {
               type: "button",
               value: "취소",
-              onclick: "location.href='/'"
+              onclick: "location.href='/'",
+              id: "join_cancel"
             }
           })
         ])
@@ -37665,40 +37799,28 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "title" }, [_c("h2", [_vm._v("8")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navi" }, [
-        _c("div", { attrs: { id: "navibar" } }, [
-          _c("a", { attrs: { href: "/../member" } }, [_vm._v("조원소개")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "/../japan" } }, [_vm._v("현지학기제")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("QnA")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navilog" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("a", { attrs: { href: "/../login" } }, [_vm._v("로그인")])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "body" }, [
         _c("div", { staticClass: "login" }, [
           _c("p", [_vm._v("로그인")]),
           _vm._v(" "),
           _c("div", { staticClass: "user" }, [
-            _vm._v("\n            ID"),
-            _c("input", { attrs: { type: "text", name: "id" } }),
+            _vm._v("\n                ID"),
+            _c("input", {
+              attrs: { type: "text", name: "id", id: "login_id" }
+            }),
             _vm._v(" "),
             _c("br"),
-            _vm._v("\n            PW"),
-            _c("input", { attrs: { type: "password", name: "password" } })
+            _vm._v("\n                PW"),
+            _c("input", {
+              attrs: { type: "password", name: "password", id: "login_pw" }
+            })
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ok" }, [
-          _c("input", { attrs: { type: "button", value: "확인" } })
+          _c("input", {
+            attrs: { type: "button", value: "확인", id: "login_ok" }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "cancel" }, [
@@ -37706,7 +37828,8 @@ var staticRenderFns = [
             attrs: {
               type: "button",
               value: "취소",
-              onclick: "location.href='/'"
+              onclick: "location.href='/'",
+              id: "login_cancel"
             }
           })
         ]),
@@ -37751,24 +37874,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "title" }, [_c("h2", [_vm._v("8")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navi" }, [
-        _c("div", { attrs: { id: "navibar" } }, [
-          _c("a", { attrs: { href: "/../member" } }, [_vm._v("조원소개")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("현지학기제")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("QnA")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navilog" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("a", { attrs: { href: "/../login" } }, [_vm._v("로그인")])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "body" }, [
         _c("div", { staticClass: "main" }, [
           _c("img", { attrs: { src: "/image/univ.jpg" } })
@@ -37787,11 +37892,11 @@ var staticRenderFns = [
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "jap" }, [
+          _c("div", { staticClass: "jpn" }, [
             _c("th", [_c("img", { attrs: { src: "/image/chr.jpg" } })]),
             _vm._v(" "),
             _c("th", [
-              _c("div", { attrs: { id: "japs" } }, [
+              _c("div", { attrs: { id: "jpns" } }, [
                 _vm._v("현지학기제 소개 페이지입니다."),
                 _c("br"),
                 _vm._v("자세히 보려면 클릭하세요.")
@@ -37809,12 +37914,6 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("img", { attrs: { src: "/image/que.jpg" } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "footer" }, [
-        _c("div", { attrs: { id: "foot" } }, [
-          _vm._v("Copyright 2019.infinite.All rights reserved. ")
         ])
       ])
     ])
@@ -37849,24 +37948,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "title" }, [_c("h2", [_vm._v("8")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navi" }, [
-        _c("div", { attrs: { id: "navibar" } }, [
-          _c("a", { attrs: { href: "/../member" } }, [_vm._v("조원소개")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "/../japan" } }, [_vm._v("현지학기제")]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("QnA")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navilog" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("a", { attrs: { href: "/../login" } }, [_vm._v("로그인")])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "body" }, [
         _c("section", { staticClass: "MOD_ACCORDION1" }, [
           _c("div", { attrs: { "data-layout": "_r" } }, [
@@ -37885,7 +37966,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 1")]
+                    [_vm._v("정현재")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37894,7 +37975,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/bird.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem1",
+                        attrs: { src: "/image/bird.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member1Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member1Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member1Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member1Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member1Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member1Delete"
+                          }
+                        })
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37907,7 +38023,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 2")]
+                    [_vm._v("김민중")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37916,7 +38032,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/cat.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem2",
+                        attrs: { src: "/image/cat.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member2Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member2Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member2Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member2Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member2Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member2Delete"
+                          }
+                        })
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37929,7 +38080,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 3")]
+                    [_vm._v("조민식")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37938,7 +38089,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/tiger.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem3",
+                        attrs: { src: "/image/tiger.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member3Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member3Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member3Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member3Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member3Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member3Delete"
+                          }
+                        })
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37951,7 +38137,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 4")]
+                    [_vm._v("정성민")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37960,7 +38146,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/hed.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem4",
+                        attrs: { src: "/image/hed.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member4Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member4Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member4Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member4Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member4Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member4Delete"
+                          }
+                        })
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37973,7 +38194,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 5")]
+                    [_vm._v("김기운")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37982,7 +38203,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/lion.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem5",
+                        attrs: { src: "/image/lion.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member5Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member5Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member5Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member5Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member5Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member5Delete"
+                          }
+                        })
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37995,7 +38251,7 @@ var staticRenderFns = [
                         tabindex: "0"
                       }
                     },
-                    [_vm._v("Tab Title 6")]
+                    [_vm._v("유소영")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -38004,7 +38260,42 @@ var staticRenderFns = [
                       staticClass: "AP_accordion_panel",
                       attrs: { role: "tabpanel" }
                     },
-                    [_c("img", { attrs: { src: "/image/dog.jpg" } })]
+                    [
+                      _c("img", {
+                        staticClass: "mem6",
+                        attrs: { src: "/image/dog.jpg" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { attrs: { id: "member_member6Hidden" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "/image/mung.jpg",
+                            id: "member_member6Image"
+                          }
+                        }),
+                        _c("br"),
+                        _vm._v("\n                                이름 : "),
+                        _c("p", { attrs: { id: "member_member6Name" } }),
+                        _vm._v("\n                                소개 : "),
+                        _c("p", { attrs: { id: "member_member6Intro" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "수정",
+                            id: "member_member6Modify"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "button",
+                            value: "삭제",
+                            id: "member_member6Delete"
+                          }
+                        })
+                      ])
+                    ]
                   )
                 ]
               )
@@ -50194,20 +50485,20 @@ Vue.component('jpn-component', __webpack_require__(/*! ./components/JapanCompone
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#app'
+var main = new Vue({
+  el: '#main'
 });
-var app1 = new Vue({
-  el: '#app1'
+var login = new Vue({
+  el: '#login'
 });
-var app2 = new Vue({
-  el: '#app2'
+var join = new Vue({
+  el: '#join'
 });
-var app3 = new Vue({
-  el: '#app3'
+var member = new Vue({
+  el: '#member'
 });
-var app4 = new Vue({
-  el: '#app4'
+var japan = new Vue({
+  el: '#japan'
 });
 
 /***/ }),
@@ -50620,8 +50911,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laravelPrj\team_project_8-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laravelPrj\team_project_8-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laravelPrj\team_project\team_project_8\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laravelPrj\team_project\team_project_8\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
