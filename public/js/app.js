@@ -2186,10 +2186,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2231,11 +2227,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2253,10 +2244,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -38472,64 +38459,60 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "item1" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "item2" }, [
-        _c("table", { staticClass: "table", attrs: { border: "2" } }, [
-          _c("colgroup", [
-            _c("col", { attrs: { width: "50" } }),
-            _vm._v(" "),
-            _c("col", { attrs: { width: "500" } }),
-            _vm._v(" "),
-            _c("col", { attrs: { width: "100" } }),
-            _vm._v(" "),
-            _c("col", { attrs: { width: "100" } }),
-            _vm._v(" "),
-            _c("col", { attrs: { width: "90" } })
-          ]),
+    return _c("div", { staticClass: "qna_list" }, [
+      _c("table", { staticClass: "table", attrs: { border: "2" } }, [
+        _c("colgroup", [
+          _c("col", { attrs: { width: "50" } }),
           _vm._v(" "),
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("번 호")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("제 목")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("글쓴이")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("날짜")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("조회수")])
-            ])
-          ]),
+          _c("col", { attrs: { width: "500" } }),
           _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("ㅇㅇdddddd")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("글쓴이")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("2019/11/20")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("1234")])
-            ])
-          ]),
+          _c("col", { attrs: { width: "100" } }),
           _vm._v(" "),
-          _c("tfoot", [
-            _c("tr", [
-              _c("td", { attrs: { align: "center", colspan: "5" } }, [
-                _vm._v("1")
-              ])
-            ])
+          _c("col", { attrs: { width: "100" } }),
+          _vm._v(" "),
+          _c("col", { attrs: { width: "90" } })
+        ]),
+        _vm._v(" "),
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("번 호")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("제 목")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("글쓴이")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("날짜")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("조회수")])
           ])
         ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "button", value: "글쓰기" } })
+        _c("tbody", [
+          _c("tr", [
+            _c("td", [_vm._v("3")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("ㅇㅇdddddd")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("글쓴이")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2019/11/20")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("1234")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tfoot", [
+          _c("tr", [
+            _c("td", { attrs: { align: "center", colspan: "5" } }, [
+              _vm._v("1")
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "item3" })
+      _c("input", {
+        attrs: { type: "button", id: "submit_question", value: "글쓰기" }
+      })
     ])
   }
 ]
@@ -38561,75 +38544,61 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "item1" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "item2" }, [
-        _c("form", [
-          _c(
-            "table",
-            {
-              staticStyle: {
-                "text-align": "center",
-                border: "1px solid #dddddd"
-              }
-            },
-            [
-              _c("thead", [
-                _c("tr", [
-                  _c(
-                    "th",
-                    {
-                      staticStyle: {
-                        "background-color": "#eeeeee",
-                        "text-align": "center"
-                      },
-                      attrs: { colspan: "2" }
+    return _c("div", { staticClass: "item2" }, [
+      _c("form", [
+        _c(
+          "table",
+          {
+            staticStyle: { "text-align": "center", border: "1px solid #dddddd" }
+          },
+          [
+            _c("thead", [
+              _c("tr", [
+                _c(
+                  "th",
+                  {
+                    staticStyle: {
+                      "background-color": "#eeeeee",
+                      "text-align": "center"
                     },
-                    [_vm._v("게시판 글쓰기 양식")]
-                  )
+                    attrs: { colspan: "2" }
+                  },
+                  [_vm._v("게시판 글쓰기 양식")]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _c("input", {
+                    staticClass: "form_control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "제목",
+                      maxlength: "100"
+                    }
+                  })
                 ])
               ]),
               _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [
-                    _c("input", {
-                      staticClass: "form_control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "제목",
-                        maxlength: "100"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v("글쓴이 "),
-                    _c("input", { attrs: { type: "text", name: "글쓴이" } })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [
-                    _c("textarea", {
-                      staticClass: "form_control2",
-                      staticStyle: { height: "400px" },
-                      attrs: { placeholder: "내용", maxlength: "2048" }
-                    })
-                  ])
+              _c("tr", [
+                _c("td", [
+                  _c("textarea", {
+                    staticClass: "form_control2",
+                    staticStyle: { height: "400px" },
+                    attrs: { placeholder: "내용", maxlength: "2048" }
+                  })
                 ])
               ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "submit", value: "완료" } }),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "button", value: "취소" } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "item3" })
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "submit", value: "완료" } }),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "button", value: "취소" } })
+      ])
     ])
   }
 ]
@@ -38661,31 +38630,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "item1" }),
+    return _c("div", { staticClass: "item2" }, [
+      _c("div", { staticClass: "title" }, [_vm._v("제목")]),
       _vm._v(" "),
-      _c("div", { staticClass: "item2" }, [
-        _c("div", { staticClass: "title" }, [_vm._v("제목")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "data" }, [
-          _vm._v("내용"),
-          _c("br"),
-          _vm._v("내용")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "comment" }, [
-          _c("div", { staticClass: "comment_data" }, [_vm._v("dddddddd")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "comment_text",
-            attrs: { type: "text", name: "댓글쓰기" }
-          }),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "button", value: "글쓰기" } })
-        ])
+      _c("div", { staticClass: "data" }, [
+        _vm._v("내용"),
+        _c("br"),
+        _vm._v("내용")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "item3" }),
+      _c("div", { staticClass: "comment" }, [
+        _c("div", { staticClass: "comment_data" }, [_vm._v("dddddddd")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "comment_text",
+          attrs: { type: "text", name: "댓글쓰기" }
+        }),
+        _vm._v(" "),
+        _c("input", { attrs: { type: "button", value: "글쓰기" } })
+      ]),
       _vm._v(" "),
       _c("input", {
         staticClass: "list_btn",

@@ -36,9 +36,7 @@ Route::get('/japan', function() {
     return view('japan');
 });
 
-Route::get('/QnA', function() {
-    return view('QnA');
-});
+Route::get('/QnA', 'QnaController@index');
 
 Route::get('/QnA2', function() {
     return view('QnA2');
@@ -46,11 +44,3 @@ Route::get('/QnA2', function() {
 Route::get('/QnA3', function() {
     return view('QnA3');
 });
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
