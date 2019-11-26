@@ -10,7 +10,7 @@ class Qna extends Model
         'user_id', 'title', 'question', 'view'
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }

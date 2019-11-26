@@ -21,7 +21,7 @@ class CreateQnasTable extends Migration
             $table->bigInteger('view');
             $table->timestamps();
             
-            $table->foreign('user_id')->references('user_id')->on('users')->onUpdated('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

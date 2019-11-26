@@ -27,9 +27,18 @@ Route::get('/join', function() {
 });
 
 //조원소개 페이지
-Route::get('/member', function() {
-    return view('member');
-});
+//1>조원 목록 페이지
+Route::get('/members', 'MembersController@index');
+Route::get('/members/fetch', 'MembersController@fetch');
+
+//2>생성하기
+Route::post('/members/create', 'MembersController@create');
+
+//3>수정하기
+Route::put('/members/edit/{id}', 'MembersController@edit');
+
+//4>삭제하기
+Route::delete('/members/delete/{id}', 'MembersController@delete');
 
 //현지학기제 페이지
 Route::get('/japan', function() {

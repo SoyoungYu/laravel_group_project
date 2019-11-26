@@ -40,7 +40,7 @@
     </div>
     <div class="navi">
         <div id="navibar">
-            <a href="/../member">조원소개</a>
+            <a href="/../members">조원소개</a>
             <a href="/../japan">현지학기제</a>
             <a href="">QnA</a>
         </div>
