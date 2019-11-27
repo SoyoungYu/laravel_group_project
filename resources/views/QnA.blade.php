@@ -4,8 +4,8 @@
 @endsection
 
 @section('content')
-    <div id="qna1">
-        <qna1-component></qna1-component> <!-- resources/app.js -->
+    <div id="qna">
+        <qna-component></qna-component> <!-- resources/app.js -->
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <link href="{{ asset('css/QnACSS.css') }}" rel="stylesheet">

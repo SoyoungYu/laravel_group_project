@@ -36,11 +36,5 @@ Route::get('/japan', function() {
     return view('japan');
 });
 
-Route::get('/QnA', 'QnaController@index');
-
-Route::get('/QnA2', function() {
-    return view('QnA2');
-});
-Route::get('/QnA3', function() {
-    return view('QnA3');
-});
+Route::get('/QnA', 'QnaController@home');
+Route::get('/QnA/fetch', 'QnaController@fetch');

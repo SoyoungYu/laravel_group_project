@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Qna;
 
 class QnaController extends Controller
 {
@@ -11,9 +12,15 @@ class QnaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function home()
     {
         return view('QnA');
+    }
+    
+    public function fetch()
+    {
+        return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
     }
 
     /**

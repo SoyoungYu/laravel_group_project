@@ -8,6 +8,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.VueRouter=require('vue-router').default;
+
+window.VueAxios=require('vue-axios').default;
+
+window.Axios=require('axios').default;
+
+Vue.use(VueRouter, VueAxios, axios);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -25,9 +33,9 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
 Vue.component('join-component', require('./components/JoinComponent.vue').default);
 Vue.component('mem-component', require('./components/MemberComponent.vue').default);
 Vue.component('jpn-component', require('./components/JapanComponent.vue').default);
-Vue.component('qna1-component', require('./components/QnAComponent1.vue').default);
-Vue.component('qna2-component', require('./components/QnAComponent2.vue').default);
-Vue.component('qna3-component', require('./components/QnAComponent3.vue').default);
+Vue.component('qna-component', require('./components/QnAList.vue').default);
+// Vue.component('qna2-component', require('./components/QnAComponent2.vue').default);
+// Vue.component('qna3-component', require('./components/QnAComponent3.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -55,14 +63,47 @@ const japan = new Vue({
     el: '#japan',
 });
 
-const qna1 = new Vue({
-    el: '#qna1',
+const qna = new Vue({
+    el: '#qna',
 });
 
-const qna2 = new Vue({
-    el: '#qna2',
-});
+// const qna2 = new Vue({
+//     el: '#qna2',
+// });
 
-const qna3 = new Vue({
-    el: '#qna3',
-});
+// const qna3 = new Vue({
+//     el: '#qna3',
+// });
+
+// let QnALayout = require('./components/QnAParent.vue');
+
+// const QnAList = Vue.component('QnAList', require('./components/QnAList.vue'));
+// const QnACreate = Vue.component('QnACreate', require('./components/QnACreate.vue'));
+// const QnAView = Vue.component('QnAView', require('./components/QnAView.vue'));
+
+// const router = new VueRouter({ mode : 'history', routes : routes});
+
+// const routes = [
+//     {
+//         name : 'QnAList',
+//         path : '/QnA',
+//         component : QnAList
+//     },
+//     {
+//         name : 'QnACreate',
+//         path : '/QnA/create',
+//         component : QnACreate
+//     },
+//     {
+//         name : 'QnAView',
+//         path : '/QnA/:id',
+//         component : QnAView
+//     }
+// ];
+
+// new Vue(
+//     Vue.util.extend(
+//         { router },
+//         QnALayout
+//     )
+// ).$mount('#qna');
