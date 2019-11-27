@@ -30,14 +30,21 @@ class MembersController extends Controller
      */
     public function create(Request $request)
     {
-        $member = Member::create(
-            [
-                'image'=> $request->image,
-                'member_info'=>$request->member_info
-            ]
-        );
+        // $request->validate([
+        //     'id'=>'required',
+        //     'member_info'=>'required',
+        //     'image'=>'required'
+        // ]);
 
-        $member->save();
+        $id = $request->id;
+        $member_info = $request->member_info;
+        $image = $request->image;
+
+        $member = User::findOrFail($id)->member()->create([
+            'member_info'=>$member_info,
+            'image'=>$image,
+        ]);
+        // $member = User::all();
 
         return response()->json(['member'=>Member::with('user')->get()]);
     }
@@ -50,16 +57,20 @@ class MembersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Member::where('id', $id)->update(
-            [
-                'image'=> $request->image,
-                'member_info'=>$request->member_info
-            ]
-        )->save();
+        $request->validate([
+            'modifymember'=>'required',
+            'member_info'=>'required',
+            'image'=>'required'
+        ]);
+
+        $member = Member::find($id);
+        $member->member_info = $request->member_info;
+        $member->image = $request->image;
+        $modify = $request->modifymember;
 
         $member->save();
         
-        return response()->json('update');
+        return response()->json(['modifymember'=>$modify, 'member'=>Member::with('user')->get()]);
     }
 
     /**
@@ -70,20 +81,9 @@ class MembersController extends Controller
      */
     public function delete($id)
     {
-        Member::where('id', $id)->delete();
+        $member = new Member();
+        $member1 = $member->whereId($id)->delete();
         
-        return response()->json("delete");
-        
-        // if ($res) {
-        //     return response()->json() ([
-        //         'status'=>'1',
-        //         'msg'=>'success'
-        //     ]);
-        // } else {
-        //     return response()->json() ([
-        //         'status'=>'0',
-        //         'msg'=>'fail'
-        //     ]);
-        // }
+        return response()->json(["delete", 'member'=>Member::with('user')->get()]);
     }
 }

@@ -2096,13 +2096,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  // export default는 다른 파일의 있는 내용을 참조해오기 위한 방식
   data: function data() {
+    // data속성을 함수 로 선언 => 아니면 반응 안한다.
     return {
       members: {},
       // 멤버 정보
@@ -2122,33 +2120,67 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    back: function back() {
+      // 뒤로가기
+      this.modifymember = 0;
+    },
     createbutton: function createbutton(e) {
+      var _this2 = this;
+
       // 생성하기
-      axios.post("/members/create/", {}).then(function (res) {
-        console.log("성공!!");
+      var config = {
+        headers: {
+          "x-api-key": "YOUR_API_KEY"
+        }
+      };
+      var id = e.target.id;
+      var member_info = this.vmember_info_create;
+      var image = this.vimage_create;
+      axios.post("/members/create", {
+        'id': id,
+        'member_info': member_info,
+        'image': image
+      }, config).then(function (res) {
+        _this2.members = res.data.member;
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     modifybuttonbefore: function modifybuttonbefore(e) {
       // 수정하기 전
       this.modifymember = e.target.id;
-      console.log(e.target.id);
-      console.log(this.modifymember);
     },
     modifybuttonafter: function modifybuttonafter(e) {
+      var _this3 = this;
+
       // 수정하기 후
-      this.modifymember = 0;
-      axios.put("/members/update/", {
-        'member_info': e.target.member_info.name,
-        'image': e.target.image.name
-      }).then(function (res) {
-        console.log("성공!!");
+      var config = {
+        headers: {
+          "x-api-key": "YOUR_API_KEY"
+        }
+      };
+      var modifymember = 0;
+      var member_info = this.vmember_info_modify;
+      var image = this.vimage_modify;
+      var id = e.target.id;
+      axios.patch("/members/update/" + id, {
+        'member_info': member_info,
+        'image': image,
+        'modifymember': modifymember
+      }, config).then(function (res) {
+        _this3.modifymember = res.data.modifymember;
+        _this3.members = res.data.member; // console.log(res.data.modifymember);
+      })["catch"](function (err) {
+        console.log(err);
       });
     },
     deletebutton: function deletebutton(e) {
+      var _this4 = this;
+
       // 삭제하기
       var id = e.target.id;
       axios["delete"]('/members/delete/' + id).then(function (res) {
-        console.log(res.data);
+        _this4.members = res.data.member;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -37982,7 +38014,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(member.id) + ". " + _vm._s(member.user.name)
+                          _vm._s(member.user.id) +
+                            ". " +
+                            _vm._s(member.user.name)
                         )
                       ]
                     ),
@@ -38004,8 +38038,14 @@ var render = function() {
                               "div",
                               { attrs: { id: "member_memberHidden" } },
                               [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(member.user.id) +
+                                      " 번째 조원소개 목록"
+                                  )
+                                ]),
                                 _vm._v(
-                                  "\n                                이름 : "
+                                  " \n                                이름 : "
                                 ),
                                 _c(
                                   "p",
@@ -38042,125 +38082,158 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        member.id == _vm.modifymember
-                          ? _c(
-                              "div",
-                              { attrs: { id: "member_memberHidden" } },
-                              [
-                                _c(
-                                  "form",
+                        _vm.modifymember
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                                내용 : "
+                              ),
+                              _c("input", {
+                                directives: [
                                   {
-                                    attrs: {
-                                      method: "post",
-                                      enctype: "multipart/form-data"
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.vmember_info_modify,
+                                    expression: "vmember_info_modify"
+                                  }
+                                ],
+                                attrs: { type: "text" },
+                                domProps: { value: _vm.vmember_info_modify },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                내용 : "
-                                    ),
-                                    _c("input", {
-                                      attrs: {
-                                        type: "text",
-                                        name: "member_info"
-                                      },
-                                      domProps: { value: member.member_info }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n                                이미지 : "
-                                    ),
-                                    _c("input", {
-                                      attrs: { type: "text", name: "image" },
-                                      domProps: { value: member.image }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      attrs: {
-                                        type: "button",
-                                        value: "수정완료"
-                                      },
-                                      on: { click: _vm.modifybuttonafter }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      attrs: {
-                                        type: "button",
-                                        value: "뒤로가기"
-                                      },
-                                      on: { click: _vm.deletea }
-                                    })
-                                  ]
-                                )
-                              ]
-                            )
+                                    _vm.vmember_info_modify =
+                                      $event.target.value
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(
+                                "\n                                이미지 : "
+                              ),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.vimage_modify,
+                                    expression: "vimage_modify"
+                                  }
+                                ],
+                                attrs: { type: "text" },
+                                domProps: { value: _vm.vimage_modify },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.vimage_modify = $event.target.value
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  attrs: { id: member.id },
+                                  on: { click: _vm.modifybuttonafter }
+                                },
+                                [_vm._v("수정하기")]
+                              ),
+                              _vm._v(" "),
+                              _c("button", { on: { click: _vm.back } }, [
+                                _vm._v("뒤로가기")
+                              ])
+                            ])
                           : _vm._e()
                       ]
                     )
                   ])
                 }),
                 _vm._v(" "),
-                _vm.number <= 6
-                  ? _c("div", [
-                      _c(
-                        "p",
-                        {
-                          staticClass: "AP_accordion_tab",
-                          attrs: {
-                            role: "tab",
-                            "data-theme": "_bgp2",
-                            tabindex: "0"
+                _c("div", [
+                  _c(
+                    "p",
+                    {
+                      staticClass: "AP_accordion_tab",
+                      attrs: {
+                        role: "tab",
+                        "data-theme": "_bgp2",
+                        tabindex: "0"
+                      }
+                    },
+                    [_vm._v("생성하기")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "AP_accordion_panel",
+                      attrs: { role: "tabpanel" }
+                    },
+                    [
+                      _vm._v("\n                            내용 : "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.vmember_info_create,
+                            expression: "vmember_info_create"
                           }
-                        },
-                        [_vm._v("생성하기")]
-                      ),
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.vmember_info_create },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.vmember_info_create = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" \n                            이미지 : "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.vimage_create,
+                            expression: "vimage_create"
+                          }
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.vimage_create },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.vimage_create = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
                       _vm._v(" "),
                       _c(
-                        "div",
+                        "button",
                         {
-                          staticClass: "AP_accordion_panel",
-                          attrs: { role: "tabpanel" }
+                          attrs: { type: "button", id: 1 },
+                          on: { click: _vm.createbutton }
                         },
-                        [
-                          _c(
-                            "form",
-                            {
-                              attrs: {
-                                method: "post",
-                                enctype: "multipart/form-data"
-                              }
-                            },
-                            [
-                              _vm._v("\n                            내용 : "),
-                              _c("input", {
-                                attrs: { type: "text", name: "member_info" }
-                              }),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v("\n                            이미지 : "),
-                              _c("input", {
-                                attrs: { type: "text", name: "image" }
-                              }),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: {
-                                  type: "button",
-                                  value: "생성하기",
-                                  id: "member_memberCreate"
-                                },
-                                on: { click: _vm.createbutton }
-                              })
-                            ]
-                          )
-                        ]
+                        [_vm._v("생성하기")]
                       )
-                    ])
-                  : _vm._e()
+                    ]
+                  )
+                ])
               ],
               2
             )

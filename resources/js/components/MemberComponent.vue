@@ -7,35 +7,31 @@
                         <div class="AP_accordion" role="tablist">
                             <!-- 있는 조원 목록 -->
                             <div v-for="member in members" :key="member"> 
-                            <p id="memberid" class="AP_accordion_tab" role="tab" data-theme="_bgp1" tabindex="0">{{member.id}}. {{member.user.name}}</p>
+                            <p id="memberid" class="AP_accordion_tab" role="tab" data-theme="_bgp1" tabindex="0">{{member.user.id}}. {{member.user.name}}</p>
                             <div class="AP_accordion_panel" role="tabpanel"> <!-- 화면 상에 보여지는 탭 -->
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div v-if="modifymember == 0" id="member_memberHidden"> <!-- 탭 클릭 시 상세 내용 -->
+                                    <p>{{member.user.id}} 번째 조원소개 목록</p> 
                                     이름 : <p id="member_memberName"> {{ member.user.name }}</p>
                                     소개 : <p id="member_memberIntro"> {{ member.member_info }}</p>
                                     <input @click="modifybuttonbefore" type="button" value="수정" :id="member.id">
                                     <input @click="deletebutton" type="button" value="삭제" :id="member.id">
                                 </div>
-                                
-                                <div v-if="member.id == modifymember" id="member_memberHidden"> <!-- 수정판 -->
-                                <form method="post" enctype="multipart/form-data">
-                                    내용 : <input type="text" name="member_info" :value="member.member_info"> <br />
-                                    이미지 : <input type="text" name="image" :value="member.image"> <br />
-                                    <input @click="modifybuttonafter" type="button" value="수정완료">
-                                    <input @click="deletea" type="button" value="뒤로가기">
-                                </form>
+                                <div v-if="modifymember"> <!-- 수정판 -->
+                                    내용 : <input type="text" v-model="vmember_info_modify"> <br />
+                                    이미지 : <input type="text" v-model="vimage_modify" /> <br />
+                                    <button @click="modifybuttonafter" :id="member.id">수정하기</button>
+                                    <button @click="back">뒤로가기</button>
                                 </div>
                             </div>
                             </div>
                             <!-- 조원 생성하기 -->
-                            <div v-if="number <= 6">
+                            <div>
                             <p class="AP_accordion_tab" role="tab" data-theme='_bgp2' tabindex="0">생성하기</p>
                             <div class="AP_accordion_panel" role="tabpanel"> <!-- 화면 상에 보여지는 탭 -->
-                            <form method="post" enctype="multipart/form-data">
-                                내용 : <input type="text" name="member_info"> <br />
-                                이미지 : <input type="text" name="image"> <br />
-                                <input @click="createbutton" type="button" value="생성하기" id="member_memberCreate"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
-                            </form>  
+                                내용 : <input type="text" v-model="vmember_info_create"> <br /> 
+                                이미지 : <input type="text" v-model="vimage_create"> <br />
+                                <button @click="createbutton" type="button" :id="1">생성하기</button> <!-- id에 세션값 넣어야 됨 -->
                             </div>
                             </div>
                         </div>
@@ -48,8 +44,8 @@
 <script>
 import vueResource from 'vue-resource'
 
-export default {
-    data() {
+export default { // export default는 다른 파일의 있는 내용을 참조해오기 위한 방식
+    data() { // data속성을 함수 로 선언 => 아니면 반응 안한다.
         return {
             members:{}, // 멤버 정보
             number: '', // 멤버 숫자 
@@ -65,34 +61,56 @@ export default {
         })
     },
     methods: {
+        back() { // 뒤로가기
+            this.modifymember = 0;
+        },
         createbutton(e) { // 생성하기
-            axios.post("/members/create/", {})
+            let config = {
+                headers: {
+                    "x-api-key": "YOUR_API_KEY"
+                }
+            }
+            const id = e.target.id;
+            const member_info = this.vmember_info_create;
+            const image = this.vimage_create;
+            axios.post("/members/create", {'id':id,'member_info': member_info, 'image': image}, config)
                 .then(res =>
                 {
-                    console.log("성공!!")
-                }
-            )
+                    this.members = res.data.member;
+                })
+                .catch(err => {
+                console.log(err);
+            });
         },
         modifybuttonbefore(e) { // 수정하기 전
             this.modifymember = e.target.id;
-            console.log(e.target.id);
-            console.log(this.modifymember);
         },
         modifybuttonafter(e) { // 수정하기 후
-            this.modifymember = 0;
-            axios.put("/members/update/", {'member_info': e.target.member_info.name , 'image': e.target.image.name})
-                .then(res =>
-                {
-                    console.log("성공!!")
+            let config = {
+                headers: {
+                    "x-api-key": "YOUR_API_KEY"
                 }
-            )
+            }
+            const modifymember = 0;
+            const member_info = this.vmember_info_modify;
+            const image = this.vimage_modify;
+            const id = e.target.id;
+            axios.patch("/members/update/"+id, {'member_info': member_info, 'image': image, 'modifymember': modifymember}, config)
+            .then(res => {
+                this.modifymember = res.data.modifymember;
+                this.members = res.data.member;
+                // console.log(res.data.modifymember);
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
         deletebutton(e) { // 삭제하기
-            var id = e.target.id;
+            let id = e.target.id;
             axios.delete('/members/delete/' + id)
                 .then(res =>
                 {
-                    console.log(res.data);
+                    this.members = res.data.member;
                 })
                 .catch(err => {
                 console.log(err)
@@ -100,5 +118,4 @@ export default {
         }
     }
 }
-
 </script>

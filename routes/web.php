@@ -35,7 +35,7 @@ Route::get('/members/fetch', 'MembersController@fetch');
 Route::post('/members/create', 'MembersController@create');
 
 //3>수정하기
-Route::put('/members/edit/{id}', 'MembersController@edit');
+Route::patch('/members/update/{id}', 'MembersController@update');
 
 //4>삭제하기
 Route::delete('/members/delete/{id}', 'MembersController@delete');
