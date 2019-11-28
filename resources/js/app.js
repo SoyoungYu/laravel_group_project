@@ -33,9 +33,9 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
 Vue.component('join-component', require('./components/JoinComponent.vue').default);
 Vue.component('mem-component', require('./components/MemberComponent.vue').default);
 Vue.component('jpn-component', require('./components/JapanComponent.vue').default);
-Vue.component('qna-component', require('./components/QnAList.vue').default);
-// Vue.component('qna2-component', require('./components/QnAComponent2.vue').default);
-// Vue.component('qna3-component', require('./components/QnAComponent3.vue').default);
+Vue.component('qna1-component', require('./components/QnAList.vue').default);
+Vue.component('qna2-component', require('./components/QnACreate.vue').default);
+Vue.component('qna3-component', require('./components/QnAView.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -63,8 +63,16 @@ const japan = new Vue({
     el: '#japan',
 });
 
-const qna = new Vue({
-    el: '#qna',
+const qna_list = new Vue({
+    el: '#qna1',
+});
+
+const qna_create = new Vue({
+    el : '#qna2',
+});
+
+const qna_view = new Vue({
+    el : '#qna3',
 });
 
 // const qna2 = new Vue({

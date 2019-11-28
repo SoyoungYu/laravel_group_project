@@ -15,9 +15,19 @@ class QnaController extends Controller
 
     public function home()
     {
-        return view('QnA');
+        return view('QnA1');
     }
     
+    public function createhome()
+    {
+        return view('QnA2');
+    }
+
+    public function viewhome()
+    {
+        return view('QnA3');
+    }
+
     public function fetch()
     {
         return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);

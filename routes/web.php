@@ -38,3 +38,8 @@ Route::get('/japan', function() {
 
 Route::get('/QnA', 'QnaController@home');
 Route::get('/QnA/fetch', 'QnaController@fetch');
+
+Route::get('/QnA/create','QnaController@createhome');
+Route::post('QnA/create','QnAController@create');
+
+Route::get('/QnA/view','QnaController@viewhome');
