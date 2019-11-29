@@ -18,8 +18,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for = "qna in qnas">
-					<td>{{ qna.id }}</td>
+				<tr v-for = "qna in qnas" @click="clickQnA(qna)">
+					<td>{{ qnas.indexOf(qna)+1 }}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
 					<td>{{ qna.create_at }}</td>
@@ -48,13 +48,18 @@ export default {
 	mounted : function(){
 		Axios.get('/api/qna')
 		.then((response) => {
-			console.log(response.data.qnas);
 			this.qnas = response.data.qnas;
 		})
 		.catch(error => {
 			console.log(error);
 		});
 	},
+	methods: {
+		clickQnA(qnaObj){
+			console.log(qnaObj.id)
+			this.$router.push({name : "QnAView", params : {id : qnaObj.id}});
+		}
+	}
 }
 
 </script>

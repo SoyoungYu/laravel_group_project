@@ -2198,6 +2198,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      title: '',
+      question: ''
+    };
+  },
+  methods: {
+    postQnA: function postQnA(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var currentObj = this;
+      Axios.post('/api/qna', {
+        title: this.title,
+        question: this.question
+      }).then(function (response) {
+        _this.$router.push('/qna');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    back: function back() {
+      this.$router.push('/qna');
+    }
   }
 });
 
@@ -2262,11 +2287,21 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     Axios.get('/api/qna').then(function (response) {
-      console.log(response.data.qnas);
       _this.qnas = response.data.qnas;
     })["catch"](function (error) {
       console.log(error);
     });
+  },
+  methods: {
+    clickQnA: function clickQnA(qnaObj) {
+      console.log(qnaObj.id);
+      this.$router.push({
+        name: "QnAView",
+        params: {
+          id: qnaObj.id
+        }
+      });
+    }
   }
 });
 
@@ -2294,9 +2329,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      qnas: ''
+    };
+  },
   mounted: function mounted() {
+    var _this = this;
+
+    console.log(this.$route.params.id);
     console.log('Component mounted.');
+    Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
+      _this.qnas = response.data.qna;
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -6854,7 +6907,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navi[data-v-5a659a05] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-5a659a05] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-5a659a05] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.container[data-v-5a659a05]{\r\n    \r\n    display: -webkit-box;\r\n    \r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item1[data-v-5a659a05]{\r\n    flex-basis:20%;\n}\n.item2[data-v-5a659a05]{\r\n    flex-basis:60%;\n}\n.item3[data-v-5a659a05]{\r\n    flex-basis:20%;\n}\n.footer[data-v-5a659a05] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-5a659a05] {\r\n    text-align: center;\n}\n.form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\n}\n.form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\n}\r\n", ""]);
+exports.push([module.i, "\n.navi[data-v-5a659a05] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-5a659a05] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-5a659a05] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.container[data-v-5a659a05]{\r\n    \r\n    display: -webkit-box;\r\n    \r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item2[data-v-5a659a05]{\r\n    margin-top : 200px;\n}\n.footer[data-v-5a659a05] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-5a659a05] {\r\n    text-align: center;\n}\n.form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\n}\n.form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\n}\r\n", ""]);
 
 // exports
 
@@ -6892,7 +6945,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navi[data-v-78809f6e] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-78809f6e] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-78809f6e] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-78809f6e] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-78809f6e] {\r\n    text-align: center;\n}\n.container[data-v-78809f6e]{\r\n    display: -webkit-box;\r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item1[data-v-78809f6e]{\r\n\r\n    flex-basis:15%;\n}\n.item2[data-v-78809f6e]{\r\n    flex-basis:70%;\n}\n.item3[data-v-78809f6e]{\r\n\r\n    flex-basis:15%;\n}\n.data[data-v-78809f6e]{\r\n    height: 300px;\r\n    border: 1px solid black;\n}\n.comment[data-v-78809f6e]{\r\n    margin-top: 20px;\r\n    height: 200px;\r\n    border: 2px solid gray;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    height:20px;\r\n    border: 1px solid blue;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 30px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\n.navi[data-v-78809f6e] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-78809f6e] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-78809f6e] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-78809f6e] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-78809f6e] {\r\n    text-align: center;\n}\n.container[data-v-78809f6e]{\r\n    display: -webkit-box;\r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item2[data-v-78809f6e]{\r\n    margin-top : 200px;\r\n    color : white;\n}\n.data[data-v-78809f6e]{\r\n    height: 300px;\r\n    border: 1px solid black;\n}\n.comment[data-v-78809f6e]{\r\n    margin-top: 20px;\r\n    height: 200px;\r\n    border: 2px solid gray;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    height:20px;\r\n    border: 1px solid blue;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 30px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    height: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -39545,67 +39598,101 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "item2" }, [
+    _c("form", { on: { submit: _vm.postQnA } }, [
+      _c(
+        "table",
+        {
+          staticStyle: { "text-align": "center", border: "1px solid #dddddd" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.title,
+                      expression: "title"
+                    }
+                  ],
+                  staticClass: "form_control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "제목",
+                    maxlength: "100"
+                  },
+                  domProps: { value: _vm.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.question,
+                      expression: "question"
+                    }
+                  ],
+                  staticClass: "form_control2",
+                  staticStyle: { height: "400px" },
+                  attrs: { placeholder: "내용", maxlength: "2048" },
+                  domProps: { value: _vm.question },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.question = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("button", [_vm._v("완료")]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.back } }, [_vm._v("취소")])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item2" }, [
-      _c("form", [
+    return _c("thead", [
+      _c("tr", [
         _c(
-          "table",
+          "th",
           {
-            staticStyle: { "text-align": "center", border: "1px solid #dddddd" }
+            staticStyle: {
+              "background-color": "#eeeeee",
+              "text-align": "center"
+            },
+            attrs: { colspan: "2" }
           },
-          [
-            _c("thead", [
-              _c("tr", [
-                _c(
-                  "th",
-                  {
-                    staticStyle: {
-                      "background-color": "#eeeeee",
-                      "text-align": "center"
-                    },
-                    attrs: { colspan: "2" }
-                  },
-                  [_vm._v("게시판 글쓰기 양식")]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [
-                  _c("input", {
-                    staticClass: "form_control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "제목",
-                      maxlength: "100"
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [
-                  _c("textarea", {
-                    staticClass: "form_control2",
-                    staticStyle: { height: "400px" },
-                    attrs: { placeholder: "내용", maxlength: "2048" }
-                  })
-                ])
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "submit", value: "완료" } }),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "button", value: "취소" } })
+          [_vm._v("게시판 글쓰기 양식")]
+        )
       ])
     ])
   }
@@ -39643,17 +39730,27 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.qnas, function(qna) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(qna.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(qna.title))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(qna.user_id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(qna.create_at))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(qna.view))])
-            ])
+            return _c(
+              "tr",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.clickQnA(qna)
+                  }
+                }
+              },
+              [
+                _c("td", [_vm._v(_vm._s(_vm.qnas.indexOf(qna) + 1))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(qna.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(qna.user_id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(qna.create_at))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(qna.view))])
+              ]
+            )
           }),
           0
         ),
@@ -39735,37 +39832,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "item2" },
+    [
+      _vm._l(_vm.qnas, function(qna) {
+        return _c("div", { staticClass: "title" }, [
+          _vm._v("\n        " + _vm._s(qna.title) + "\n    ")
+        ])
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.qnas, function(qna) {
+        return _c("div", { staticClass: "data" }, [
+          _vm._v("\n        " + _vm._s(qna.question) + "\n    ")
+        ])
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "list_btn",
+        attrs: { type: "button", value: "목록" }
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item2" }, [
-      _c("div", { staticClass: "title" }, [_vm._v("제목")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "data" }, [
-        _vm._v("내용"),
-        _c("br"),
-        _vm._v("내용")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "comment" }, [
-        _c("div", { staticClass: "comment_data" }, [_vm._v("dddddddd")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "comment_text",
-          attrs: { type: "text", name: "댓글쓰기" }
-        }),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "button", value: "글쓰기" } })
-      ]),
+    return _c("div", { staticClass: "comment" }, [
+      _c("div", { staticClass: "comment_data" }, [_vm._v("dddddddd")]),
       _vm._v(" "),
       _c("input", {
-        staticClass: "list_btn",
-        attrs: { type: "button", value: "목록" }
-      })
+        staticClass: "comment_text",
+        attrs: { type: "text", name: "댓글쓰기" }
+      }),
+      _vm._v(" "),
+      _c("input", { attrs: { type: "button", value: "글쓰기" } })
     ])
   }
 ]
@@ -54844,36 +54950,37 @@ var router = new VueRouter({
   mode: 'history',
   routes: [{
     path: '/',
-    name: _components_MainComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    name: 'Main',
     component: _components_MainComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
     path: '/login',
-    name: _components_LoginComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
+    name: 'Login',
     component: _components_LoginComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: '/join',
-    name: _components_JoinComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+    name: 'Join',
     component: _components_JoinComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/member',
-    name: _components_MemberComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    name: 'Member',
     component: _components_MemberComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/japan',
-    name: _components_JapanComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    name: 'Japan',
     component: _components_JapanComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/qna',
-    name: _components_QnAList__WEBPACK_IMPORTED_MODULE_6__["default"],
+    name: 'QnAList',
     component: _components_QnAList__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/qna/create',
-    name: _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__["default"],
+    name: 'QnACreate',
     component: _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/qna/view',
-    name: _components_QnAView__WEBPACK_IMPORTED_MODULE_8__["default"],
-    component: _components_QnAView__WEBPACK_IMPORTED_MODULE_8__["default"]
+    name: 'QnAView',
+    component: _components_QnAView__WEBPACK_IMPORTED_MODULE_8__["default"],
+    props: true
   }]
 });
 var app = new Vue({

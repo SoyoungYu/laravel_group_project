@@ -1,6 +1,6 @@
 <template>
     <div class="item2">
-        <form>
+        <form @submit = "postQnA">
             <table style="text-align: center; border: 1px solid #dddddd">
                 <thead>
                     <tr>
@@ -9,15 +9,15 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" class="form_control" placeholder="제목" maxlength="100"/></td>
+                        <td><input type="text" class="form_control" placeholder="제목" maxlength="100" v-model = "title"></td>
                     </tr>
                     <tr>
-                        <td><textarea class="form_control2" placeholder="내용"  maxlength="2048" style="height: 400px;" ></textarea></td>
+                        <td><textarea class="form_control2" placeholder="내용"  maxlength="2048" style="height: 400px;" v-model = "question"></textarea></td>
                     </tr>
                 </tbody>
                 </table>	
-            <input type="submit" value="완료" />
-            <input type="button" value="취소"/>
+            <button>완료</button>
+            <button v-on:click="back">취소</button>
         </form>
     </div>
 </template>
@@ -26,7 +26,32 @@
 export default {
     mounted() {
             console.log('Component mounted.')
+    },
+    data(){
+        return {
+            title : '',
+            question : ''
         }
+    },
+    methods : {
+        postQnA(e) {
+            e.preventDefault();
+            let currentObj = this;
+            Axios.post('/api/qna',{
+                title : this.title,
+                question : this.question
+            })
+            .then(response => {
+                this.$router.push('/qna')
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        },
+        back(){
+            this.$router.push('/qna')
+        }
+    }
 }
 </script>
 
@@ -53,15 +78,10 @@ export default {
     margin-top: 50px;
     width: 100%;
 }
-.item1{
-    flex-basis:20%;
-}
 .item2{
-    flex-basis:60%;
+    margin-top : 200px;
 }
-.item3{
-    flex-basis:20%;
-}
+
 .footer {
     margin-top: 180px;
     margin-bottom: 40px;

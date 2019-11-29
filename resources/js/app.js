@@ -25,43 +25,44 @@ const router = new VueRouter({
     routes : [
         {
             path : '/',
-            name : Main,
+            name : 'Main',
             component : Main
         },
         {
             path : '/login',
-            name : Login,
+            name : 'Login',
             component : Login
         },
         {
             path : '/join',
-            name : Join,
+            name : 'Join',
             component : Join
         },
         {
             path : '/member',
-            name : Member,
+            name : 'Member',
             component : Member
         },
         {
             path : '/japan',
-            name : Japan,
+            name : 'Japan',
             component : Japan
         },
         {
             path : '/qna',
-            name : QnAList,
+            name : 'QnAList',
             component : QnAList
         },
         {
             path : '/qna/create',
-            name : QnACreate,
+            name : 'QnACreate',
             component : QnACreate
         },
         {
             path : '/qna/view',
-            name : QnAView,
-            component : QnAView
+            name : 'QnAView',
+            component : QnAView,
+            props : true
         },
     ]
 });

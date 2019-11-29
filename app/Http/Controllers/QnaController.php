@@ -36,7 +36,15 @@ class QnaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $qna = new Qna();
+        $qna->user_id = 'test';
+        $qna->title = $request->title;
+        $qna->question = $request->question;
+        $qna->view = 0;
+
+        $qna->save();
+        
+        return response()->json(['msg'=>"Success"]);
     }
 
     /**
@@ -47,7 +55,8 @@ class QnaController extends Controller
      */
     public function show($id)
     {
-        //
+        $qna = new Qna();
+        return response()->json(['qna'=>Qna::where('id',$id)->get()]);
     }
 
     /**
