@@ -10,49 +10,57 @@ window.Axios=require('axios').default;
 
 Vue.use(VueRouter, VueAxios, axios);
 
-import Parent from './components/App.vue'
-import Main from './components/MainComponent.vue'
+import Parent from './components/App'
+import Main from './components/MainComponent'
 import Login from './components/LoginComponent'
 import Join from './components/JoinComponent'
 import Member from './components/MemberComponent'
 import Japan from './components/JapanComponent'
-import QnA from './components/QnAList'
-import QnACreate from './components/QnACreate.vue'
-import QnAView from './components/QnAView.vue'
+import QnAList from './components/QnAList'
+import QnACreate from './components/QnACreate'
+import QnAView from './components/QnAView'
 
 const router = new VueRouter({
     mode : 'history',
     routes : [
         {
             path : '/',
+            name : Main,
             component : Main
         },
         {
             path : '/login',
+            name : Login,
             component : Login
         },
         {
             path : '/join',
+            name : Join,
             component : Join
         },
         {
             path : '/member',
+            name : Member,
             component : Member
         },
         {
             path : '/japan',
+            name : Japan,
             component : Japan
         },
         {
             path : '/qna',
-            component : QnA
+            name : QnAList,
+            component : QnAList
         },
         {
             path : '/qna/create',
+            name : QnACreate,
             component : QnACreate
         },
         {
             path : '/qna/view',
+            name : QnAView,
             component : QnAView
         },
     ]

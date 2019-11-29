@@ -2249,6 +2249,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2259,19 +2261,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Axios.get('/QnA/fetch').then(function (response) {
+    Axios.get('/api/qna').then(function (response) {
+      console.log(response.data.qnas);
       _this.qnas = response.data.qnas;
-      _this.length = response.data.qnas.length;
     })["catch"](function (error) {
       console.log(error);
     });
-  },
-  computed: {
-    qnas: function qnas() {
-      if (this.length) {
-        return this.qnas;
-      }
-    }
   }
 });
 
@@ -6878,7 +6873,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navi[data-v-fd231e32] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-fd231e32] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-fd231e32] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-fd231e32] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-fd231e32] {\r\n    text-align: center;\n}\n.container[data-v-fd231e32]{\r\n    \r\n    display: -webkit-box;\r\n    \r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item1[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.item2[data-v-fd231e32]{\r\n    flex-basis:70%;\n}\n.item3[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.table[data-v-fd231e32]{\r\n    text-align: center;\r\n    width: 100%;\r\n    height: 100px;\r\n    background-color: blanchedalmond;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.qna_list[data-v-fd231e32] {\r\n\tmargin-top : 200px;\n}\n.navi[data-v-fd231e32] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-fd231e32] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-fd231e32] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-fd231e32] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-fd231e32] {\r\n    text-align: center;\n}\n.item1[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.item2[data-v-fd231e32]{\r\n    flex-basis:70%;\n}\n.item3[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.table[data-v-fd231e32]{\r\n    text-align: center;\r\n    width: 100%;\r\n    height: 100px;\r\n    background-color: blanchedalmond;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -39009,59 +39004,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "all" }, [
+    _c("div", { staticClass: "body" }, [
+      _c("div", { staticClass: "login_all" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "new" },
+          [
+            _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
+            _vm._v(" | "),
+            _c("router-link", { attrs: { to: "/join" } }, [
+              _c("a", { attrs: { href: "/../join" } }, [
+                _vm._v("아직 회원이 아니신가요?")
+              ])
+            ])
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "login_all" }, [
-          _c("div", { staticClass: "login" }, [
-            _c("p", [_vm._v("로그인")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "user" }, [
-              _vm._v("\r\n                        ID "),
-              _c("input", {
-                attrs: { type: "text", name: "id", id: "login_id" }
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v("\r\n                        PW "),
-              _c("input", {
-                attrs: { type: "password", name: "password", id: "login_pw" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ok" }, [
-            _c("input", {
-              attrs: { type: "button", value: "확인", id: "login_ok" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cancel" }, [
-            _c("input", {
-              attrs: {
-                type: "button",
-                value: "취소",
-                onclick: "location.href='/'",
-                id: "login_cancel"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "new" }, [
-            _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
-            _vm._v(" | "),
-            _c("a", { attrs: { href: "/../join" } }, [
-              _vm._v("아직 회원이 아니신가요?")
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "login" }, [
+      _c("p", [_vm._v("로그인")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "user" }, [
+        _vm._v("\r\n                        ID "),
+        _c("input", { attrs: { type: "text", name: "id", id: "login_id" } }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v("\r\n                        PW "),
+        _c("input", {
+          attrs: { type: "password", name: "password", id: "login_pw" }
+        })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ok" }, [
+      _c("input", { attrs: { type: "button", value: "확인", id: "login_ok" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "cancel" }, [
+      _c("input", {
+        attrs: {
+          type: "button",
+          value: "취소",
+          onclick: "location.href='/'",
+          id: "login_cancel"
+        }
+      })
     ])
   }
 ]
@@ -39621,35 +39631,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "qna_list" }, [
-    _c("table", { staticClass: "table", attrs: { border: "2" } }, [
-      _vm._m(0),
+  return _c(
+    "div",
+    { staticClass: "qna_list" },
+    [
+      _c("table", { staticClass: "table", attrs: { border: "2" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.qnas, function(qna) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(qna.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(qna.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(qna.user_id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(qna.create_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(qna.view))])
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm._m(2)
+      ]),
       _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.qnas, function(qna) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(qna.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(qna.title))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(qna.user_id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(qna.create_at))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(qna.view))])
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _vm._m(2)
-    ]),
-    _vm._v(" "),
-    _c("button", [_vm._v("생성하기")])
-  ])
+      _c("router-link", { attrs: { to: "/qna/create" } }, [
+        _c("button", [_vm._v("글쓰기")])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -54798,15 +54815,15 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
-/* harmony import */ var _components_MainComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MainComponent.vue */ "./resources/js/components/MainComponent.vue");
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
+/* harmony import */ var _components_MainComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/MainComponent */ "./resources/js/components/MainComponent.vue");
 /* harmony import */ var _components_LoginComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/LoginComponent */ "./resources/js/components/LoginComponent.vue");
 /* harmony import */ var _components_JoinComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/JoinComponent */ "./resources/js/components/JoinComponent.vue");
 /* harmony import */ var _components_MemberComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/MemberComponent */ "./resources/js/components/MemberComponent.vue");
 /* harmony import */ var _components_JapanComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/JapanComponent */ "./resources/js/components/JapanComponent.vue");
 /* harmony import */ var _components_QnAList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/QnAList */ "./resources/js/components/QnAList.vue");
-/* harmony import */ var _components_QnACreate_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/QnACreate.vue */ "./resources/js/components/QnACreate.vue");
-/* harmony import */ var _components_QnAView_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/QnAView.vue */ "./resources/js/components/QnAView.vue");
+/* harmony import */ var _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/QnACreate */ "./resources/js/components/QnACreate.vue");
+/* harmony import */ var _components_QnAView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/QnAView */ "./resources/js/components/QnAView.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -54827,35 +54844,43 @@ var router = new VueRouter({
   mode: 'history',
   routes: [{
     path: '/',
-    component: _components_MainComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    name: _components_MainComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    component: _components_MainComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
     path: '/login',
+    name: _components_LoginComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
     component: _components_LoginComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: '/join',
+    name: _components_JoinComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
     component: _components_JoinComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/member',
+    name: _components_MemberComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
     component: _components_MemberComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/japan',
+    name: _components_JapanComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
     component: _components_JapanComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/qna',
+    name: _components_QnAList__WEBPACK_IMPORTED_MODULE_6__["default"],
     component: _components_QnAList__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/qna/create',
-    component: _components_QnACreate_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    name: _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/qna/view',
-    component: _components_QnAView_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    name: _components_QnAView__WEBPACK_IMPORTED_MODULE_8__["default"],
+    component: _components_QnAView__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 });
 var app = new Vue({
   el: '#app',
   router: router,
   render: function render(h) {
-    return h(_components_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    return h(_components_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
 });
 

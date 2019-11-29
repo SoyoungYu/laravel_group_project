@@ -32,7 +32,9 @@
 				</tr>
 			</tfoot>
 		</table>
-		<button>생성하기</button>
+		<router-link to="/qna/create">
+			<button>글쓰기</button>
+		</router-link>
     </div>
 </template>
 <script>
@@ -44,27 +46,24 @@ export default {
 		};
 	},
 	mounted : function(){
-		Axios.get('/QnA/fetch')
+		Axios.get('/api/qna')
 		.then((response) => {
+			console.log(response.data.qnas);
 			this.qnas = response.data.qnas;
-			this.length = response.data.qnas.length
 		})
 		.catch(error => {
 			console.log(error);
 		});
 	},
-	computed : {
-		qnas : function(){
-			if(this.length){
-				return this.qnas;
-			}
-		}
-	}
 }
 
 </script>
 
 <style scoped>
+.qna_list {
+	margin-top : 200px;
+}
+
 .navi {
     width: 550px;
     margin: 0 auto;
@@ -89,13 +88,6 @@ export default {
     text-align: center;
 }
 
-.container{
-    
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-
-}
 .item1{
     flex-basis:15%;
 

@@ -17,7 +17,7 @@
                     <input type="button" value="취소" onclick="location.href='/'" id="login_cancel">
                 </div>
                 <div class="new">
-                    <a href="">ID 찾기</a> | <a href="/../join">아직 회원이 아니신가요?</a>
+                    <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
                 </div>
             </div>
         </div>

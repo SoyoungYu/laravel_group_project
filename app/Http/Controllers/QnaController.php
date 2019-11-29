@@ -13,22 +13,7 @@ class QnaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function home()
-    {
-        return view('QnA1');
-    }
-    
-    public function createhome()
-    {
-        return view('QnA2');
-    }
-
-    public function viewhome()
-    {
-        return view('QnA3');
-    }
-
-    public function fetch()
+    public function index()
     {
         return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
     }
