@@ -1,22 +1,24 @@
 <template>
-    <div class="all">
+<div class="all">
         <div class="body">
-            <div class="login">
-                <p>로그인</p>
-                <div class="user"> <!-- 아이디, 비밀번호 입력 창 -->
-                    ID<input type="text" name="id" id="login_id">
-                    <br />
-                    PW<input type="password" name="password" id="login_pw">
+            <div class="login_all">
+                <div class="login">
+                    <p>로그인</p>
+                    <div class="user"> <!-- 아이디, 비밀번호 입력 창 -->
+                        ID <input type="text" name="id" id="login_id">
+                        <br />
+                        PW <input type="password" name="password" id="login_pw">
+                    </div>
                 </div>
-            </div>
-            <div class="ok">
-                <input type="button" value="확인" id="login_ok">
-            </div>
-            <div class="cancel">
-                <input type="button" value="취소" onclick="location.href='/'" id="login_cancel">
-            </div>
-            <div class="new">
-                <a href="">ID 찾기</a> | <a href="/../join">아직 회원이 아니신가요?</a>
+                <div class="ok">
+                    <input type="button" value="확인" id="login_ok">
+                </div>
+                <div class="cancel">
+                    <input type="button" value="취소" onclick="location.href='/'" id="login_cancel">
+                </div>
+                <div class="new">
+                    <a href="">ID 찾기</a> | <a href="/../join">아직 회원이 아니신가요?</a>
+                </div>
             </div>
         </div>
     </div>
@@ -28,3 +30,77 @@ export default {
         }
 }
 </script>
+
+
+<style scoped>
+.login_all {
+    margin-top: 14%;
+    margin-right: 35%;
+    margin-left: 35%;
+    padding-bottom: 2%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    border : 1px solid white;
+}
+
+.login {
+    margin-top: 15%;
+    color: white;
+}
+
+.login p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    padding-top: 4%;
+    padding-bottom: 5%;
+}
+
+.user {
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+}
+
+#login_pw {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#login_id,
+#login_pw {
+    color: #fff;
+    background-color: transparent;
+    border: 0 solid transparent;
+    border-bottom: 1px solid #fff;
+    width: 44%;
+    text-align: center;
+}
+.ok input,
+.cancel input {
+    width: 215px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: darkgray;
+    color: black;
+}
+
+.new {
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+}
+
+.new a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+#login_ok,
+#login_cancel {
+    background-color: #cfcfcf;
+    border: 1px solid white;
+    margin: 0.2%;
+}
+</style>
