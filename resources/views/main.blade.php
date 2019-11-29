@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <div id="main">
         <main-component></main-component> <!-- resources/app.js -->
     </div>

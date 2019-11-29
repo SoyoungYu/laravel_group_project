@@ -38,7 +38,7 @@
                     <img src="/image/mung.jpg" id="japan_week4Image"> <!-- 4주차 이미지 (데이터) -->
                     <p id="japan_week4Content">4주차 내용</p> <!-- 4주차 내용 (데이터) -->
                     <input type="button" value="수정" id="japan_week4Modify">
-                    <input type="button" value="삭제" id="japan_week4Delete">asdfsdafsafdasfdsfd
+                    <input type="button" value="삭제" id="japan_week4Delete">
                 </div>
                 <div id="japan_week5Hidden"> <!-- 버튼5(week5)을 클릭했을 때 나타나는 숨겨진 5주차 사진, 내용-->
                     <h2>5주차</h2>

@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+    <link href="{{ asset('css/join.css') }}" rel="stylesheet">
     <div id="join">
         <join-component></join-component> <!-- resources/app.js -->
     </div>

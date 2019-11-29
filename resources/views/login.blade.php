@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <div id="login">
         <login-component></login-component> <!-- resources/app.js -->
     </div>

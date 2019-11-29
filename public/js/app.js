@@ -1946,6 +1946,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -1963,6 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2030,11 +2037,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2052,6 +2054,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37715,56 +37729,87 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
       _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "join" }, [
-          _c("p", [_vm._v("회원가입")]),
+        _c("div", { staticClass: "join_all" }, [
+          _c("div", { staticClass: "join" }, [
+            _c("p", [_vm._v("회원가입")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user" }, [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "id",
+                  value: "ID",
+                  id: "join_id",
+                  onFocus: "this.value=''; return true;"
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "password",
+                  value: "PASSWORD",
+                  id: "join_pw",
+                  onFocus: "this.type='password'; this.value=''; return true;"
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "password2",
+                  value: "PASSWORD CHECK",
+                  id: "join_pw_check",
+                  onFocus: "this.type='password'; this.value=''; return true;"
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "name",
+                  value: "NAME",
+                  id: "join_username",
+                  onFocus: "this.value=''; return true;"
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "email",
+                  name: "email",
+                  value: "EMAIL",
+                  id: "join_email",
+                  onFocus: "this.value=''; return true;"
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "user" }, [
-            _vm._v("\n                ID"),
-            _c("input", { attrs: { type: "text", name: "id", id: "join_id" } }),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v("\n                PW"),
+          _c("div", { staticClass: "ok" }, [
             _c("input", {
-              attrs: { type: "password", name: "password", id: "join_pw" }
-            }),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v("\n                PW 확인"),
+              attrs: { type: "button", value: "확인", id: "join_ok" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "cancel" }, [
             _c("input", {
               attrs: {
-                type: "password",
-                name: "password2",
-                id: "join_pw_check"
+                type: "button",
+                value: "취소",
+                onclick: "/../login",
+                id: "join_cancel"
               }
-            }),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v("\n                이름"),
-            _c("input", {
-              attrs: { type: "text", name: "name", id: "join_username" }
-            }),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v("\n                이메일"),
-            _c("input", {
-              attrs: { type: "email", name: "email", id: "join_email" }
             })
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ok" }, [
-          _c("input", {
-            attrs: { type: "button", value: "확인", id: "join_ok" }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            attrs: {
-              type: "button",
-              value: "취소",
-              onclick: "location.href='/'",
-              id: "join_cancel"
-            }
-          })
         ])
       ])
     ])
@@ -37800,45 +37845,58 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
       _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "login" }, [
-          _c("p", [_vm._v("로그인")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "user" }, [
-            _vm._v("\n                ID"),
-            _c("input", {
-              attrs: { type: "text", name: "id", id: "login_id" }
-            }),
+        _c("div", { staticClass: "login_all" }, [
+          _c("div", { staticClass: "login" }, [
+            _c("p", [_vm._v("로그인")]),
             _vm._v(" "),
-            _c("br"),
-            _vm._v("\n                PW"),
+            _c("div", { staticClass: "user" }, [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "id",
+                  value: "ID",
+                  id: "login_id",
+                  onFocus: "this.value=''; return true;"
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "password",
+                  value: "PASSWORD",
+                  id: "join_pw",
+                  onFocus: "this.type='password'; this.value=''; return true;"
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ok" }, [
             _c("input", {
-              attrs: { type: "password", name: "password", id: "login_pw" }
+              attrs: { type: "button", value: "확인", id: "login_ok" }
             })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ok" }, [
-          _c("input", {
-            attrs: { type: "button", value: "확인", id: "login_ok" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "cancel" }, [
-          _c("input", {
-            attrs: {
-              type: "button",
-              value: "취소",
-              onclick: "location.href='/'",
-              id: "login_cancel"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "new" }, [
-          _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
-          _vm._v(" | "),
-          _c("a", { attrs: { href: "/../join" } }, [
-            _vm._v("아직 회원이 아니신가요?")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "cancel" }, [
+            _c("input", {
+              attrs: {
+                type: "button",
+                value: "취소",
+                onclick: "location.href='/'",
+                id: "login_cancel"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "new" }, [
+            _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
+            _vm._v(" | "),
+            _c("a", { attrs: { href: "/../join" } }, [
+              _vm._v("아직 회원이 아니신가요?")
+            ])
           ])
         ])
       ])
@@ -37875,45 +37933,33 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "all" }, [
       _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "main" }, [
-          _c("img", { attrs: { src: "/image/univ.jpg" } })
-        ]),
+        _c("div", { staticClass: "scene one" }),
         _vm._v(" "),
-        _c("div", { staticClass: "middle" }, [
-          _c("div", { staticClass: "mem" }, [
-            _c("th", [_c("img", { attrs: { src: "/image/cof.jpg" } })]),
+        _c("div", { staticClass: "scene two" }, [
+          _c("header", [
+            _c("h1", [_vm._v("8조를 소개합니다")]),
+            _c("br"),
             _vm._v(" "),
-            _c("th", [
-              _c("div", { attrs: { id: "mems" } }, [
-                _vm._v("조원 소개 페이지입니다."),
-                _c("br"),
-                _vm._v("자세히 보려면 클릭하세요.")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "jpn" }, [
-            _c("th", [_c("img", { attrs: { src: "/image/chr.jpg" } })]),
-            _vm._v(" "),
-            _c("th", [
-              _c("div", { attrs: { id: "jpns" } }, [
-                _vm._v("현지학기제 소개 페이지입니다."),
-                _c("br"),
-                _vm._v("자세히 보려면 클릭하세요.")
-              ])
-            ])
+            _c("h2", [_vm._v("8조의 멤버를 소개합니다")])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "qna" }, [
-          _c("h2", { staticClass: "qnas" }, [
-            _vm._v("QnA"),
+        _c("div", { staticClass: "scene three" }, [
+          _c("header", [
+            _c("h1", [_vm._v("현지학기제 안내")]),
             _c("br"),
+            _vm._v(" "),
+            _c("h2", [_vm._v("현지학기제 주차별 설명을 소개합니다")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "scene four" }, [
+          _c("header", [
+            _c("h1", [_vm._v("QnA")]),
             _c("br"),
-            _vm._v("궁금한게 있으면 물어보세요!")
-          ]),
-          _vm._v(" "),
-          _c("img", { attrs: { src: "/image/que.jpg" } })
+            _vm._v(" "),
+            _c("h2", [_vm._v("궁금한게 있으면 물어보세요!")])
+          ])
         ])
       ])
     ])
@@ -37989,9 +38035,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member1Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member1Intro" } }),
                         _vm._v(" "),
                         _c("input", {
@@ -38046,9 +38092,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member2Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member2Intro" } }),
                         _vm._v(" "),
                         _c("input", {
@@ -38103,9 +38149,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member3Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member3Intro" } }),
                         _vm._v(" "),
                         _c("input", {
@@ -38160,9 +38206,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member4Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member4Intro" } }),
                         _vm._v(" "),
                         _c("input", {
@@ -38217,9 +38263,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member5Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member5Intro" } }),
                         _vm._v(" "),
                         _c("input", {
@@ -38274,9 +38320,9 @@ var staticRenderFns = [
                           }
                         }),
                         _c("br"),
-                        _vm._v("\n                                이름 : "),
+                        _vm._v("\n                            이름 : "),
                         _c("p", { attrs: { id: "member_member6Name" } }),
-                        _vm._v("\n                                소개 : "),
+                        _vm._v("\n                            소개 : "),
                         _c("p", { attrs: { id: "member_member6Intro" } }),
                         _vm._v(" "),
                         _c("input", {

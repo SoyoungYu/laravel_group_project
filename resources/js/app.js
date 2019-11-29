@@ -34,7 +34,7 @@ Vue.component('jpn-component', require('./components/JapanComponent.vue').defaul
 
 const main = new Vue({
     el: '#main',
-});
+}); 
 
 const login = new Vue({
     el: '#login',
