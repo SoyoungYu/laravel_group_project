@@ -42,11 +42,6 @@
     flex-basis:15%;
 }
 
-.title{
-    height: 20px;
-    border: 1px solid black;
-}
-
 .data{
     height: 300px;
     border: 1px solid black;
