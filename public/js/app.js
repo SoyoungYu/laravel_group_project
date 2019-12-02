@@ -2334,7 +2334,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      qnas: ''
+      qna: ''
     };
   },
   mounted: function mounted() {
@@ -2342,7 +2342,7 @@ __webpack_require__.r(__webpack_exports__);
 
     console.log('Component mounted.');
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
-      _this.qnas = response.data.qna;
+      _this.qna = response.data.qna[0];
     })["catch"](function (error) {
       console.log(error);
     });
@@ -39842,32 +39842,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "item2" },
-    [
-      _vm._l(_vm.qnas, function(qna) {
-        return _c("div", { staticClass: "title" }, [
-          _vm._v("\n        " + _vm._s(qna.title) + "\n    ")
-        ])
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.qnas, function(qna) {
-        return _c("div", { staticClass: "data" }, [
-          _vm._v("\n        " + _vm._s(qna.question) + "\n    ")
-        ])
-      }),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")]),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
-    ],
-    2
-  )
+  return _c("div", { staticClass: "item2" }, [
+    _c("div", { staticClass: "title" }, [
+      _vm._v("\n        " + _vm._s(_vm.qna.title) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "data" }, [
+      _vm._v("\n        " + _vm._s(_vm.qna.question) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
+  ])
 }
 var staticRenderFns = [
   function() {
