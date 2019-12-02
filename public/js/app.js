@@ -2212,8 +2212,8 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       } else {
-        console.log('저까이');
         Axios.post('/api/qna', {
+          control: 'qna',
           title: this.title,
           question: this.question
         }).then(function (response) {
@@ -2334,10 +2334,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      qna: ''
+      qna: '',
+      answers: '',
+      view_reply: ''
     };
   },
   mounted: function mounted() {
@@ -2346,6 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
       _this.qna = response.data.qna[0];
+      _this.answers = response.data.reply;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2371,6 +2383,20 @@ __webpack_require__.r(__webpack_exports__);
           title: this.qna.title,
           question: this.qna.question
         }
+      });
+    },
+    createAnswer: function createAnswer(e) {
+      e.preventDefault();
+      var currentObj = this;
+      Axios.post('/api/qna', {
+        control: 'reply',
+        qna_id: this.$route.params.id,
+        user_id: 'test',
+        reply: this.view_reply
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }
@@ -39811,7 +39837,47 @@ var render = function() {
       _vm._v("\n        " + _vm._s(_vm.qna.question) + "\n    ")
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "comment" }, [
+      _c("div", { staticClass: "comment_data" }, [
+        _c(
+          "table",
+          _vm._l(_vm.answers, function(answer) {
+            return _c("tr", [
+              _c("td", [_vm._v(" " + _vm._s(answer.user_id) + " ")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(" " + _vm._s(answer.reply) + " ")])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("form", { on: { submit: _vm.createAnswer } }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.view_reply,
+              expression: "view_reply"
+            }
+          ],
+          staticClass: "comment_text",
+          attrs: { type: "text", name: "댓글쓰기" },
+          domProps: { value: _vm.view_reply },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.view_reply = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("button", [_vm._v("글쓰기")])
+      ])
+    ]),
     _vm._v(" "),
     _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
     _vm._v(" "),
@@ -39820,23 +39886,7 @@ var render = function() {
     _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "comment" }, [
-      _c("div", { staticClass: "comment_data" }, [_vm._v("dddddddd")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "comment_text",
-        attrs: { type: "text", name: "댓글쓰기" }
-      }),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "button", value: "글쓰기" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

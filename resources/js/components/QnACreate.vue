@@ -40,8 +40,8 @@ export default {
                 });
             }
             else{
-                console.log('저까이')
                 Axios.post('/api/qna',{
+                    control : 'qna',
                     title : this.title,
                     question : this.question
                 })

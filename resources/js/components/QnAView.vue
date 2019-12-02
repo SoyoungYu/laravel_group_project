@@ -8,9 +8,18 @@
             {{ qna.question }}
         </div>
         <div class="comment">
-            <div class="comment_data">dddddddd</div>
-            <input type="text" name="댓글쓰기" class="comment_text">
-            <input type="button" value="글쓰기">
+            <div class="comment_data">
+                <table>
+                    <tr v-for = "answer in answers">
+                        <td> {{ answer.user_id }} </td>
+                        <td> {{ answer.reply }} </td>
+                    </tr>
+                </table>
+            </div>
+            <form @submit = "createAnswer">
+                <input type="text" name="댓글쓰기" class="comment_text" v-model = "view_reply">
+                <button>글쓰기</button>
+            </form>
         </div>
         <button v-on:click="goBackList">목록</button>
         <button v-on:click ="deleteQnA">삭제</button>
@@ -22,7 +31,9 @@
 export default {
     data() {
         return {
-            qna : ''
+            qna : '',
+            answers : '',
+            view_reply : ''
         };
     },
     mounted() {
@@ -30,6 +41,7 @@ export default {
         Axios.get('/api/qna/' + this.$route.params.id)
         .then(response => {
             this.qna = response.data.qna[0]
+            this.answers = response.data.reply
         })
         .catch(error => {
             console.log(error)
@@ -50,6 +62,23 @@ export default {
         },
         updateQnA(){
             this.$router.push({name : "QnACreate", params : {id : this.qna.id, title : this.qna.title, question : this.qna.question}});
+        },
+        createAnswer(e){
+            e.preventDefault();
+            let currentObj = this;
+            Axios.post('/api/qna',{
+                control : 'reply',
+                qna_id : this.$route.params.id,
+                user_id : 'test',
+                reply : this.view_reply
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+            
         }
     }
 }
