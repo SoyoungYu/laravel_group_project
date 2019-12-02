@@ -29,13 +29,13 @@
             color: white;
         }
 
-        .title {
+        .navi_title {
             margin-top: 4%;
             padding-left: 50%;
             height: 60px;
         }
 
-        .title h2 {
+        .navi_title h2 {
             margin-top: 50px;
         }
 
@@ -76,7 +76,7 @@
 </head>
 <body>
 <div id="all">
-        <div class="title">
+        <div class="navi_title">
             <h2>8</h2>
         </div>
         <div class="navi">

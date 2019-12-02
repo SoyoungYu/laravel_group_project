@@ -26,7 +26,6 @@ export default {
         };
     },
     mounted() {
-        console.log(this.$route.params.id)
         console.log('Component mounted.')
         Axios.get('/api/qna/' + this.$route.params.id)
         .then(response => {
@@ -63,53 +62,29 @@ export default {
 </script>
 
 <style scoped>
-.navi {
-    width: 550px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.navi #navibar {
-    border-bottom: 2.5px solid black;
-    padding-left: 20%;
-}
-
-#navibar a {
-    text-decoration: none;
-    color: black;
-    padding-right: 12%;
-}
-.footer {
-    margin-top: 180px;
-    margin-bottom: 40px;
-}
-.footer #foot {
-    text-align: center;
-}
-
-.container{
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-    
-
-}
-
 .item2{
-    margin-top : 200px;
-    color : white;
+    width: 600px;
+    margin-top: 13%;
+    margin-left: 30%;
+    color: #fff;
+}
+
+.title {
+    border-bottom: 2px solid #fff;
+    margin-bottom: 1%;
+    text-align: center;
+    font-size: 24px;
 }
 
 .data{
     height: 300px;
-    border: 1px solid black;
- 
+    border: 2px solid #fff;
 }
+
 .comment{
     margin-top: 20px;
     height: 200px;
     border: 2px solid gray;
-
 }
 
 .comment_text{

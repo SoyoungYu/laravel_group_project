@@ -96,5 +96,8 @@ class QnaController extends Controller
     public function destroy($id)
     {
         $qna = new Qna();
+        $qna->find($id)->delete();
+
+        return response()->json(['msg'=>"Success"]);
     }
 }

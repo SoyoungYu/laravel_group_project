@@ -2340,7 +2340,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.$route.params.id);
     console.log('Component mounted.');
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
       _this.qnas = response.data.qna;
@@ -6930,7 +6929,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navi[data-v-5a659a05] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-5a659a05] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-5a659a05] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.container[data-v-5a659a05]{\r\n    \r\n    display: -webkit-box;\r\n    \r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item2[data-v-5a659a05]{\r\n    margin-top : 200px;\n}\n.footer[data-v-5a659a05] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-5a659a05] {\r\n    text-align: center;\n}\n.form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\n}\n.form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\n}\r\n", ""]);
+exports.push([module.i, "\n.item2[data-v-5a659a05] {\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n#create[data-v-5a659a05] {\r\n    text-align: center;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    border: 0px solid transparent;\n}\n#cancel[data-v-5a659a05] {\r\n    margin-left: 5%;\r\n    margin-right: 43%;\n}\n#ok[data-v-5a659a05], #cancel[data-v-5a659a05] {\r\n    cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n   font-size: 15px;\r\n    margin-top: 1%;\r\n    font-size: 17px;\n}\n.form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\r\n    border: 0px solid transparent;\r\n    border-bottom: 2px solid #fff;\r\n    background-color: transparent;\n}\n.form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\r\n    border: 2px solid #fff;\r\n    background-color: transparent;\n}\r\n", ""]);
 
 // exports
 
@@ -6949,7 +6948,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.qna_list[data-v-fd231e32] {\r\n\tmargin-top : 200px;\n}\n.navi[data-v-fd231e32] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-fd231e32] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-fd231e32] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-fd231e32] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-fd231e32] {\r\n    text-align: center;\n}\n.item1[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.item2[data-v-fd231e32]{\r\n    flex-basis:70%;\n}\n.item3[data-v-fd231e32]{\r\n    flex-basis:15%;\n}\n.table[data-v-fd231e32]{\r\n    text-align: center;\r\n    width: 100%;\r\n    height: 100px;\r\n    background-color: blanchedalmond;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.qna_list[data-v-fd231e32] {\r\n   margin-top: 13%;\r\n   margin-left: 20%;\r\n   margin-right: 20%;\n}\n.table[data-v-fd231e32]{\r\n    width: 100%;\r\n   height: 100px;\r\n   background-color: transparent;\r\n   color: #fff;\r\n   border-collapse: collapse;\r\n   border-top: 3px solid #3d3d3d;\r\n   border-left: 0px transparent;\r\n   border-right: 0px transparent;\n}\n.table tbody[data-v-fd231e32] {\r\n   cursor: pointer;\n}\n.table th[data-v-fd231e32] {\r\n   color: #3d3d3d;\r\n   background: #b8b8b8;\r\n   text-align: center;\n}\n.table th[data-v-fd231e32], .table td[data-v-fd231e32] {\r\n   padding: 3px;\r\n   border: 1px solid #ddd;\n}\n.table th[data-v-fd231e32]:first-child, .table td[data-v-fd231e32]:first-child {\r\n   border-left: 0;\n}\n.table th[data-v-fd231e32]:last-child, .table td[data-v-fd231e32]:last-child {\r\n   border-right: 0;\n}\n.table tr td[data-v-fd231e32]:first-child {\r\n   text-align: center;\n}\n.table caption[data-v-fd231e32] {caption-side: bottom; display: none;}\n#new[data-v-fd231e32] {\r\n   cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n   border-bottom: 2px solid white;\r\n   float: right;\r\n   font-size: 15px;\r\n   margin-top: 1%;\n}\r\n", ""]);
 
 // exports
 
@@ -6968,7 +6967,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navi[data-v-78809f6e] {\r\n    width: 550px;\r\n    margin: 0 auto;\r\n    position: relative;\n}\n.navi #navibar[data-v-78809f6e] {\r\n    border-bottom: 2.5px solid black;\r\n    padding-left: 20%;\n}\n#navibar a[data-v-78809f6e] {\r\n    text-decoration: none;\r\n    color: black;\r\n    padding-right: 12%;\n}\n.footer[data-v-78809f6e] {\r\n    margin-top: 180px;\r\n    margin-bottom: 40px;\n}\n.footer #foot[data-v-78809f6e] {\r\n    text-align: center;\n}\n.container[data-v-78809f6e]{\r\n    display: -webkit-box;\r\n    display: flex;\r\n    margin-top: 50px;\r\n    width: 100%;\n}\n.item2[data-v-78809f6e]{\r\n    margin-top : 200px;\r\n    color : white;\n}\n.data[data-v-78809f6e]{\r\n    height: 300px;\r\n    border: 1px solid black;\n}\n.comment[data-v-78809f6e]{\r\n    margin-top: 20px;\r\n    height: 200px;\r\n    border: 2px solid gray;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    height:20px;\r\n    border: 1px solid blue;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 30px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\n.item2[data-v-78809f6e]{\r\n    width: 600px;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n.title[data-v-78809f6e] {\r\n    border-bottom: 2px solid #fff;\r\n    margin-bottom: 1%;\r\n    text-align: center;\r\n    font-size: 24px;\n}\n.data[data-v-78809f6e]{\r\n    height: 300px;\r\n    border: 2px solid #fff;\n}\n.comment[data-v-78809f6e]{\r\n    margin-top: 20px;\r\n    height: 200px;\r\n    border: 2px solid gray;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    height:20px;\r\n    border: 1px solid blue;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 30px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    height: 100px;\n}\r\n", ""]);
 
 // exports
 
@@ -39625,9 +39624,7 @@ var render = function() {
     _c("form", { on: { submit: _vm.postQnA } }, [
       _c(
         "table",
-        {
-          staticStyle: { "text-align": "center", border: "1px solid #dddddd" }
-        },
+        { staticStyle: { "text-align": "center", border: "1px solid #ddd" } },
         [
           _vm._m(0),
           _vm._v(" "),
@@ -39644,6 +39641,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form_control",
+                  staticStyle: { color: "#fff", "font-size": "24px" },
                   attrs: {
                     type: "text",
                     placeholder: "제목",
@@ -39674,7 +39672,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form_control2",
-                  staticStyle: { height: "400px" },
+                  staticStyle: { height: "400px", color: "#fff" },
                   attrs: { placeholder: "내용", maxlength: "2048" },
                   domProps: { value: _vm.question },
                   on: {
@@ -39709,12 +39707,13 @@ var staticRenderFns = [
           "th",
           {
             staticStyle: {
-              "background-color": "#eeeeee",
-              "text-align": "center"
+              "text-align": "center",
+              color: "white",
+              "font-size": "20px"
             },
             attrs: { colspan: "2" }
           },
-          [_vm._v("게시판 글쓰기 양식")]
+          [_vm._v("새 글 작성하기")]
         )
       ])
     ])
@@ -39769,7 +39768,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(qna.user_id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(qna.create_at))]),
+                _c("td", [_vm._v(_vm._s(qna.created_at))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(qna.view))])
               ]
@@ -39780,7 +39779,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("router-link", { attrs: { to: "/qna/create" } }, [
-        _c("button", [_vm._v("글쓰기")])
+        _c("button", { attrs: { id: "new" } }, [_vm._v("글쓰기")])
       ])
     ],
     1

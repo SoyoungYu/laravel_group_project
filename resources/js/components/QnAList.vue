@@ -22,13 +22,13 @@
 					<td>{{ qnas.indexOf(qna)+1 }}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
-					<td>{{ qna.create_at }}</td>
+					<td>{{ qna.created_at }}</td>
 					<td>{{ qna.view }}</td>
 				</tr>
 			</tbody>
 		</table>
 		<router-link to="/qna/create">
-			<button>글쓰기</button>
+			<button id = "new">글쓰기</button>
 		</router-link>
     </div>
 </template>
@@ -61,48 +61,59 @@ export default {
 
 <style scoped>
 .qna_list {
-	margin-top : 200px;
+   margin-top: 13%;
+   margin-left: 20%;
+   margin-right: 20%;
 }
 
-.navi {
-    width: 550px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.navi #navibar {
-    border-bottom: 2.5px solid black;
-    padding-left: 20%;
-}
-
-#navibar a {
-    text-decoration: none;
-    color: black;
-    padding-right: 12%;
-}
-.footer {
-    margin-top: 180px;
-    margin-bottom: 40px;
-}
-.footer #foot {
-    text-align: center;
-}
-
-.item1{
-    flex-basis:15%;
-
-}
-.item2{
-    flex-basis:70%;
-}
-.item3{
-    flex-basis:15%;
-}
 .table{
-    text-align: center;
     width: 100%;
-    height: 100px;
-    background-color: blanchedalmond;
+   height: 100px;
+   background-color: transparent;
+   color: #fff;
+   border-collapse: collapse;
+   border-top: 3px solid #3d3d3d;
+   border-left: 0px transparent;
+   border-right: 0px transparent;
 }
 
+.table tbody {
+   cursor: pointer;
+}
+
+.table th {
+   color: #3d3d3d;
+   background: #b8b8b8;
+   text-align: center;
+}
+
+.table th, .table td {
+   padding: 3px;
+   border: 1px solid #ddd;
+}
+
+.table th:first-child, .table td:first-child {
+   border-left: 0;
+}
+
+.table th:last-child, .table td:last-child {
+   border-right: 0;
+}
+
+.table tr td:first-child {
+   text-align: center;
+}
+
+.table caption {caption-side: bottom; display: none;}
+
+#new {
+   cursor: pointer;
+    color: white;
+    background-color: transparent;
+    border: 0px;
+   border-bottom: 2px solid white;
+   float: right;
+   font-size: 15px;
+   margin-top: 1%;
+}
 </style>
