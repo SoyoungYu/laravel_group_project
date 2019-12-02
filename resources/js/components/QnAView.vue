@@ -12,7 +12,9 @@
             <input type="text" name="댓글쓰기" class="comment_text">
             <input type="button" value="글쓰기">
         </div>
-        <input type="button" value="목록" class= "list_btn">
+        <button v-on:click="goBackList">목록</button>
+        <button v-on:click ="deleteQnA">삭제</button>
+        <button v-on:click = "updateQnA">수정</button>
     </div>
 </template>
 
@@ -34,6 +36,29 @@ export default {
             console.log(error)
         })
     },
+    methods : {
+        goBackList(){
+            this.$router.push('/qna')
+        },
+        deleteQnA(){
+            Axios.delete('/api/qna/' + this.$route.params.id)
+            .then(response => {
+                this.$router.push('/qna')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
+        updateQnA(){
+            Axios.patch('/api/qna/' + this.$route.params.id, {title: "dsafdsf", question : "ahashdsag"})
+            .then(response => {
+                this.$router.push('/qna')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    }
 }
 </script>
 

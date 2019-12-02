@@ -2271,11 +2271,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2334,6 +2329,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2350,6 +2347,32 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
+  },
+  methods: {
+    goBackList: function goBackList() {
+      this.$router.push('/qna');
+    },
+    deleteQnA: function deleteQnA() {
+      var _this2 = this;
+
+      Axios["delete"]('/api/qna/' + this.$route.params.id).then(function (response) {
+        _this2.$router.push('/qna');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    updateQnA: function updateQnA() {
+      var _this3 = this;
+
+      Axios.patch('/api/qna/' + this.$route.params.id, {
+        title: "dsafdsf",
+        question: "ahashdsag"
+      }).then(function (response) {
+        _this3.$router.push('/qna');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -39753,9 +39776,7 @@ var render = function() {
             )
           }),
           0
-        ),
-        _vm._v(" "),
-        _vm._m(2)
+        )
       ]),
       _vm._v(" "),
       _c("router-link", { attrs: { to: "/qna/create" } }, [
@@ -39799,16 +39820,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("조회수")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tfoot", [
-      _c("tr", [
-        _c("td", { attrs: { align: "center", colspan: "5" } }, [_vm._v("1")])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -39850,10 +39861,11 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "list_btn",
-        attrs: { type: "button", value: "목록" }
-      })
+      _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
     ],
     2
   )

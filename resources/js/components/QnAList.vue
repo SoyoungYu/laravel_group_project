@@ -26,11 +26,6 @@
 					<td>{{ qna.view }}</td>
 				</tr>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td align="center" colspan="5">1</td>
-				</tr>
-			</tfoot>
 		</table>
 		<router-link to="/qna/create">
 			<button>글쓰기</button>

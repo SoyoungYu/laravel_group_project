@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Qna;
 
-class QnaController extends Controller
+class JoinController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
+        //
     }
 
     /**
@@ -36,15 +34,7 @@ class QnaController extends Controller
      */
     public function store(Request $request)
     {
-        $qna = new Qna();
-        $qna->user_id = 'test';
-        $qna->title = $request->title;
-        $qna->question = $request->question;
-        $qna->view = 0;
-
-        $qna->save();
-        
-        return response()->json(['msg'=>"Success"]);
+        //
     }
 
     /**
@@ -55,8 +45,7 @@ class QnaController extends Controller
      */
     public function show($id)
     {
-        $qna = new Qna();
-        return response()->json(['qna'=>Qna::where('id',$id)->get()]);
+        //
     }
 
     /**
@@ -79,12 +68,7 @@ class QnaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $qna = Qna::where('id', $id)->first();
-        $qna->title = $request->title;
-        $qna->question = $request->question;
-        
-        $qna->save();
-        return response()->json(['msg'=>"Success"]);
+        //
     }
 
     /**
@@ -95,6 +79,6 @@ class QnaController extends Controller
      */
     public function destroy($id)
     {
-        $qna = new Qna();
+        //
     }
 }
