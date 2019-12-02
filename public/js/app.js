@@ -2182,22 +2182,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    if (this.$route.params.title && this.$route.params.question) {
+      this.title = this.$route.params.title;
+      this.question = this.$route.params.question;
+    }
   },
   data: function data() {
     return {
@@ -2211,14 +2201,27 @@ __webpack_require__.r(__webpack_exports__);
 
       e.preventDefault();
       var currentObj = this;
-      Axios.post('/api/qna', {
-        title: this.title,
-        question: this.question
-      }).then(function (response) {
-        _this.$router.push('/qna');
-      })["catch"](function (error) {
-        console.log(error);
-      });
+
+      if (this.$route.params.title && this.$route.params.question) {
+        Axios.patch('/api/qna/' + this.$route.params.id, {
+          title: this.title,
+          question: this.question
+        }).then(function (response) {
+          _this.$router.push('/qna');
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        console.log('저까이');
+        Axios.post('/api/qna', {
+          title: this.title,
+          question: this.question
+        }).then(function (response) {
+          _this.$router.push('/qna');
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
     },
     back: function back() {
       this.$router.push('/qna');
@@ -2361,15 +2364,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateQnA: function updateQnA() {
-      var _this3 = this;
-
-      Axios.patch('/api/qna/' + this.$route.params.id, {
-        title: "dsafdsf",
-        question: "ahashdsag"
-      }).then(function (response) {
-        _this3.$router.push('/qna');
-      })["catch"](function (error) {
-        console.log(error);
+      this.$router.push({
+        name: "QnACreate",
+        params: {
+          id: this.qna.id,
+          title: this.qna.title,
+          question: this.qna.question
+        }
       });
     }
   }
@@ -6929,7 +6930,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.item2[data-v-5a659a05] {\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n#create[data-v-5a659a05] {\r\n    text-align: center;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    border: 0px solid transparent;\n}\n#cancel[data-v-5a659a05] {\r\n    margin-left: 5%;\r\n    margin-right: 43%;\n}\n#ok[data-v-5a659a05], #cancel[data-v-5a659a05] {\r\n    cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n   font-size: 15px;\r\n    margin-top: 1%;\r\n    font-size: 17px;\n}\n.form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\r\n    border: 0px solid transparent;\r\n    border-bottom: 2px solid #fff;\r\n    background-color: transparent;\n}\n.form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\r\n    border: 2px solid #fff;\r\n    background-color: transparent;\n}\r\n", ""]);
+exports.push([module.i, "\n.item2[data-v-5a659a05] {\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n#create[data-v-5a659a05] {\r\n    text-align: center;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    border: 0px solid transparent;\n}\n#cancel[data-v-5a659a05] {\r\n    margin-left: 5%;\r\n    margin-right: 43%;\n}\n#ok[data-v-5a659a05], #cancel[data-v-5a659a05] {\r\n    cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n   font-size: 15px;\r\n    margin-top: 1%;\r\n    font-size: 17px;\n}\n#form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\r\n    border: 0px solid transparent;\r\n    border-bottom: 2px solid #fff;\r\n    background-color: transparent;\n}\n#form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\r\n    border: 2px solid #fff;\r\n    background-color: transparent;\n}\r\n", ""]);
 
 // exports
 
@@ -39622,73 +39623,54 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "item2" }, [
     _c("form", { on: { submit: _vm.postQnA } }, [
-      _c(
-        "table",
-        { staticStyle: { "text-align": "center", border: "1px solid #ddd" } },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.title,
-                      expression: "title"
-                    }
-                  ],
-                  staticClass: "form_control",
-                  staticStyle: { color: "#fff", "font-size": "24px" },
-                  attrs: {
-                    type: "text",
-                    placeholder: "제목",
-                    maxlength: "100"
-                  },
-                  domProps: { value: _vm.title },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.title = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.question,
-                      expression: "question"
-                    }
-                  ],
-                  staticClass: "form_control2",
-                  staticStyle: { height: "400px", color: "#fff" },
-                  attrs: { placeholder: "내용", maxlength: "2048" },
-                  domProps: { value: _vm.question },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.question = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ])
-          ])
-        ]
-      ),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.title,
+            expression: "title"
+          }
+        ],
+        staticStyle: { color: "#fff", "font-size": "24px" },
+        attrs: {
+          type: "text",
+          id: "form_control",
+          placeholder: "제목",
+          maxlength: "100"
+        },
+        domProps: { value: _vm.title },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.title = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.question,
+            expression: "question"
+          }
+        ],
+        staticStyle: { height: "400px", color: "#fff" },
+        attrs: { id: "form_control2", placeholder: "내용", maxlength: "2048" },
+        domProps: { value: _vm.question },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.question = $event.target.value
+          }
+        }
+      }),
       _vm._v(" "),
       _c("button", [_vm._v("완료")]),
       _vm._v(" "),
@@ -39696,29 +39678,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c(
-          "th",
-          {
-            staticStyle: {
-              "text-align": "center",
-              color: "white",
-              "font-size": "20px"
-            },
-            attrs: { colspan: "2" }
-          },
-          [_vm._v("새 글 작성하기")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

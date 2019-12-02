@@ -49,13 +49,7 @@ export default {
             })
         },
         updateQnA(){
-            Axios.patch('/api/qna/' + this.$route.params.id, {title: "dsafdsf", question : "ahashdsag"})
-            .then(response => {
-                this.$router.push('/qna')
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            this.$router.push({name : "QnACreate", params : {id : this.qna.id, title : this.qna.title, question : this.qna.question}});
         }
     }
 }

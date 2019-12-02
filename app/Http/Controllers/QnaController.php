@@ -46,9 +46,8 @@ class QnaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $qna = Qna::where('id', $id)->first();
-        $qna->update(['title' => $request->title, 'question' => $request->question]);
-        $qna->save();
+        $qna = new Qna();
+        $qna->find($id)->update(['title' => $request->title, 'question' => $request->question]);
         return response()->json(['msg'=>"Success"]);
         
     }
