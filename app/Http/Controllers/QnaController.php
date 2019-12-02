@@ -55,8 +55,11 @@ class QnaController extends Controller
      */
     public function show($id)
     {
-        $qna = new Qna();
-        return response()->json(['qna'=>Qna::where('id',$id)->get()]);
+        $qna = Qna::where('id', $id)->first();
+        $added_view = $qna->view + 1;
+        $qna->update(['view' => $added_view]);
+        $qna->save();
+        return response()->json(['qna'=>$qna->get()]);
     }
 
     /**
@@ -80,11 +83,10 @@ class QnaController extends Controller
     public function update(Request $request, $id)
     {
         $qna = Qna::where('id', $id)->first();
-        $qna->title = $request->title;
-        $qna->question = $request->question;
-        
+        $qna->update(['title' => $request->title, 'question' => $request->question]);
         $qna->save();
         return response()->json(['msg'=>"Success"]);
+        
     }
 
     /**
