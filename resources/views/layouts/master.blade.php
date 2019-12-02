@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         html {
             background-color: black;
@@ -83,7 +83,7 @@
             <div id="navibar">
                 <a href="/../member">조원소개</a>
                 <a href="/../japan">현지학기제</a>
-                <a href="">QnA</a>
+                <a href="/../qna">QnA</a>
             </div>
         </div>
         
