@@ -41,7 +41,7 @@ class QnaController extends Controller
     
             $reply->save();
             
-            return response()->json(['msg'=>"Success"]);
+            return response()->json(['reply'=>Reply::where('qna_id',$request->qna_id)->get()]);
         }
         
     }
