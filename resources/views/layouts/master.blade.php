@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <title>@yield('title')</title>
     <style>
         html {
@@ -29,13 +30,13 @@
             color: white;
         }
 
-        .title {
+        .navi_title {
             margin-top: 4%;
             padding-left: 50%;
             height: 60px;
         }
 
-        .title h2 {
+        .navi_title h2 {
             margin-top: 50px;
         }
 
@@ -76,7 +77,7 @@
 </head>
 <body>
     <div id="all">
-        <div class="title">
+        <div class="navi_title">
             <h2>8</h2>
         </div>
         <div class="navi">
@@ -89,16 +90,23 @@
         
     </div>
     <div class="navilog" id="navilog">
-        @guest
+        @auth
+            <a href="/../logout">로그아웃</a>
+        @else
+            <a href="/../login">로그인</a>
+        @endauth
+        <!-- @guest
             <a href="/../login">로그인</a>
         @endguest
         @auth
-            <a href="/../logout">로그아웃</a>
-        @endauth
+            <a>로그아웃</a>
+        @endauth -->
     </div>
     <div class="container">
         @yield('content')
     </div>
     <script src="js/navibar.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.js'></script>
 </body>
 </html>

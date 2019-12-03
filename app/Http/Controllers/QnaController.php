@@ -13,22 +13,7 @@ class QnaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function home()
-    {
-        return view('QnA1');
-    }
-    
-    public function createhome()
-    {
-        return view('QnA2');
-    }
-
-    public function viewhome()
-    {
-        return view('QnA3');
-    }
-
-    public function fetch()
+    public function index()
     {
         return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
     }
@@ -51,7 +36,15 @@ class QnaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $qna = new Qna();
+        $qna->user_id = 'test';
+        $qna->title = $request->title;
+        $qna->question = $request->question;
+        $qna->view = 0;
+
+        $qna->save();
+        
+        return response()->json(['msg'=>"Success"]);
     }
 
     /**
@@ -62,7 +55,8 @@ class QnaController extends Controller
      */
     public function show($id)
     {
-        //
+        $qna = new Qna();
+        return response()->json(['qna'=>Qna::where('id',$id)->get()]);
     }
 
     /**

@@ -4,24 +4,31 @@
             <div class="login_all">
                 <div class="login">
                     <p>로그인</p>
-                    <div class="user"> <!-- 아이디, 비밀번호 입력 창 -->
-                        <input type="text" name="id" value="ID" id="login_id" onFocus="this.value=''; return true;">
-                        <br />
-                        <input type="text" name="password" value="PASSWORD" id="login_pw" onFocus="this.type='password'; this.value=''; return true;">
+                    <form action="/login" method="POST">
+                    <div class="form-group">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="login_id" name="user_id" placeholder="ID" required>
+                        </div>
                     </div>
-                </div>
-                <div class="ok">
-                    <input type="button" value="확인" id="login_ok">
-                </div>
-                <div class="cancel">
-                    <input type="button" value="취소" onclick="location.href='/'" id="login_cancel">
-                </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="login_pw" name="password" placeholder="비밀번호" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <button type="submit" id ="login_ok" class="btn btn-primary btn-block">확인</button>
+                        </div>
+                    </div>  
+                </form>
                 <div class="new">
                     <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
 export default {
@@ -34,7 +41,7 @@ export default {
 <style scoped>
 .body {
     padding-top: 14%;
-    padding-bottom: 11.8%;
+    padding-bottom: 13.6%;
     background-image: url("/image/office.jpg");
     height: 500%;
     background-position: center;
@@ -85,15 +92,6 @@ export default {
     width: 44%;
     text-align: center;
 }
-.ok input,
-.cancel input {
-    width: 215px;
-    height: 27px;
-    border-radius: 5px;
-    background-color: darkgray;
-    color: black;
-    cursor: pointer;
-}
 
 .new {
     margin-top: 5%;
@@ -107,10 +105,37 @@ export default {
     font-size: 13px;
 }
 
-#login_ok,
-#login_cancel {
+#login_ok {
     background-color: #cfcfcf;
     border: 1px solid white;
     margin: 0.2%;
 }
+
+.form-group input {
+    color: #fff;
+    background-color: transparent;
+    border: 0 solid transparent;
+    border-bottom: 1px solid #fff;
+    width: 44%;
+    text-align: center;
+    padding-top: 1%;
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+}
+
+.form-group input::placeholder {
+    color: #fff;
+    font-size: 15px;
+}
+
+.form-group button {
+    width: 215px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: darkgray;
+    color: black;
+    cursor: pointer;
+    margin-top: 5%;
+}
+
 </style>

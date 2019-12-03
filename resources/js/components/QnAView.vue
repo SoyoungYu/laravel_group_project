@@ -1,11 +1,17 @@
 <template>
     <div class="item2">
-        <div class="title">제목</div>
-        <div class="data">내용<br>내용</div>
+        <div class="title" v-for = 'qna in qnas'>
+            {{ qna.title }}
+        </div>
+        <div class="data" v-for = 'qna in qnas'>
+        <!-- v-for 말고 다른 방법 찾기. 어차피 1개밖에 안 불러오는데 for를 할 이유가 없음. -->
+            {{ qna.question }}
+        </div>
         <div class="comment">
-            <div class="comment_data">dddddddd</div>
-            <input type="text" name="댓글쓰기" class="comment_text">
-            <input type="button" value="글쓰기">
+            <div class="comment_data">
+                <input type="text" name="댓글쓰기" class="comment_text">
+                <input type="button" value="글쓰기">
+            </div>
         </div>
         <input type="button" value="목록" class= "list_btn">
     </div>
@@ -13,9 +19,22 @@
 
 <script>
 export default {
+    data() {
+        return {
+            qnas : ''
+        };
+    },
     mounted() {
-            console.log('Component mounted.')
-        }
+        console.log(this.$route.params.id)
+        console.log('Component mounted.')
+        Axios.get('/api/qna/' + this.$route.params.id)
+        .then(response => {
+            this.qnas = response.data.qna
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    },
 }
 </script>
 
@@ -30,6 +49,8 @@ export default {
 .title {
     border-bottom: 2px solid #fff;
     margin-bottom: 1%;
+    text-align: center;
+    font-size: 24px;
 }
 
 .data{
@@ -41,7 +62,6 @@ export default {
     margin-top: 20px;
     height: 200px;
     border: 2px solid gray;
-
 }
 
 .comment_text{

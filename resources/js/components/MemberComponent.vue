@@ -1,7 +1,7 @@
 <template>
     <div class="all">
         <div class="body">
-        <section class="MOD_ACCORDION1">
+            <section class="MOD_ACCORDION1">
             <div data-layout="_r">
                 <div data-layout="al16">
                     <div class="AP_accordion" role="tablist">
@@ -87,7 +87,8 @@
                 </div>
             </div>
         </section>
-    </div>
+
+        </div>
     </div>
 </template>
 <script>

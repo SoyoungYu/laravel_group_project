@@ -18,21 +18,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for = "qna in qnas">
-					<td>{{ qna.id }}</td>
+				<tr v-for = "qna in qnas" @click="clickQnA(qna)">
+					<td>{{ qnas.indexOf(qna)+1 }}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
 					<td>{{ qna.create_at }}</td>
 					<td>{{ qna.view }}</td>
 				</tr>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td align="center" colspan="5">1</td>
-				</tr>
-			</tfoot>
 		</table>
-		<button id="new">글쓰기</button>
+		<router-link to="/qna/create">
+			<button id="new">글쓰기</button>
+		</router-link>
     </div>
 </template>
 
@@ -45,20 +42,18 @@ export default {
 		};
 	},
 	mounted : function(){
-		Axios.get('/QnA/fetch')
+		Axios.get('/api/qna')
 		.then((response) => {
 			this.qnas = response.data.qnas;
-			this.length = response.data.qnas.length
 		})
 		.catch(error => {
 			console.log(error);
 		});
 	},
-	computed : {
-		qnas : function(){
-			if(this.length){
-				return this.qnas;
-			}
+	methods: {
+		clickQnA(qnaObj){
+			console.log(qnaObj.id)
+			this.$router.push({name : "QnAView", params : {id : qnaObj.id}});
 		}
 	}
 }
@@ -72,18 +67,6 @@ export default {
 	margin-right: 20%;
 }
 
-.item1{
-    flex-basis:15%;
-}
-
-.item2{
-    flex-basis:70%;
-}
-
-.item3{
-    flex-basis:15%;
-}
-
 .table{
     width: 100%;
 	height: 100px;
@@ -95,6 +78,10 @@ export default {
 	border-right: 0px transparent;
 }
 
+.table tbody {
+	cursor: pointer;
+}
+
 .table th {
 	color: #3d3d3d;
 	background: #b8b8b8;
@@ -102,7 +89,7 @@ export default {
 }
 
 .table th, .table td {
-	padding: 7px;
+	padding: 3px;
 	border: 1px solid #ddd;
 }
 

@@ -10,50 +10,71 @@ window.Axios=require('axios').default;
 
 Vue.use(VueRouter, VueAxios, axios);
 
-import Parent from './components/App.vue'
-import Main from './components/MainComponent.vue'
+import Parent from './components/App'
+import Main from './components/MainComponent'
 import Login from './components/LoginComponent'
 import Join from './components/JoinComponent'
 import Member from './components/MemberComponent'
 import Japan from './components/JapanComponent'
-import QnA from './components/QnAList'
-import QnACreate from './components/QnACreate.vue'
-import QnAView from './components/QnAView.vue'
+import JpnCreate from './components/JpnCreateComponent'
+import JpnModify from './components/JpnModifyComponent'
+import QnAList from './components/QnAList'
+import QnACreate from './components/QnACreate'
+import QnAView from './components/QnAView'
 
 const router = new VueRouter({
     mode : 'history',
     routes : [
         {
             path : '/',
+            name : 'Main',
             component : Main
         },
         {
             path : '/login',
+            name : 'Login',
             component : Login
         },
         {
             path : '/join',
+            name : 'Join',
             component : Join
         },
         {
             path : '/member',
+            name : 'Member',
             component : Member
         },
         {
             path : '/japan',
+            name : 'Japan',
             component : Japan
         },
         {
+            path : '/japan/jpnCreate',
+            name : 'JpnCreate',
+            component : JpnCreate
+        },
+        {
+            path : '/japan/jpnModify',
+            name : 'JpnModify',
+            component : JpnModify
+        },
+        {
             path : '/qna',
-            component : QnA
+            name : 'QnAList',
+            component : QnAList
         },
         {
             path : '/qna/create',
+            name : 'QnACreate',
             component : QnACreate
         },
         {
             path : '/qna/view',
-            component : QnAView
+            name : 'QnAView',
+            component : QnAView,
+            props : true
         },
     ]
 });
