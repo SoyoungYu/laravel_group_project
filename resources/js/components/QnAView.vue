@@ -73,12 +73,14 @@ export default {
                 reply : this.view_reply
             })
             .then(response => {
-                console.log(response)
+                this.filter(response.data.reply)
             })
             .catch(error=>{
                 console.log(error)
             })
-            
+        },
+        filter(new_answers){
+            this.answers = new_answers
         }
     }
 }

@@ -2386,6 +2386,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     createAnswer: function createAnswer(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var currentObj = this;
       Axios.post('/api/qna', {
@@ -2394,10 +2396,13 @@ __webpack_require__.r(__webpack_exports__);
         user_id: 'test',
         reply: this.view_reply
       }).then(function (response) {
-        console.log(response);
+        _this3.filter(response.data.reply);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    filter: function filter(new_answers) {
+      this.answers = new_answers;
     }
   }
 });
