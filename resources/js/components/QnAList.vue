@@ -18,8 +18,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for = "qna in qnas" @click="clickQnA(qna)">
-					<td>{{ qnas.indexOf(qna)+1 }}</td>
+				<tr v-for = "qna in qnas.data" @click="clickQnA(qna)">
+					<td>{{ qnas.data.indexOf(qna)+1 }}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
 					<td>{{ qna.created_at }}</td>
@@ -27,6 +27,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<pagination :data="qnas" @pagination-change-page="getResults"></pagination>
 		<router-link to="/qna/create">
 			<button id = "new">글쓰기</button>
 		</router-link>
@@ -36,24 +37,24 @@
 export default {
 	data:function(){
 		return {
-			qnas: '',
-			length : ''
+			qnas: {}
 		};
 	},
 	mounted : function(){
-		Axios.get('/api/qna')
-		.then((response) => {
-			this.qnas = response.data.qnas;
-		})
-		.catch(error => {
-			console.log(error);
-		});
+		this.getResults();
 	},
 	methods: {
 		clickQnA(qnaObj){
 			console.log(qnaObj.id)
 			this.$router.push({name : "QnAView", params : {id : qnaObj.id}});
-		}
+		},
+		getResults(page=1){
+			axios.get('/api/qna?page=' + page)
+			.then(response => {
+				console.log(response.data)
+				this.qnas = response.data;
+			});
+		},
 	}
 }
 

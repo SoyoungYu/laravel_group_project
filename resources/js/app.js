@@ -10,6 +10,8 @@ window.Axios=require('axios').default;
 
 Vue.use(VueRouter, VueAxios, axios);
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 import Parent from './components/App'
 import Main from './components/MainComponent'
 import Login from './components/LoginComponent'

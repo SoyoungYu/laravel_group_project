@@ -11,7 +11,8 @@ class QnaController extends Controller
 
     public function index()
     {
-        return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
+        // return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
+        return Qna::paginate(5);
     }
 
     public function create()
