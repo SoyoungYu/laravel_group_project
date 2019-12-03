@@ -81,6 +81,7 @@ export default {
         },
         filter(new_answers){
             this.answers = new_answers
+            this.view_reply = ''
         }
     }
 }

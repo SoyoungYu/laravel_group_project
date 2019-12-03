@@ -2403,6 +2403,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     filter: function filter(new_answers) {
       this.answers = new_answers;
+      this.view_reply = '';
     }
   }
 });
