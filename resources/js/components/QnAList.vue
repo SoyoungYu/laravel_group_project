@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>
 				<tr v-for = "qna in qnas.data" @click="clickQnA(qna)">
-					<td>{{ qnas.data.indexOf(qna)+1 }}</td>
+					<td>{{ number + (qnas.data.indexOf(qna)+1 )}}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
 					<td>{{ qna.created_at }}</td>
@@ -27,7 +27,10 @@
 				</tr>
 			</tbody>
 		</table>
-		<pagination :data="qnas" @pagination-change-page="getResults"></pagination>
+		<pagination :data="qnas" @pagination-change-page="getResults">
+			<span slot = "prev-nav">Previous</span>
+			<span slot = "next-nav">Next</span>	
+		</pagination>
 		<router-link to="/qna/create">
 			<button id = "new">글쓰기</button>
 		</router-link>
@@ -37,7 +40,8 @@
 export default {
 	data:function(){
 		return {
-			qnas: {}
+			qnas: {},
+			page : 0
 		};
 	},
 	mounted : function(){
@@ -51,14 +55,34 @@ export default {
 		getResults(page=1){
 			axios.get('/api/qna?page=' + page)
 			.then(response => {
-				console.log(response.data)
+				this.page = page
 				this.qnas = response.data;
 			});
-		},
+		}
+	},
+	computed : {
+		number : function(){
+			return ((this.page-1) * 5)
+		}
 	}
 }
 
 </script>
+
+<style>
+	.pagination a{
+		text-decoration : none;
+		color : white;
+	}
+	.pagination{
+		display : inline-block
+	}
+	.pagination li{
+		display : inline
+	}
+
+
+</style>
 
 <style scoped>
 .qna_list {
@@ -117,4 +141,5 @@ export default {
    font-size: 15px;
    margin-top: 1%;
 }
+
 </style>
