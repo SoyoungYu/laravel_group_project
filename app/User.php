@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Member;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_id', 'email', 'password', 'sex', 'name'
+        'id', 'user_id', 'email', 'password', 'sex', 'name', 'lv'
     ];
 
     /**
@@ -45,5 +46,9 @@ class User extends Authenticatable
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function member() {
+        return $this->hasOne(Member::class);
     }
 }

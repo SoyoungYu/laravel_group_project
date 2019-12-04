@@ -14,7 +14,9 @@ import Parent from './components/App'
 import Main from './components/MainComponent'
 import Login from './components/LoginComponent'
 import Join from './components/JoinComponent'
-import Member from './components/MemberComponent'
+import MemberList from './components/MemberList'
+import MemberCreate from './components/MemberCreate'
+import MemberUpdate from './components/MemberUpdate'
 import Japan from './components/JapanComponent'
 import QnAList from './components/QnAList'
 import QnACreate from './components/QnACreate'
@@ -39,9 +41,21 @@ const router = new VueRouter({
             component : Join
         },
         {
-            path : '/member',
-            name : 'Member',
-            component : Member
+            path : '/member', // 목록 출력하기
+            name : 'MemberList',
+            component : MemberList
+        },
+        {
+            path : '/member/create', // 생성하기
+            name : 'MemberCreate',
+            component : MemberCreate,
+            props : true
+        },
+        {
+            path : '/member/update', // 수정하기
+            name : 'MemberUpdate',
+            component : MemberUpdate,
+            props : true
         },
         {
             path : '/japan',
