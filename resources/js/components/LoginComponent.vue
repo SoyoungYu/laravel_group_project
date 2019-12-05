@@ -47,7 +47,7 @@ export default {
                 password : this.password,
             })
             .then(response => {
-                console.log(response)
+                console.log($cookies.isKey('_token'))
                 this.$router.push('/')
             })
             .catch(error => {

@@ -8,7 +8,9 @@ window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
 
-Vue.use(VueRouter, VueAxios, axios);
+window.VueCookies=require('vue-cookies').default;
+
+Vue.use(VueRouter, VueAxios, axios,VueCookies);
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
@@ -21,6 +23,7 @@ import Japan from './components/JapanComponent'
 import QnAList from './components/QnAList'
 import QnACreate from './components/QnACreate'
 import QnAView from './components/QnAView'
+import Navigation from './components/NaviComponent'
 
 const router = new VueRouter({
     mode : 'history',
@@ -65,7 +68,7 @@ const router = new VueRouter({
             name : 'QnAView',
             component : QnAView,
             props : true
-        },
+        }
     ]
 });
 

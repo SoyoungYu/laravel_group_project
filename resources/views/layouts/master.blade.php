@@ -75,30 +75,9 @@
     </style>
 </head>
 <body>
-<div id="all">
-        <div class="navi_title">
-            <h2>8</h2>
-        </div>
-        <div class="navi">
-            <div id="navibar">
-                <a href="/../member">조원소개</a>
-                <a href="/../japan">현지학기제</a>
-                <a href="/../qna">QnA</a>
-            </div>
-        </div>
-        
-    </div>
-    <div class="navilog" id="navilog">
-        @isset($_COOKIE['_token'])
-            <a href="/../logout">로그아웃</a>
-        @endisset
-        @empty($_COOKIE['_token'])
-            <a href="/../login">로그인</a>
-        @endempty
-    </div>
     <div class="container">
         @yield('content')
     </div>
-    <script src="js/navibar.js" type="text/javascript"></script>
+<script src="js/navibar.js" type="text/javascript"></script>
 </body>
 </html>

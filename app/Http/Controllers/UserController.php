@@ -48,7 +48,7 @@ class UserController extends Controller
             return response()->json([
                 'logged_in_user' =>$user,
                 'token' => $token,
-            ], 200)->cookie($cookie['name'], $cookie['value'],$cookie['minutes'],$cookie['path'],$cookie['domain'],
+            ], 200)->cookie($cookie['key'], $cookie['value'],$cookie['minutes'],$cookie['path'],$cookie['domain'],
             $cookie['secure'],$cookie['httponly'],$cookie['samesite']);
         }else{
             return response()->json(['error'=>'invalid-credentials'],422);
@@ -58,13 +58,13 @@ class UserController extends Controller
     private function getCookieDetails($token)
     {
         return [
-            'name' => '_token',
+            'key' => '_token',
             'value' => $token,
             'minutes' => 1440,
             'path' => null,
             'domain' => null,
             'secure' => null,
-            'httponly' => true,
+            'httponly' => false,
             'samesite' => true,
         ];
     }

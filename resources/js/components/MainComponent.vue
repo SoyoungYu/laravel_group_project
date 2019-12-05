@@ -22,7 +22,7 @@
                 </header>
             </div>
         </div>
-        <button @click="test">logout</button>
+        <button>logout</button>
     </div>
 </template>
 
@@ -30,17 +30,6 @@
     export default {
         mounted() {
             console.log('Component mounted.')
-        },
-        methods : {
-            test (){
-                Axios.get('/api/logout')
-                .then(response=>{
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-            }
         }
     }
 </script>
