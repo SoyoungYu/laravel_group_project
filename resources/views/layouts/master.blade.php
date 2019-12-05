@@ -89,12 +89,12 @@
         
     </div>
     <div class="navilog" id="navilog">
-        @guest
-            <a href="/../login">로그인</a>
-        @endguest
-        @auth
+        @isset($_COOKIE['_token'])
             <a href="/../logout">로그아웃</a>
-        @endauth
+        @endisset
+        @empty($_COOKIE['_token'])
+            <a href="/../login">로그인</a>
+        @endempty
     </div>
     <div class="container">
         @yield('content')
