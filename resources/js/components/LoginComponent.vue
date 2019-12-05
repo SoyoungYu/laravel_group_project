@@ -1,24 +1,28 @@
 <template>
-<div class="all">
-        <div class="body">
-            <div class="login_all">
-                <div class="login">
-                    <p>로그인</p>
-                    <div class="user"> <!-- 아이디, 비밀번호 입력 창 -->
-                        ID <input type="text" name="id" id="login_id">
-                        <br />
-                        PW <input type="password" name="password" id="login_pw">
+    <div class="body">
+        <div class="login_all">
+            <div class="login">
+                <p>로그인</p>
+                <form @submit = "postLogin">
+                    <div class="form-group">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" v-model="user_id" placeholder="ID" required>
+                        </div>
                     </div>
-                </div>
-                <div class="ok">
-                    <input type="button" value="확인" id="login_ok">
-                </div>
-                <div class="cancel">
-                    <input type="button" value="취소" onclick="location.href='/'" id="login_cancel">
-                </div>
-                <div class="new">
-                    <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
-                </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-8">
+                            <input type="password" class="form-control" v-model="password" placeholder="비밀번호" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button>가입</button>
+                        <button v-on:click="back">취소</button>
+                    </div>  
+                </form>
+            </div>
+            <div class="new">
+                <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
             </div>
         </div>
     </div>
@@ -27,7 +31,37 @@
 export default {
     mounted() {
             console.log('Component mounted.')
+        },
+    data() {
+        return{
+            user_id : '',
+            password : ''
         }
+    },
+    methods : {
+        postLogin(e) {
+            e.preventDefault();
+            let currentObj = this;
+            Axios.post('/api/login',{
+                user_id : this.user_id,
+                password : this.password,
+            })
+            .then(response => {
+                console.log(response)
+                this.$router.push('/')
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        },
+        back(){
+            this.$router.push('/')
+        },
+        cl(){
+            console.log(this.user_id)
+            console.log(this.password)
+        }
+    }
 }
 </script>
 

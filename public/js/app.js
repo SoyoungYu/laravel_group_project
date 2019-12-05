@@ -1971,9 +1971,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      user_id: '',
+      password: '',
+      name: '',
+      email: '',
+      sex: ''
+    };
+  },
+  methods: {
+    postUser: function postUser(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var currentObj = this;
+      Axios.post('/api/join', {
+        user_id: this.user_id,
+        sex: this.sex,
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }).then(function (response) {
+        _this.$router.push('/login');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    back: function back() {
+      this.$router.push('/');
+    }
   }
 });
 
@@ -2013,9 +2062,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      user_id: '',
+      password: ''
+    };
+  },
+  methods: {
+    postLogin: function postLogin(e) {
+      var _this = this;
+
+      e.preventDefault();
+      var currentObj = this;
+      Axios.post('/api/login', {
+        user_id: this.user_id,
+        password: this.password
+      }).then(function (response) {
+        console.log(response);
+
+        _this.$router.push('/');
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    back: function back() {
+      this.$router.push('/');
+    },
+    cl: function cl() {
+      console.log(this.user_id);
+      console.log(this.password);
+    }
   }
 });
 
@@ -6898,7 +6982,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.join_all[data-v-ba400dd0] {\r\n    margin-top: 14%;\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.user[data-v-ba400dd0] {margin-top: 1.5%;margin-bottom: 1%}\n#join_id[data-v-ba400dd0],\r\n#join_pw[data-v-ba400dd0],\r\n#join_pw_check[data-v-ba400dd0],\r\n#join_username[data-v-ba400dd0],\r\n#join_email[data-v-ba400dd0] {\r\n    margin-bottom: 3%;\n}\n.user input[data-v-ba400dd0] {color: #fff;background-color: transparent;border: 0 solid transparent;border-bottom: 1px solid #fff;width: 44%;text-align: center}\n.ok input[data-v-ba400dd0],\r\n.cancel input[data-v-ba400dd0] {width: 215px;height: 27px;border-radius: 5px;background-color: darkgray;color: black}\n#join_ok[data-v-ba400dd0],\r\n#join_cancel[data-v-ba400dd0] {\r\n    background-color: #cfcfcf;\r\n    border: 1px solid #fff;\r\n    margin: 0.2%;\n}\r\n", ""]);
+exports.push([module.i, "\n.join_all[data-v-ba400dd0] {\r\n    margin-top: 14%;\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.form-group input[data-v-ba400dd0] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 5%;\n}\n.form-group input[data-v-ba400dd0]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-ba400dd0] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n", ""]);
 
 // exports
 
@@ -39655,96 +39739,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "join_all" }, [
-          _c("div", { staticClass: "join" }, [
-            _c("p", [_vm._v("회원가입")]),
+  return _c("div", { staticClass: "all" }, [
+    _c("div", { staticClass: "body" }, [
+      _c("div", { staticClass: "join_all" }, [
+        _c("div", { staticClass: "join" }, [
+          _c("p", [_vm._v("회원가입")]),
+          _vm._v(" "),
+          _c("form", { on: { submit: _vm.postUser } }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.user_id,
+                      expression: "user_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "ID", required: "" },
+                  domProps: { value: _vm.user_id },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.user_id = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "user" }, [
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  name: "id",
-                  value: "ID",
-                  id: "join_id",
-                  onFocus: "this.value=''; return true;",
-                  onBlur: "this.value='ID'; return true;"
-                }
-              }),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    placeholder: "비밀번호",
+                    required: ""
+                  },
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "이름", required: "" },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", placeholder: "email", required: "" },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.sex,
+                      expression: "sex"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "성별", required: "" },
+                  domProps: { value: _vm.sex },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.sex = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("button", [_vm._v("가입")]),
               _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "password", name: "password", id: "join_pw" }
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "password",
-                  name: "password2",
-                  id: "join_pw_check"
-                }
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  name: "name",
-                  value: "NAME",
-                  id: "join_username",
-                  onFocus: "this.value=''; return true;",
-                  onBlur: "this.value='NAME'; return true;"
-                }
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "email",
-                  name: "email",
-                  value: "EMAIL",
-                  id: "join_email",
-                  onFocus: "this.value=''; return true;",
-                  onBlur: "this.value='EMAIL'; return true;"
-                }
-              })
+              _c("button", { on: { click: _vm.back } }, [_vm._v("취소")])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ok" }, [
-            _c("input", {
-              attrs: { type: "button", value: "확인", id: "join_ok" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "cancel" }, [
-            _c("input", {
-              attrs: {
-                type: "button",
-                value: "취소",
-                onclick: "/../login",
-                id: "join_cancel"
-              }
-            })
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39766,77 +39913,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "all" }, [
-    _c("div", { staticClass: "body" }, [
-      _c("div", { staticClass: "login_all" }, [
-        _vm._m(0),
+  return _c("div", { staticClass: "body" }, [
+    _c("div", { staticClass: "login_all" }, [
+      _c("div", { staticClass: "login" }, [
+        _c("p", [_vm._v("로그인")]),
         _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "new" },
-          [
-            _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
-            _vm._v(" | "),
-            _c("router-link", { attrs: { to: "/join" } }, [
-              _c("a", { attrs: { href: "/../join" } }, [
-                _vm._v("아직 회원이 아니신가요?")
-              ])
+        _c("form", { on: { submit: _vm.postLogin } }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.user_id,
+                    expression: "user_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "ID", required: "" },
+                domProps: { value: _vm.user_id },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.user_id = $event.target.value
+                  }
+                }
+              })
             ])
-          ],
-          1
-        )
-      ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.password,
+                    expression: "password"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "password",
+                  placeholder: "비밀번호",
+                  required: ""
+                },
+                domProps: { value: _vm.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("button", [_vm._v("가입")]),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.back } }, [_vm._v("취소")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "new" },
+        [
+          _c("a", { attrs: { href: "" } }, [_vm._v("ID 찾기")]),
+          _vm._v(" | "),
+          _c("router-link", { attrs: { to: "/join" } }, [
+            _c("a", { attrs: { href: "/../join" } }, [
+              _vm._v("아직 회원이 아니신가요?")
+            ])
+          ])
+        ],
+        1
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "login" }, [
-      _c("p", [_vm._v("로그인")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "user" }, [
-        _vm._v("\r\n                        ID "),
-        _c("input", { attrs: { type: "text", name: "id", id: "login_id" } }),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v("\r\n                        PW "),
-        _c("input", {
-          attrs: { type: "password", name: "password", id: "login_pw" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ok" }, [
-      _c("input", { attrs: { type: "button", value: "확인", id: "login_ok" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cancel" }, [
-      _c("input", {
-        attrs: {
-          type: "button",
-          value: "취소",
-          onclick: "location.href='/'",
-          id: "login_cancel"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
