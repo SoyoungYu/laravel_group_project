@@ -7,3 +7,12 @@ for (i = 1; i <= 7; i++) {
         }
     });
 }
+
+
+// for (i = 1; i <= 7; i++) {
+//     jQuery('#japan_week'+i).on('click', function () {
+//         $('.modal-wrapper').toggleClass('open');
+//         $('.body').toggleClass('blur-it');
+//         return false;
+//     });
+// }

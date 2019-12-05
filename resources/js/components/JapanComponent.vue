@@ -3,21 +3,25 @@
         <div class="body">
             <div class="btn-group" id="menu">
                 <!-- week1 ~ week7 버튼 -->
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1">week 1</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-right" id="japan_week2">week 2</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" id="japan_week3">week 3</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4">week 4</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5">week 5</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6">week 6</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7">week 7</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1" v-on:click="clickWeek(1)">week 1</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2" v-on:click="clickWeek(2)">week 2</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3" v-on:click="clickWeek(3)">week 3</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4" v-on:click="clickWeek(4)">week 4</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >week 5</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">week 6</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">week 7</button>
             </div>
+            
             <div class="japan_hiddenIntro">
-                <div id="japan_weekHidden">
-                    <h2>1주차</h2>
-                    <img src="/image/mung.jpg" id="japan_weekImage">
-                    <p id="japan_week1Content">1주차 내용</p>
-                    <input type="button" value="수정" id="japan_weekModify">
-                    <input type="button" value="삭제" id="japan_weekDelete">
+                <button @click="goCreate(week)">새로 만들기</button>
+                <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
+                    <h2>{{ japan.title }}</h2>
+                    <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
+                    <pre>
+                        <p id="japan_week1Content">{{ japan.info }}</p> <!-- 1주차 내용 (데이터) -->
+                    </pre>
+                    <input type="button" value="수정" @click="goModify(japan)">
+                    <input type="button" value="삭제" @click="del(japan.id)">
                 </div>
             </div>
         </div>
@@ -25,45 +29,62 @@
 </template>
 <script>
 export default {
-    mounted() {
-        console.log('Component mounted.')
+    data:function(){
+        return {
+            japans: '',
+            week: '',
+        };
+    },
+    mounted: function(){
+ 
+    },
+    methods: {
+        clickWeek(weekId){
+            console.log(weekId);
+            this.week=weekId
+              Axios.get('/api/japan/'+weekId)
+            .then((response)=>{
+                this.japans = response.data.japans
+                console.log(this.japans)
+                this.japnas.info = this.japans.info.replice('\n').join('<br/>')
+               
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+        del(id){
+            Axios.delete('api/japan/' + id)
+            .then(response =>{
+                console.log(response.data)
+                this.$router.push('/')
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        goModify(japan){
+            console.log(japan.id)
+            this.$router.push({name : "JapanModify", params:{id : japan.id}})
+        },
+        goCreate(week){
+            console.log(week)
+            this.$router.push({name: 'JapanCreate', params:{week : week}})
+        }
     }
+
 }
 </script>
 
 <style scoped>
-.japan_hiddenIntro {
-    width: 80%;
-}
-
-#japan_weekHidden
-{
+#japan_week1Hidden,
+#japan_week2Hidden,
+#japan_week3Hidden,
+#japan_week4Hidden,
+#japan_week5Hidden,
+#japan_week6Hidden,
+#japan_week7Hidden {
     display: none;
-    margin-top: 5%;
-    padding: 1%;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.japan_hiddenIntro h2 {
-    font-size: 2em;
-    margin-bottom: 3%;
-}
-
-.japan_hiddenIntro p {
-    text-align: left;
-    float: right;
-    width: 67%;
-}
-
-.japan_hiddenIntro input {
-    color: white;
-    background-color: transparent;
-    border: 0px;
-    border-bottom: 2px solid white;
-    font-size: 18px;
-    margin-left: 8%;
-    cursor: pointer;
 }
 
 .body {
@@ -74,6 +95,7 @@ export default {
     justify-content: center;
     width: 100%;
     height: 100%;
+    color:black;
 }
 
 .mocean-modal-wrap {
@@ -84,9 +106,8 @@ export default {
 .btn-group {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
-    height: 65px;
-    margin-top: 10%;
+    width: 100%;
+    height: 400px;
 }
 
 .btn-group button {
@@ -108,7 +129,7 @@ button {
     transition: 100ms all ease-in-out;
     width: 100%;
     font-weight: 600;
-    font-size: 1.5em;
+    font-size: 1.7em;
     text-transform: uppercase;
     background: #424242;
     color: white;
@@ -117,6 +138,10 @@ button {
 button:hover {
     cursor: pointer;
     background: #1C1C1C;
+}
+
+button:focus {
+    outline: none;
 }
 
 .mocean-modal-wrap {
@@ -227,6 +252,5 @@ button:hover {
 .mocean-show {
     visibility: visible;
 }
-
 
 </style>
