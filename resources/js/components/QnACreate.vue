@@ -36,7 +36,7 @@ export default {
     methods : {
         postQnA(e) {
             e.preventDefault();
-            let currentObj = this;
+        let currentObj = this;
             Axios.post('/api/qna',{
                 title : this.title,
                 question : this.question

@@ -1,9 +1,9 @@
 <template>
     <div class="item2">
-        <div class="title" v-for = 'qna in qnas'>
+        <div class="title" v-for = 'qna in qnas' v-bind:key="qna">
             {{ qna.title }}
         </div>
-        <div class="data" v-for = 'qna in qnas'>
+        <div class="data" v-for = 'qna in qnas' v-bind:key="qna">
         <!-- v-for 말고 다른 방법 찾기. 어차피 1개밖에 안 불러오는데 for를 할 이유가 없음. -->
             {{ qna.question }}
         </div>
@@ -28,6 +28,7 @@ export default {
         console.log('Component mounted.')
         Axios.get('/api/qna/' + this.$route.params.id)
         .then(response => {
+            console.log(response.data.qna)
             this.qnas = response.data.qna
         })
         .catch(error => {

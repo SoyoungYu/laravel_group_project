@@ -37,7 +37,7 @@ class QnaController extends Controller
     public function store(Request $request)
     {
         $qna = new Qna();
-        $qna->user_id = 'test';
+        $qna->user_id = 'k';
         $qna->title = $request->title;
         $qna->question = $request->question;
         $qna->view = 0;

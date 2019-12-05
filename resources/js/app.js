@@ -19,6 +19,9 @@ import Japan from './components/JapanComponent'
 import QnAList from './components/QnAList'
 import QnACreate from './components/QnACreate'
 import QnAView from './components/QnAView'
+import Test from './components/test.vue'
+import JapanModify from './components/JapanModifyComponent.vue'
+import JapanCreate from './components/JpnCreateComponent.vue'
 
 const router = new VueRouter({
     mode : 'history',
@@ -43,10 +46,21 @@ const router = new VueRouter({
             name : 'Member',
             component : Member
         },
+     
         {
             path : '/japan',
             name : 'Japan',
             component : Japan
+        },
+        {
+            path : '/japan/create',
+            name : 'JapanCreate',
+            component : JapanCreate
+        },
+        {
+            path : '/japan/modify',
+            name : 'JapanModify',
+            component : JapanModify
         },
         {
             path : '/qna',
