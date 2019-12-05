@@ -2141,9 +2141,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    test: function test() {
+      Axios.get('/api/logout').then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -40022,42 +40032,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "all" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.test } }, [_vm._v("logout")])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "all" }, [
-      _c("div", { staticClass: "body" }, [
-        _c("div", { staticClass: "scene one" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "scene two" }, [
-          _c("header", [
-            _c("h1", [_vm._v("8조를 소개합니다")]),
-            _c("br"),
-            _vm._v(" "),
-            _c("h2", [_vm._v("8조의 멤버를 소개합니다")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "scene three" }, [
-          _c("header", [
-            _c("h1", [_vm._v("현지학기제 안내")]),
-            _c("br"),
-            _vm._v(" "),
-            _c("h2", [_vm._v("현지학기제 주차별 설명을 소개합니다")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "scene four" }, [
-          _c("header", [
-            _c("h1", [_vm._v("QnA")]),
-            _c("br"),
-            _vm._v(" "),
-            _c("h2", [_vm._v("궁금한게 있으면 물어보세요!")])
-          ])
+    return _c("div", { staticClass: "body" }, [
+      _c("div", { staticClass: "scene one" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "scene two" }, [
+        _c("header", [
+          _c("h1", [_vm._v("8조를 소개합니다")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("h2", [_vm._v("8조의 멤버를 소개합니다")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "scene three" }, [
+        _c("header", [
+          _c("h1", [_vm._v("현지학기제 안내")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("h2", [_vm._v("현지학기제 주차별 설명을 소개합니다")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "scene four" }, [
+        _c("header", [
+          _c("h1", [_vm._v("QnA")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("h2", [_vm._v("궁금한게 있으면 물어보세요!")])
         ])
       ])
     ])

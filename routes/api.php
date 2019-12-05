@@ -12,3 +12,7 @@ Route::resource('/join', 'JoinController');
 
 Route::post('/login', 'UserController@login');
 Route::post('/join', 'UserController@register');
+
+Route::group(['middleware'=>'auth.api'], function(){
+    Route::get('logout', 'UserController@logout');
+});
