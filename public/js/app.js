@@ -2083,10 +2083,14 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
       var currentObj = this;
       Axios.post('/api/login', {
-        user_id: this.user_id,
-        password: this.password
+        'email': this.user_id,
+        // 0
+        'password': this.password // 0
+
       }).then(function (response) {
         _this.$router.push('/');
+
+        console.log('success');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2187,9 +2191,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      member: {},
       member_info: '',
-      id: this.$route.params.user_id
+      image: '',
+      "class": ''
     };
   },
   mounted: function mounted() {
@@ -2201,22 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onImageChange: function onImageChange(e) {
       // 이미지 파일 찾아내기
-      var config = {
-        headers: {
-          processData: true,
-          contentType: "multipart/form-data"
-        }
-      };
-      var image = e.target.files[0];
-      var id = this.$route.params.user_id;
-      var form = new FormData();
-      form.append('image', image);
-      form.append('id', id);
-      axios.post('/member/image', form, config).then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      this.image = e.target.files[0];
     },
     create: function create(e) {
       var _this = this;
@@ -2225,18 +2214,21 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
       var config = {
         headers: {
-          contentType: "application/json"
+          contentType: "multipart/form-data"
         }
       };
       var form = new FormData();
-      var id = e.target.id;
-      var member_info = this.member_info;
+      var id = e.target.id; // ㅇ
+
+      var member_info = this.member_info; // ㅇ
+
+      var image = this.image; // ㅇ
+
       form.append('id', id);
       form.append('member_info', member_info);
+      form.append('image', image);
       axios.post("/api/member", form, config).then(function (res) {
         _this.$router.push('/member');
-
-        console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2372,22 +2364,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      searching: false,
-      member: {},
-      member_info: ''
+      member: {
+        user: {
+          name: '로딩중'
+        },
+        imagename: '로딩중',
+        member_info: '로딩중'
+      },
+      // 시간차 렌더
+      member_info: '',
+      image: ''
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    var id = this.$route.params.user_id;
-    Axios.get("/api/member/".concat(id)).then(function (res) {
-      _this.member = res.data.member;
+    var user_id = this.$route.params.user_id;
+    Axios.get("/api/member/".concat(user_id)).then(function (res) {
+      _this.member = res.data.member[0];
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2401,17 +2398,19 @@ __webpack_require__.r(__webpack_exports__);
 
       var config = {
         headers: {
-          contentType: "application/json"
+          processData: true,
+          contentType: "multipart/form-data"
         }
       };
+      var form = new FormData();
       var id = this.$route.params.user_id;
       var member_info = this.member_info;
-      console.log(this.member_info);
-      console.log(this.$route.params.user_id);
-      Axios.patch("/api/member/" + id, {
-        'member_info': member_info,
-        'id': id
-      }, config).then(function (res) {
+      var image = this.image;
+      form.append('_method', 'patch');
+      form.append('id', id);
+      form.append('member_info', member_info);
+      form.append('image', image);
+      Axios.post("/api/member/".concat(id), form, config).then(function (res) {
         _this2.$router.push('/member');
       })["catch"](function (err) {
         console.log(err);
@@ -2419,22 +2418,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     onImageChange: function onImageChange(e) {
       // 이미지 파일 찾아내기
-      var config = {
-        headers: {
-          processData: true,
-          contentType: "multipart/form-data"
-        }
-      };
-      var image = e.target.files[0];
-      var id = this.$route.params.user_id;
-      var form = new FormData();
-      form.append('image', image);
-      form.append('id', id);
-      axios.post('/member/image', form, config).then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      this.image = e.target.files[0];
+      console.log(e.target.files[0]);
     }
   }
 });
@@ -2565,7 +2550,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    Axios.get('/api/qna').then(function (response) {
+    var config = {
+      headers: {
+        'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
+        'Accept': 'application/json'
+      }
+    };
+    Axios.get('/api/qna', config).then(function (response) {
       _this.qnas = response.data.qnas;
     })["catch"](function (error) {
       console.log(error);
@@ -39762,6 +39753,7 @@ var render = function() {
                         _c("br"),
                         _vm._v("\n                                이름 : "),
                         _c("p", [_vm._v("하잇!")]),
+                        _vm._v(" "),
                         _vm._v("\n                                소개 : "),
                         _c("input", {
                           directives: [
@@ -39790,7 +39782,7 @@ var render = function() {
                         _c("br"),
                         _vm._v("\n                                이미지 : "),
                         _c("input", {
-                          attrs: { type: "file", id: _vm.id },
+                          attrs: { type: "file" },
                           on: { change: _vm.onImageChange }
                         }),
                         _vm._v(" "),
@@ -39862,7 +39854,10 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(member.id) + ". " + _vm._s(member.user.name)
+                          " " +
+                            _vm._s(member.id) +
+                            ". " +
+                            _vm._s(member.user.name)
                         )
                       ]
                     ),
@@ -39975,89 +39970,85 @@ var render = function() {
             _c(
               "div",
               { staticClass: "AP_accordion", attrs: { role: "tablist" } },
-              _vm._l(_vm.member, function(mem) {
-                return _c("div", { key: mem.id }, [
-                  _c(
-                    "p",
-                    {
-                      staticClass: "AP_accordion_tab",
-                      attrs: {
-                        role: "tab",
-                        "data-theme": "_bgp1",
-                        tabindex: "0"
-                      }
-                    },
-                    [_vm._v("수정하기")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "AP_accordion_panel",
-                      attrs: { role: "tabpanel" }
-                    },
-                    [
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass: "AP_accordion_tab",
+                    attrs: { role: "tab", "data-theme": "_bgp1", tabindex: "0" }
+                  },
+                  [_vm._v("수정하기")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "AP_accordion_panel",
+                    attrs: { role: "tabpanel" }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "mem1",
+                      attrs: { src: "/image/bird.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { attrs: { id: "member_member1Hidden" } }, [
                       _c("img", {
-                        staticClass: "mem1",
-                        attrs: { src: "/image/bird.jpg" }
+                        attrs: {
+                          src: "/images/" + _vm.member.imagename,
+                          id: "member_member1Image"
+                        }
+                      }),
+                      _c("br"),
+                      _vm._v("\n                                이름 : "),
+                      _c("p", [_vm._v(_vm._s(_vm.member.user.name))]),
+                      _vm._v("\n                                소개 : "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.member_info,
+                            expression: "member_info"
+                          }
+                        ],
+                        attrs: {
+                          type: "text",
+                          placeholder: _vm.member.member_info
+                        },
+                        domProps: { value: _vm.member_info },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.member_info = $event.target.value
+                          }
+                        }
                       }),
                       _vm._v(" "),
-                      _c("div", { attrs: { id: "member_member1Hidden" } }, [
-                        _c("img", {
-                          attrs: {
-                            src: "/images/" + mem.imagename,
-                            id: "member_member1Image"
-                          }
-                        }),
-                        _c("br"),
-                        _vm._v("\n                                이름 : "),
-                        _c("p", [_vm._v(_vm._s(mem.user.name))]),
-                        _vm._v("\n                                소개 : "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.member_info,
-                              expression: "member_info"
-                            }
-                          ],
-                          attrs: { type: "text", placeholder: mem.member_info },
-                          domProps: { value: _vm.member_info },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.member_info = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v("\n                                이미지 : "),
-                        _c("input", {
-                          attrs: { type: "file", id: mem.id },
-                          on: { change: _vm.onImageChange }
-                        }),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: { type: "button", value: "수정하기" },
-                          on: { click: _vm.update }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: { type: "button", value: "뒤로가기" },
-                          on: { click: _vm.back }
-                        })
-                      ])
-                    ]
-                  )
-                ])
-              }),
-              0
+                      _c("br"),
+                      _vm._v("\n                                이미지 : "),
+                      _c("input", {
+                        attrs: { type: "file", id: _vm.member.id },
+                        on: { change: _vm.onImageChange }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "button", value: "수정하기" },
+                        on: { click: _vm.update }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "button", value: "뒤로가기" },
+                        on: { click: _vm.back }
+                      })
+                    ])
+                  ]
+                )
+              ]
             )
           ])
         ])

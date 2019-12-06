@@ -8,7 +8,7 @@ use App\user;
 class Member extends Model
 {
     protected $fillable = [
-        'id', 'user_id', 'imagename', 'member_info'
+        'id', 'imagename', 'member_info'
     ];
 
     public $incrementing = false;

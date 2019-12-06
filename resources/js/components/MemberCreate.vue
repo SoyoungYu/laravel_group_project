@@ -11,10 +11,10 @@
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
                                     <img src="/image/mung.jpg" id="member_member1Image"><br />
-                                    이름 : <p>하잇!</p>
+                                    이름 : <p>하잇!</p> <!-- 로그인 유저 아이디 -->
                                     소개 : <input type="text" v-model="member_info" placeholder="소개글 작성하기"> <br />
-                                    이미지 : <input type="file" v-on:change="onImageChange" :id="id"> <br />
-                                    <input type="button" value="생성하기" @click="create" id="1">
+                                    이미지 : <input type="file" v-on:change="onImageChange"> <br />
+                                    <input type="button" value="생성하기" @click="create" id="1"> <!-- session -->
                                     <input type="button" value="뒤로가기" @click="back">
                                 </div>
                             </div>
@@ -30,9 +30,9 @@
 export default {
     data() {
         return {
-            member : {},
             member_info : '',
-            id : this.$route.params.user_id
+            image : '',
+            class : ''
         }
     },
     mounted() {
@@ -43,51 +43,33 @@ export default {
             this.$router.push('/member')
         },
         onImageChange(e){ // 이미지 파일 찾아내기
+            this.image = e.target.files[0]
+        },
+        create(e) { // 생성하기 및 수정하기
+            e.preventDefault()
             let config = {
                 headers: {
-                    processData: true, 
                     contentType: "multipart/form-data", 
                 }
             }
 
-            const image = e.target.files[0];
-            const id = this.$route.params.user_id;
-            const form = new FormData(); 
-            form.append('image', image);
-            form.append('id', id);
+            const form = new FormData()
             
-            axios.post('/member/image', form, config)
-            .then(res=> {
-                console.log(res.data);
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
-        },
-        create(e) { // 생성하기 및 수정하기
-            e.preventDefault();
-            let config = {
-                headers: {
-                    contentType: "application/json", 
-                }
-            }
-
-            const form = new FormData();
-            
-            const id = e.target.id;
-            const member_info = this.member_info;
-
-            form.append('id', id);
-            form.append('member_info', member_info);
+            const id = e.target.id // ㅇ
+            const member_info = this.member_info // ㅇ
+            const image = this.image // ㅇ
+ 
+            form.append('id', id)
+            form.append('member_info', member_info)
+            form.append('image', image)
 
             axios.post("/api/member", form, config)
                 .then(res =>
                 {
-                    this.$router.push('/member')
-                    console.log(res.data)
+                    this.$router.push('/member') 
                 })
                 .catch(err => {
-                console.log(err);
+                console.log(err)
             });
         }
     }

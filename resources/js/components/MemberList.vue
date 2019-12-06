@@ -6,7 +6,7 @@
                     <div data-layout="al16">
                         <div class="AP_accordion" role="tablist">
                             <div v-for="member in members" :key="member.id"> <!-- 반복문 v-for 조원 생성 -->
-                            <p class="AP_accordion_tab" role="tab" data-theme="_bgp1" tabindex="0">{{ member.id }}. {{ member.user.name }}</p>
+                            <p class="AP_accordion_tab" role="tab" data-theme="_bgp1" tabindex="0"> {{ member.id }}. {{ member.user.name }}</p>
                             <div class="AP_accordion_panel" role="tabpanel"> <!-- 화면 상에 보여지는 탭 -->
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
@@ -21,7 +21,7 @@
                             </div>
                             </div>
                             <!-- lv이 2인 관리자만 보이게 만들기 session 필요 -->
-                            <p @click="create" class="AP_accordion_tab" role="tab" data-theme="_bgp2" tabindex="0" id="1">생성하기</p>
+                            <p @click="create" class="AP_accordion_tab" role="tab" data-theme="_bgp2" tabindex="0" id="1">생성하기</p> <!-- 로그인 유저 아이디 -->
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             members:{},
-            lv: 2
+            lv: 2,
         }
     },
     mounted() {
@@ -49,15 +49,15 @@ export default {
     },
     methods: {
         create(e) {
-            let id = e.target.id;
+            let id = e.target.id
             this.$router.push({name: 'MemberCreate', params: {"user_id" : id}}) // 로그인 아이디 필요
         },
         update(e) {
-            let id = e.target.id;
+            let id = e.target.id
             this.$router.push({name: 'MemberUpdate', params: {"user_id" : id}})
         },
         destroy(e) {
-            let id = e.target.id;
+            let id = e.target.id
             axios.delete(`/api/member/${id}`)
                 .then(res =>
                 {

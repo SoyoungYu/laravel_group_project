@@ -41,6 +41,13 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'auth.api' => [
+            \App\Http\Middleware\AddAuthHeader::class,
+            'throttle:60,1',
+            'bindings',
+            'auth:api',
+\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        ],
     ];
 
     /**
@@ -78,5 +85,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
+        \App\Http\Middleware\AddAuthHeader::class,
+        \Illuminate\Auth\Middleware\Authenticate::class,
     ];
 }

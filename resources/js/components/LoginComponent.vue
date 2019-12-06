@@ -43,11 +43,12 @@ export default {
             e.preventDefault();
             let currentObj = this;
             Axios.post('/api/login',{
-                user_id : this.user_id,
-                password : this.password,
+                'email' : this.user_id, // 0
+                'password' : this.password, // 0
             })
             .then(response => {
-                this.$router.push('/')
+                this.$router.push('/') 
+                console.log('success');
             })
             .catch(error => {
                 console.log(error)

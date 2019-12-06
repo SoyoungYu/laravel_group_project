@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Qna;
+use Auth;
 
 class QnaController extends Controller
 {
@@ -15,6 +16,7 @@ class QnaController extends Controller
 
     public function index()
     {
+        debug(auth()->user()->name);
         return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
     }
 

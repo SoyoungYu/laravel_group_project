@@ -46,7 +46,11 @@ export default {
 		};
 	},
 	mounted : function(){
-		Axios.get('/api/qna')
+		const config = {headers: {
+              'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,
+              'Accept' : 'application/json'
+          }}
+		Axios.get('/api/qna', config)
 		.then((response) => {
 			this.qnas = response.data.qnas;
 		})
