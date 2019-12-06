@@ -3,6 +3,8 @@
         <form @submit = "postJapan">
             <div class="jpn_contents">
                 <p>새로운 내용 입력하기</p>
+                <input type="text" class="form_control" placeholder="제목" style="color: #fff; font-size: 24px" maxlength="100" v-model = "title">
+                <br/>
                 <textarea class="form_control2" placeholder="내용"  maxlength="2048"    style="height: 400px; color: #fff" v-model="info"/>
             
                 <div class="img_upload">
@@ -12,7 +14,7 @@
                         </div>
                     </div>
                     <div>
-                        <input type="file" id="input_img" accept="image/*"  @change="uploadImage($event)" />
+                        <input type="file" id="input_img" accept="image/*" />
                     </div>
                 </div>
             </div>
@@ -27,6 +29,7 @@ export default {
         info : '',
         week: '',
         image: '',
+        title: '',
     },
     mounted() {
         console.log('Component JpnCreateComponent Vue mounted.')
@@ -85,11 +88,13 @@ export default {
             const week = this.$route.params.week
             const info = this.info
             const image = this.image
+            const title = this.title
 
             form.append('_method', 'post')
             form.append('week', week)
             form.append('info', info)
             form.append('image', image)
+            form.append('title', title)
            
             Axios.post('/api/japan', form, config)
             .then(response=>{
@@ -108,13 +113,24 @@ export default {
 
     .jpn_contents {
         margin-top: 13%;
+        text-align: center;
     }
 
-    .jpn_contents .form_control2{
+    .form_control{
+        margin-top: 20px;
+        margin: 0 auto;
+        padding-bottom: 1%;
+        width:600px;
+        border: 0px solid transparent;
+        border-bottom: 2px solid #fff;
+        background-color: transparent;
+    }
+
+    .form_control2{
         width:600px;
         border: 2px solid #fff;
         background-color: transparent;
-        margin-left: 30%;
+        margin-top: 1%;
     }
     
     .jpn_contents p {

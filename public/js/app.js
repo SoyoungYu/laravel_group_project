@@ -1974,6 +1974,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2050,6 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.info);
       console.log(this.$route.params.id);
       console.log(this.week);
+      console.log(this.title);
       var config = {
         headers: {
           processData: true,
@@ -2165,12 +2168,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: {
     info: '',
     week: '',
-    image: ''
+    image: '',
+    title: ''
   },
   mounted: function mounted() {
     console.log('Component JpnCreateComponent Vue mounted.');
@@ -2232,10 +2238,12 @@ __webpack_require__.r(__webpack_exports__);
       var week = this.$route.params.week;
       var info = this.info;
       var image = this.image;
+      var title = this.title;
       form.append('_method', 'post');
       form.append('week', week);
       form.append('info', info);
       form.append('image', image);
+      form.append('title', title);
       Axios.post('/api/japan', form, config).then(function (response) {
         console.log(response.data.msg);
 
@@ -7216,7 +7224,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.jpn_contents[data-v-5960c6e8] {\n    margin-top: 13%;\n}\n.jpn_contents .form_control2[data-v-5960c6e8]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-left: 30%;\n}\n.jpn_contents p[data-v-5960c6e8] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5960c6e8] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5960c6e8] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5960c6e8] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.jpn_contents[data-v-5960c6e8] {\n    margin-top: 13%;\n}\n.form_control[data-v-5960c6e8]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.jpn_contents .form_control2[data-v-5960c6e8]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-left: 30%;\n}\n.jpn_contents p[data-v-5960c6e8] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5960c6e8] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5960c6e8] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5960c6e8] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
 
 // exports
 
@@ -7254,7 +7262,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.jpn_contents[data-v-5e0adb84] {\n    margin-top: 13%;\n}\n.jpn_contents .form_control2[data-v-5e0adb84]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-left: 30%;\n}\n.jpn_contents p[data-v-5e0adb84] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5e0adb84] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5e0adb84] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5e0adb84] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.jpn_contents[data-v-5e0adb84] {\n    margin-top: 13%;\n    text-align: center;\n}\n.form_control[data-v-5e0adb84]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.form_control2[data-v-5e0adb84]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-top: 1%;\n}\n.jpn_contents p[data-v-5e0adb84] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5e0adb84] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5e0adb84] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5e0adb84] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
 
 // exports
 
@@ -39485,6 +39493,31 @@ var render = function() {
       _c("div", { staticClass: "jpn_contents" }, [
         _c("p", [_vm._v("내용 수정하기")]),
         _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.title,
+              expression: "title"
+            }
+          ],
+          staticClass: "form_control",
+          staticStyle: { color: "#fff", "font-size": "24px" },
+          attrs: { type: "text", placeholder: "제목", maxlength: "100" },
+          domProps: { value: _vm.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.title = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c("textarea", {
           directives: [
             {
@@ -39677,6 +39710,31 @@ var render = function() {
       _c("div", { staticClass: "jpn_contents" }, [
         _c("p", [_vm._v("새로운 내용 입력하기")]),
         _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.title,
+              expression: "title"
+            }
+          ],
+          staticClass: "form_control",
+          staticStyle: { color: "#fff", "font-size": "24px" },
+          attrs: { type: "text", placeholder: "제목", maxlength: "100" },
+          domProps: { value: _vm.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.title = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c("textarea", {
           directives: [
             {
@@ -39707,16 +39765,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              attrs: { type: "file", id: "input_img", accept: "image/*" },
-              on: {
-                change: function($event) {
-                  return _vm.uploadImage($event)
-                }
-              }
-            })
-          ])
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -39724,7 +39773,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("input", {
+        attrs: { type: "file", id: "input_img", accept: "image/*" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 

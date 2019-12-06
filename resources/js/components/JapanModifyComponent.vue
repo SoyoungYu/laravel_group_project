@@ -3,6 +3,8 @@
         <form @submit="updateJapan">
             <div class="jpn_contents">
                 <p>내용 수정하기</p>
+                <input type="text" class="form_control" placeholder="제목" style="color: #fff; font-size: 24px" maxlength="100" v-model = "title">
+                <br/>
                 <textarea class="form_control2" placeholder='내용' maxlength="2048"    style="height: 400px; color: #fff" v-model="info"/>
             </div>
             <div class="img_upload">
@@ -97,6 +99,7 @@ export default {
             console.log(this.info)
             console.log(this.$route.params.id)
             console.log(this.week)
+            console.log(this.title)
 
             let config = {
                 headers: {
@@ -139,6 +142,16 @@ export default {
 
     .jpn_contents {
         margin-top: 13%;
+    }
+
+    .form_control{
+        margin-top: 20px;
+        margin: 0 auto;
+        padding-bottom: 1%;
+        width:600px;
+        border: 0px solid transparent;
+        border-bottom: 2px solid #fff;
+        background-color: transparent;
     }
 
     .jpn_contents .form_control2{
