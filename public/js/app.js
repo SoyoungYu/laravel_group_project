@@ -57782,7 +57782,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open 'D:\\workspace\\team_project_8\\resources\\sass\\app.scss'\n    at runLoaders (D:\\workspace\\team_project_8\\node_modules\\webpack\\lib\\NormalModule.js:316:20)\n    at D:\\workspace\\team_project_8\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at D:\\workspace\\team_project_8\\node_modules\\loader-runner\\lib\\LoaderRunner.js:203:19\n    at process.nextTick (D:\\workspace\\team_project_8\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:85:15)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
 
 /***/ }),
 
