@@ -36,10 +36,9 @@ class JapanController extends Controller
      */
     public function store(Request $request)
     {
-        debug("soyoung");
+        debug($request);
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
-        debug($imageName);
         $japan = new Info_program();
         $japan->week=$request->week;
         $japan->image=$imageName;
@@ -88,9 +87,6 @@ class JapanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        debug($id);
-        debug($request->image);
-
         $japan = Info_program::find($id);
 
 
@@ -108,7 +104,6 @@ class JapanController extends Controller
         
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
-        debug($imageName);
 
         // $image_path = public_path('images').'/'.$request->image;
         // File::delete($image_path);
