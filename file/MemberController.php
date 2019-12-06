@@ -40,7 +40,6 @@ class MemberController extends Controller
         $image = $request->image;
 
         $imagename = time().'.'.$request->image->getClientOriginalExtension();
-        debug($imagename);
         $request->image->move(public_path('images'), $imagename);
 
         $member = User::findOrFail($id)->member()->create([

@@ -10,10 +10,10 @@
                             <div class="AP_accordion_panel" role="tabpanel"> <!-- 화면 상에 보여지는 탭 -->
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
-                                    <img src="/image/mung.jpg" id="member_member1Image"><br />
+                                    <img :src="uploadImageFile" id="member_member1Image"><br />
                                     이름 : <p>하잇!</p> <!-- 로그인 유저 아이디 -->
                                     소개 : <input type="text" v-model="member_info" placeholder="소개글 작성하기"> <br />
-                                    이미지 : <input type="file" v-on:change="onImageChange"> <br />
+                                    이미지 : <input id="image" type="file" v-on:change="onImageChange"> <br />
                                     <input type="button" value="생성하기" @click="create" id="1"> <!-- session -->
                                     <input type="button" value="뒤로가기" @click="back">
                                 </div>
@@ -32,7 +32,8 @@ export default {
         return {
             member_info : '',
             image : '',
-            class : ''
+            class : '',
+            uploadImageFile : ''
         }
     },
     mounted() {
@@ -44,6 +45,16 @@ export default {
         },
         onImageChange(e){ // 이미지 파일 찾아내기
             this.image = e.target.files[0]
+            var input = e.target;
+            if(input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+
+                reader.onload = (e) => {
+                    this.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
+
+                }
+            }
         },
         create(e) { // 생성하기 및 수정하기
             e.preventDefault()
