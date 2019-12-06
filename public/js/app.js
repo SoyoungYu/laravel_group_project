@@ -2086,8 +2086,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     postLogin: function postLogin(e) {
-      var _this = this;
-
       e.preventDefault();
       var currentObj = this;
       Axios.post('/api/login', {
@@ -2095,18 +2093,13 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password
       }).then(function (response) {
         console.log($cookies.isKey('_token'));
-
-        _this.$router.push('/');
+        window.location.href = '/';
       })["catch"](function (error) {
         console.log(error);
       });
     },
     back: function back() {
       this.$router.push('/');
-    },
-    cl: function cl() {
-      console.log(this.user_id);
-      console.log(this.password);
     }
   }
 });
@@ -2122,7 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2435,7 +2427,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       qnas: {},
-      page: 0
+      page: 0,
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {
@@ -40259,9 +40252,7 @@ var staticRenderFns = [
             _c("h2", [_vm._v("궁금한게 있으면 물어보세요!")])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("button", [_vm._v("logout")])
+      ])
     ])
   }
 ]
@@ -40866,9 +40857,11 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: "/qna/create" } }, [
-        _c("button", { attrs: { id: "new" } }, [_vm._v("글쓰기")])
-      ])
+      _vm.token_exist == true
+        ? _c("router-link", { attrs: { to: "/qna/create" } }, [
+            _c("button", { attrs: { id: "new" } }, [_vm._v("글쓰기")])
+          ])
+        : _vm._e()
     ],
     1
   )
@@ -56044,7 +56037,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_QnAList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/QnAList */ "./resources/js/components/QnAList.vue");
 /* harmony import */ var _components_QnACreate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/QnACreate */ "./resources/js/components/QnACreate.vue");
 /* harmony import */ var _components_QnAView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/QnAView */ "./resources/js/components/QnAView.vue");
-/* harmony import */ var _components_NaviComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/NaviComponent */ "./resources/js/components/NaviComponent.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -56054,7 +56046,6 @@ window.Axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window.VueCookies = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js")["default"];
 Vue.use(VueRouter, VueAxios, axios, VueCookies);
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
-
 
 
 
@@ -56108,6 +56099,7 @@ var app = new Vue({
     return h(_components_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
 });
+Vue.prototype.$EventBus = new Vue();
 
 /***/ }),
 

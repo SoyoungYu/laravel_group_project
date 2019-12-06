@@ -31,7 +31,7 @@
 			<span slot = "prev-nav">Previous</span>
 			<span slot = "next-nav">Next</span>	
 		</pagination>
-		<router-link to="/qna/create">
+		<router-link to="/qna/create" v-if="token_exist == true">
 			<button id = "new">글쓰기</button>
 		</router-link>
     </div>
@@ -41,7 +41,8 @@ export default {
 	data:function(){
 		return {
 			qnas: {},
-			page : 0
+			page : 0,
+			token_exist : $cookies.isKey('_token')
 		};
 	},
 	mounted : function(){

@@ -41,7 +41,7 @@ class UserController extends Controller
             'password' => 'required|string',
         ]);
         $credentials = request(['user_id', 'password']);
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt($credentials, true)){
             $user = Auth::user();
             $token = $user->createToken('Personal Access Token')->accessToken;
             $cookie = $this->getCookieDetails($token);

@@ -48,7 +48,7 @@ export default {
             })
             .then(response => {
                 console.log($cookies.isKey('_token'))
-                this.$router.push('/')
+                window.location.href = '/';
             })
             .catch(error => {
                 console.log(error)
@@ -56,10 +56,6 @@ export default {
         },
         back(){
             this.$router.push('/')
-        },
-        cl(){
-            console.log(this.user_id)
-            console.log(this.password)
         }
     }
 }

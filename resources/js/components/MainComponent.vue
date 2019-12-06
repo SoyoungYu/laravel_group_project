@@ -22,7 +22,6 @@
                 </header>
             </div>
         </div>
-        <button>logout</button>
     </div>
 </template>
 

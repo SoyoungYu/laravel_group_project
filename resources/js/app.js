@@ -23,7 +23,6 @@ import Japan from './components/JapanComponent'
 import QnAList from './components/QnAList'
 import QnACreate from './components/QnACreate'
 import QnAView from './components/QnAView'
-import Navigation from './components/NaviComponent'
 
 const router = new VueRouter({
     mode : 'history',
@@ -77,3 +76,5 @@ const app = new Vue({
     router,
     render : (h) => h(Parent)
 });
+
+Vue.prototype.$EventBus = new Vue();
