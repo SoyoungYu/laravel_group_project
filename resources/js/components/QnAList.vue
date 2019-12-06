@@ -18,7 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for = "qna in qnas.data" @click="clickQnA(qna)">
+				<tr v-for = "qna in qnas.data" v-bind:key="qna" @click="clickQnA(qna)">
 					<td>{{ number + (qnas.data.indexOf(qna)+1 )}}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
