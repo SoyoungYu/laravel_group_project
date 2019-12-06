@@ -8,7 +8,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/qna', 'QnaController');
-Route::resource('/join', 'JoinController');
 
 Route::post('/login', 'UserController@login');
 Route::post('/join', 'UserController@register');
