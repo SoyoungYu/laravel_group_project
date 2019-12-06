@@ -16,8 +16,12 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // 바뀌기전
+    // protected $fillable = [
+    //     'user_id', 'email', 'password', 'sex', 'name'
+    // ];
     protected $fillable = [
-        'user_id', 'email', 'password', 'sex', 'name'
+        'id', 'user_id', 'email', 'password', 'sex', 'name', 'lv'
     ];
 
     /**
@@ -56,5 +60,9 @@ class User extends Authenticatable
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+    //추가
+    public function member() {
+        return $this->hasOne(Member::class);
     }
 }

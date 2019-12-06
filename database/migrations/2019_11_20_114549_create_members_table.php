@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateMembersTable extends Migration
 {
-    /**
+   /**
      * Run the migrations.
      *
      * @return void
@@ -14,14 +14,15 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('member_id')->unique();
-            $table->binary('image');
-            $table->text('member_info');
+            $table->BigInteger('id');
+            $table->unsignedBigInteger('user_id')->index();
+            $table->string('imagename');
+            $table->string('member_info');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
