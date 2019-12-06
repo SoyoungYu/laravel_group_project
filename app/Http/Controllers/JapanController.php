@@ -28,7 +28,6 @@ class JapanController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -80,7 +79,6 @@ class JapanController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -124,7 +122,6 @@ class JapanController extends Controller
         $japan->info=$request_modify->info;
         
         $japan->save();
-
         return response()->json(['msg'=>'Update 성공! 내용, 이미지 변경']);
         
       

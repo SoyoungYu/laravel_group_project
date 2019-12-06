@@ -1,21 +1,8 @@
 <template>
-    <div class="item2">
+<div class="item2">
         <form @submit = "postQnA">
-            <table style="text-align: center; border: 1px solid #dddddd">
-                <thead>
-                    <tr>
-                        <th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" class="form_control" placeholder="제목" maxlength="100" v-model = "title"></td>
-                    </tr>
-                    <tr>
-                        <td><textarea class="form_control2" placeholder="내용"  maxlength="2048" style="height: 400px;" v-model = "question"></textarea></td>
-                    </tr>
-                </tbody>
-                </table>	
+            <input type="text" id="form_control" placeholder="제목" style="color: #fff; font-size: 24px" maxlength="100" v-model = "title">
+            <textarea id="form_control2" placeholder="내용"  maxlength="2048" style="height: 400px; color: #fff" v-model = "question"></textarea>
             <button>완료</button>
             <button v-on:click="back">취소</button>
         </form>
@@ -25,7 +12,10 @@
 <script>
 export default {
     mounted() {
-            console.log('Component mounted.')
+        if(this.$route.params.title && this.$route.params.question){
+            this.title = this.$route.params.title
+            this.question = this.$route.params.question
+        }
     },
     data(){
         return {
@@ -36,17 +26,33 @@ export default {
     methods : {
         postQnA(e) {
             e.preventDefault();
-        let currentObj = this;
-            Axios.post('/api/qna',{
-                title : this.title,
-                question : this.question
-            })
-            .then(response => {
-                this.$router.push('/qna')
-            })
-            .catch(error => {
-                console.log(error)
-            });
+            let currentObj = this;
+            if(this.$route.params.title && this.$route.params.question){
+                Axios.patch('/api/qna/' + this.$route.params.id, {
+                    title: this.title, 
+                    question : this.question
+                })
+                .then(response => {
+                    this.$router.push('/qna')
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+            }
+            else{
+                Axios.post('/api/qna',{
+                    control : 'qna',
+                    title : this.title,
+                    question : this.question
+                })
+                .then(response => {
+                    console.log(response.data.msg)
+                    this.$router.push('/qna')
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+            }
         },
         back(){
             this.$router.push('/qna')
@@ -56,49 +62,46 @@ export default {
 </script>
 
 <style scoped>
-.navi {
-    width: 550px;
-    margin: 0 auto;
-    position: relative;
+.item2 {
+    margin-top: 13%;
+    margin-left: 30%;
+    color: #fff;
 }
 
-.navi #navibar {
-    border-bottom: 2.5px solid black;
-    padding-left: 20%;
-}
-
-#navibar a {
-    text-decoration: none;
-    color: black;
-    padding-right: 12%;
-}
-.container{
-    
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-}
-.item2{
-    margin-top : 200px;
-}
-
-.footer {
-    margin-top: 180px;
-    margin-bottom: 40px;
-}
-.footer #foot {
+#create {
     text-align: center;
+    margin-top: 13%;
+    margin-left: 30%;
+    border: 0px solid transparent;
 }
 
+#cancel {
+    margin-left: 5%;
+    margin-right: 43%;
+}
 
-.form_control{
+#ok, #cancel {
+    cursor: pointer;
+    color: white;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 2px solid white;
+   font-size: 15px;
+    margin-top: 1%;
+    font-size: 17px;
+}
+
+#form_control{
     margin-top: 20px;
     width:600px;
-
+    border: 0px solid transparent;
+    border-bottom: 2px solid #fff;
+    background-color: transparent;
 }
-.form_control2{
+#form_control2{
     margin-top: 10px;
     width:600px;
-
+    border: 2px solid #fff;
+    background-color: transparent;
 }
 </style>

@@ -8,7 +8,11 @@ window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
 
-Vue.use(VueRouter, VueAxios, axios);
+window.VueCookies=require('vue-cookies').default;
+
+Vue.use(VueRouter, VueAxios, axios,VueCookies);
+
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 import Parent from './components/App'
 import Main from './components/MainComponent'
@@ -19,7 +23,6 @@ import Japan from './components/JapanComponent'
 import QnAList from './components/QnAList'
 import QnACreate from './components/QnACreate'
 import QnAView from './components/QnAView'
-import Test from './components/test.vue'
 import JapanModify from './components/JapanModifyComponent.vue'
 import JapanCreate from './components/JpnCreateComponent.vue'
 
@@ -77,7 +80,7 @@ const router = new VueRouter({
             name : 'QnAView',
             component : QnAView,
             props : true
-        },
+        }
     ]
 });
 
@@ -86,3 +89,5 @@ const app = new Vue({
     router,
     render : (h) => h(Parent)
 });
+
+Vue.prototype.$EventBus = new Vue();

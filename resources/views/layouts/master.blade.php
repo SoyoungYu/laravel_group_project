@@ -29,13 +29,13 @@
             color: white;
         }
 
-        .title {
+        .navi_title {
             margin-top: 4%;
             padding-left: 50%;
             height: 60px;
         }
 
-        .title h2 {
+        .navi_title h2 {
             margin-top: 50px;
         }
 
@@ -75,30 +75,9 @@
     </style>
 </head>
 <body>
-<div id="all">
-        <div class="title">
-            <h2>8</h2>
-        </div>
-        <div class="navi">
-            <div id="navibar">
-                <a href="/../member">조원소개</a>
-                <a href="/../japan">현지학기제</a>
-                <a href="/../qna">QnA</a>
-            </div>
-        </div>
-        
-    </div>
-    <div class="navilog" id="navilog">
-        @guest
-            <a href="/../login">로그인</a>
-        @endguest
-        @auth
-            <a href="/../logout">로그아웃</a>
-        @endauth
-    </div>
     <div class="container">
         @yield('content')
     </div>
-    <script src="js/navibar.js" type="text/javascript"></script>
+<script src="js/navibar.js" type="text/javascript"></script>
 </body>
 </html>

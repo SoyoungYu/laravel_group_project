@@ -4,92 +4,75 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Qna;
+use App\Reply;
 
 class QnaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function index()
     {
-        return response()->json(['qnas'=>Qna::orderBy('id', 'ASC')->get()]);
+        return Qna::latest()->paginate(5);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $qna = new Qna();
-        $qna->user_id = 'k';
-        $qna->title = $request->title;
-        $qna->question = $request->question;
-        $qna->view = 0;
-
-        $qna->save();
+        debug($request->control);
+        if($request->control == 'qna'){ //qna 만들 때
+            $qna = new Qna();
+            $qna->user_id = 'test';
+            $qna->title = $request->title;
+            $qna->question = $request->question;
+            $qna->view = 0;
+    
+            $qna->save();
+            
+            return response()->json(['msg'=>"Success"]);
+        }
+        elseif($request->control == 'reply'){   //댓글 만들때
+            $reply = new Reply();
+            $reply->qna_id = $request->qna_id;
+            $reply->user_id = $request->user_id;
+            $reply->reply = $request->reply;
+    
+            $reply->save();
+            
+            return response()->json(['reply'=>Reply::where('qna_id',$request->qna_id)->get()]);
+        }
         
-        return response()->json(['msg'=>"Success"]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($id)   //QnAList에서 특정 질문 클릭했을 때 그 qna 객체와 그 qna에 속해있는 댓글들 리턴
     {
         $qna = new Qna();
-        return response()->json(['qna'=>Qna::where('id',$id)->get()]);
+        $added_view = $qna->find($id)->view + 1;    //조회수 증가시키기 위함.
+        $qna->find($id)->update(['view' => $added_view]);
+
+        return response()->json(['qna'=>Qna::where('id',$id)->get(), 'reply'=>Reply::where('qna_id', $id)->get()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id)   //수정 눌렀을 때.
     {
-        //
+        $qna = new Qna();
+        $qna->find($id)->update(['title' => $request->title, 'question' => $request->question]);
+        return response()->json(['msg'=>"Success"]);
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($id) //삭제하기
     {
-        //
+        $qna = new Qna();
+        $qna->find($id)->delete();
+
+        return response()->json(['msg'=>"Success"]);
     }
 }
