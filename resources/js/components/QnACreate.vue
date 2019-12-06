@@ -46,6 +46,7 @@ export default {
                     question : this.question
                 })
                 .then(response => {
+                    console.log(response.data.msg)
                     this.$router.push('/qna')
                 })
                 .catch(error => {

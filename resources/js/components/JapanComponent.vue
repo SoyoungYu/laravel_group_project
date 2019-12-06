@@ -3,63 +3,25 @@
         <div class="body">
             <div class="btn-group" id="menu">
                 <!-- week1 ~ week7 버튼 -->
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1">week 1</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2">week 2</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3">week 3</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4">week 4</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5">week 5</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6">week 6</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7">week 7</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1" v-on:click="clickWeek(1)">week 1</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2" v-on:click="clickWeek(2)">week 2</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3" v-on:click="clickWeek(3)">week 3</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4" v-on:click="clickWeek(4)">week 4</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >week 5</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">week 6</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">week 7</button>
             </div>
+            
             <div class="japan_hiddenIntro">
-                <div id="japan_week1Hidden"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
-                    <h2>1주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
-                    <p id="japan_week1Content">1주차 내용</p> <!-- 1주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week1Modify">
-                    <input type="button" value="삭제" id="japan_week1Delete">
-                </div>
-                <div id="japan_week2Hidden"> <!-- 버튼2(week2)을 클릭했을 때 나타나는 숨겨진 2주차 사진, 내용-->
-                    <h2>2주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week2Image"> <!-- 2주차 이미지 (데이터) -->
-                    <p id="japan_week2Content">2주차 내용</p> <!-- 2주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week2Modify">
-                    <input type="button" value="삭제" id="japan_week2Delete">
-                </div>
-                <div id="japan_week3Hidden"> <!-- 버튼3(week3)을 클릭했을 때 나타나는 숨겨진 3주차 사진, 내용-->
-                    <h2>3주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week3Image"> <!-- 3주차 이미지 (데이터) -->
-                    <p id="japan_week3Content">3주차 내용</p> <!-- 3주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week3Modify">
-                    <input type="button" value="삭제" id="japan_week3Delete">
-                </div>
-                <div id="japan_week4Hidden"> <!-- 버튼4(week4)을 클릭했을 때 나타나는 숨겨진 4주차 사진, 내용-->
-                    <h2>4주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week4Image"> <!-- 4주차 이미지 (데이터) -->
-                    <p id="japan_week4Content">4주차 내용</p> <!-- 4주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week4Modify">
-                    <input type="button" value="삭제" id="japan_week4Delete">
-                </div>
-                <div id="japan_week5Hidden"> <!-- 버튼5(week5)을 클릭했을 때 나타나는 숨겨진 5주차 사진, 내용-->
-                    <h2>5주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week5Image"> <!-- 5주차 이미지 (데이터) -->
-                    <p id="japan_week5Content">5주차 내용</p> <!-- 5주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week5Modify">
-                    <input type="button" value="삭제" id="japan_week5Delete">
-                </div>
-                <div id="japan_week6Hidden"> <!-- 버튼6(week6)을 클릭했을 때 나타나는 숨겨진 6주차 사진, 내용-->
-                    <h2>6주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week6Image"> <!-- 6주차 이미지 (데이터) -->
-                    <p id="japan_week6Content">6주차 내용</p> <!-- 6주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week6Modify">
-                    <input type="button" value="삭제" id="japan_week6Delete">
-                </div>
-                <div id="japan_week7Hidden"> <!-- 버튼7(week7)을 클릭했을 때 나타나는 숨겨진 7주차 사진, 내용-->
-                    <h2>7주차</h2>
-                    <img src="/image/mung.jpg" id="japan_week7Image"> <!-- 7주차 이미지 (데이터) -->
-                    <p id="japan_week7Content">7주차 내용</p> <!-- 7주차 내용 (데이터) -->
-                    <input type="button" value="수정" id="japan_week7Modify">
-                    <input type="button" value="삭제" id="japan_week7Delete">
+                <button @click="goCreate(week)">새로 만들기</button>
+                <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
+                    <h2>{{ japan.title }}</h2>
+                    <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
+                    <pre>
+                        <p id="japan_week1Content">{{ japan.info }}</p> <!-- 1주차 내용 (데이터) -->
+                    </pre>
+                    <input type="button" value="수정" @click="goModify(japan)">
+                    <input type="button" value="삭제" @click="del(japan.id)">
                 </div>
             </div>
         </div>
@@ -67,9 +29,50 @@
 </template>
 <script>
 export default {
-    mounted() {
-        console.log('Component mounted.')
+    data:function(){
+        return {
+            japans: '',
+            week: '',
+        };
+    },
+    mounted: function(){
+ 
+    },
+    methods: {
+        clickWeek(weekId){
+            console.log(weekId);
+            this.week=weekId
+              Axios.get('/api/japan/'+weekId)
+            .then((response)=>{
+                this.japans = response.data.japans
+                console.log(this.japans)
+                this.japnas.info = this.japans.info.replice('\n').join('<br/>')
+               
+            })
+            .catch(error =>{
+                console.log(error)
+            })
+        },
+        del(id){
+            Axios.delete('api/japan/' + id)
+            .then(response =>{
+                console.log(response.data)
+                this.$router.push('/')
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+        goModify(japan){
+            console.log(japan.id)
+            this.$router.push({name : "JapanModify", params:{id : japan.id}})
+        },
+        goCreate(week){
+            console.log(week)
+            this.$router.push({name: 'JapanCreate', params:{week : week}})
+        }
     }
+
 }
 </script>
 
@@ -92,6 +95,7 @@ export default {
     justify-content: center;
     width: 100%;
     height: 100%;
+    color:black;
 }
 
 .mocean-modal-wrap {

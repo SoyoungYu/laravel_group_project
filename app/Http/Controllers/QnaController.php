@@ -21,7 +21,7 @@ class QnaController extends Controller
 
     public function store(Request $request)
     {
-
+        debug($request->control);
         if($request->control == 'qna'){ //qna 만들 때
             $qna = new Qna();
             $qna->user_id = 'test';

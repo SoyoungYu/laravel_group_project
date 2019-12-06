@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Info_program;
+
 class JapanController extends Controller
 {
     /**
@@ -41,11 +44,14 @@ class JapanController extends Controller
         $japan->week=$request->week;
         $japan->image=$imageName;
         $japan->title=$request->title;
+
         $info_br = str_replace("<br/>", "\r\n", $request->info);
         $japan->info=$info_br;
+
         $japan->save();
         return response()->json(['msg'=>'만들기 성공!']);
     }
+
     /**
      * Display the specified resource.
      *
@@ -84,23 +90,32 @@ class JapanController extends Controller
     {
         debug($id);
         debug($request->image);
+
         $japan = Info_program::find($id);
+
+
         if($request->image == $japan->image){
+
             $japan->week=$request->week;
             $japan->image=$request->image;
             $japan->title=$request->title;
             $japan->info=$request->info;
+
             $japan->save();
+
             return response()->json(['msg'=>'Update 성공! 내용']);
         }
         
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
         debug($imageName);
+
         // $image_path = public_path('images').'/'.$request->image;
         // File::delete($image_path);
+
         $request_modify = $request;
         $request_modify->image = $imageName;
+
         $japan->week=$request_modify->week;
         $japan->image=$imageName;
         $japan->title=$request_modify->title;
@@ -111,8 +126,10 @@ class JapanController extends Controller
         
       
         
+
         
     }
+
     /**
      * Remove the specified resource from storage.
      *
