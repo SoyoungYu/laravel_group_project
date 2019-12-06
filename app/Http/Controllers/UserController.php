@@ -44,7 +44,9 @@ class UserController extends Controller
         if(Auth::attempt($credentials)){    // 키/값 배열 받음, DB테이블에서 사용자 찾는데 사용, 비교 전 자동 해시 처리되기 때문에 password 지정 값을 해시처리하면 안됨 / True/Flase 반환
             $user = Auth::user();
             $token = $user->createToken('Personal Access Token')->accessToken;
+            //createToken : User 모델 인스턴스 메소드를 사용해 지정된 사용자에 대한 토큰 발행 / 토큰 이름을 첫 번째 인수, 선택적 범위 배열을 두 번째 인수
             $cookie = $this->getCookieDetails($token);
+            debug($cookie);
             return response()->json([
                 'logged_in_user' =>$user,
                 'token' => $token,

@@ -12,6 +12,8 @@ Route::resource('/japan', 'JapanController');
 
 Route::resource('/qna', 'QnaController');
 
+
+Route::resource('/member', 'MembersController');
 Route::post('/login', 'UserController@login');
 Route::post('/join', 'UserController@register');
 
