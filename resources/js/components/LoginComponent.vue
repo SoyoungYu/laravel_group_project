@@ -1,30 +1,28 @@
 <template>
-<div class="all">
-        <div class="body">
-            <div class="login_all">
-                <div class="login">
-                    <p>로그인</p>
-                    <form action="/login" method="POST">
+    <div class="body">
+        <div class="login_all">
+            <div class="login">
+                <p>로그인</p>
+                <form @submit = "postLogin">
                     <div class="form-group">
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="login_id" name="user_id" placeholder="ID" required>
+                            <input type="text" class="form-control" v-model="user_id" placeholder="ID" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" id="login_pw" name="password" placeholder="비밀번호" required>
+                            <input type="password" class="form-control" v-model="password" placeholder="비밀번호" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <button type="submit" id ="login_ok" class="btn btn-primary btn-block">확인</button>
-                        </div>
+                        <button>가입</button>
+                        <button v-on:click="back">취소</button>
                     </div>  
                 </form>
-                <div class="new">
-                    <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
-                </div>
+            </div>
+            <div class="new">
+                <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
             </div>
         </div>
     </div>
@@ -34,7 +32,37 @@
 export default {
     mounted() {
             console.log('Component mounted.')
+        },
+    data() {
+        return{
+            user_id : '',
+            password : ''
         }
+    },
+    methods : {
+        postLogin(e) {
+            e.preventDefault();
+            let currentObj = this;
+            Axios.post('/api/login',{
+                user_id : this.user_id,
+                password : this.password,
+            })
+            .then(response => {
+                console.log($cookies.isKey('_token'))
+                this.$router.push('/')
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        },
+        back(){
+            this.$router.push('/')
+        },
+        cl(){
+            console.log(this.user_id)
+            console.log(this.password)
+        }
+    }
 }
 </script>
 

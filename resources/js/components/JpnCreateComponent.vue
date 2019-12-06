@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div>
-                        <input type="file" id="input_img" accept="image/*"  @change="uploadImage($event)" />
+                        <input type="file" id="input_img" accept="image/*" />
                     </div>
                 </div>
             </div>
@@ -29,6 +29,7 @@ export default {
         info : '',
         week: '',
         image: '',
+        title: '',
     },
     mounted() {
         console.log('Component JpnCreateComponent Vue mounted.')
@@ -87,11 +88,13 @@ export default {
             const week = this.$route.params.week
             const info = this.info
             const image = this.image
+            const title = this.title
 
             form.append('_method', 'post')
             form.append('week', week)
             form.append('info', info)
             form.append('image', image)
+            form.append('title', title)
            
             Axios.post('/api/japan', form, config)
             .then(response=>{

@@ -6,6 +6,11 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+
+    protected $middlewarePriority = [
+        \App\Http\Middleware\AddAuthHeader::class,
+        \Illuminate\AUth\Middleware\AUthenticate::class,
+    ];
     /**
      * The application's global HTTP middleware stack.
      *
@@ -33,13 +38,21 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+            // \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+        ],
+
+        'auth.api' => [
+            \App\Http\Middleware\AddAuthHeader::class,
+            'throttle:60,1',
+            'bindings',
+            'auth:api',
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         ],
     ];
 
@@ -70,13 +83,13 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
-    protected $middlewarePriority = [
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\Authenticate::class,
-        \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        \Illuminate\Session\Middleware\AuthenticateSession::class,
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \Illuminate\Auth\Middleware\Authorize::class,
-    ];
+    // protected $middlewarePriority = [
+    //     \Illuminate\Session\Middleware\StartSession::class,
+    //     \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+    //     \App\Http\Middleware\Authenticate::class,
+    //     \Illuminate\Routing\Middleware\ThrottleRequests::class,
+    //     \Illuminate\Session\Middleware\AuthenticateSession::class,
+    //     \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    //     \Illuminate\Auth\Middleware\Authorize::class,
+    // ];
 }

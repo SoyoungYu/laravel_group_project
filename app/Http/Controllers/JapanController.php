@@ -37,14 +37,14 @@ class JapanController extends Controller
      */
     public function store(Request $request)
     {
-        debug($request);
+        // debug("soyoung");
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
-        debug($imageName);
+        // debug($imageName);
         $japan = new Info_program();
         $japan->week=$request->week;
         $japan->image=$imageName;
-        $japan->title='test 주차';
+        $japan->title=$request->title;
 
         $info_br = str_replace("<br/>", "\r\n", $request->info);
         $japan->info=$info_br;

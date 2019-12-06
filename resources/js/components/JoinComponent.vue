@@ -4,43 +4,42 @@
             <div class="join_all">
                 <div class="join">
                     <p>회원가입</p>
-                    <form action="/join" method="POST">
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" name="user_id" placeholder="ID" required>
+                    <form @submit = "postUser">
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" v-model="user_id" placeholder="ID" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" name="password" placeholder="비밀번호" required>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" v-model="password" placeholder="비밀번호" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" name="name" placeholder="이름" required>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" v-model="name" placeholder="이름" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <input type="email" class="form-control" name="email" placeholder="email" required>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <input type="email" class="form-control" v-model="email" placeholder="email" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <input type="text" class="form-control" name="sex" placeholder="성별" required>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" v-model="sex" placeholder="성별" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary btn-block">가입</button>
-                        </div>
-                    </div>  
-                </form>
+                        <div class="form-group">
+                            <button>가입</button>
+                            <button v-on:click="back">취소</button>
+                        </div>  
+                    </form>
                 </div>
             </div>
         </div>
@@ -50,6 +49,37 @@
 export default {
     mounted() {
             console.log('Component mounted.')
+    },
+    data() {
+        return{
+            user_id : '',
+            password : '',
+            name : '',
+            email : '',
+            sex : '',
+        }
+    },
+    methods : {
+        postUser(e) {
+            e.preventDefault();
+            let currentObj = this;
+            Axios.post('/api/join',{
+                user_id : this.user_id,
+                sex : this.sex,
+                name : this.name,
+                email : this.email,
+                password : this.password,
+            })
+            .then(response => {
+                this.$router.push('/login')
+            })
+            .catch(error => {
+                console.log(error)
+            });
+        },
+        back(){
+            this.$router.push('/')
+        }
     }
 }
 </script>

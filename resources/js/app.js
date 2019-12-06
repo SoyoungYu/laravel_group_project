@@ -8,7 +8,9 @@ window.VueAxios=require('vue-axios').default;
 
 window.Axios=require('axios').default;
 
-Vue.use(VueRouter, VueAxios, axios);
+window.VueCookies=require('vue-cookies').default;
+
+Vue.use(VueRouter, VueAxios, axios,VueCookies);
 
 import Parent from './components/App'
 import Main from './components/MainComponent'
@@ -76,7 +78,7 @@ const router = new VueRouter({
             name : 'QnAView',
             component : QnAView,
             props : true
-        },
+        }
     ]
 });
 
