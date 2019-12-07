@@ -75,12 +75,7 @@ export default {
     border: 0px solid transparent;
 }
 
-#cancel {
-    margin-left: 5%;
-    margin-right: 43%;
-}
-
-#ok, #cancel {
+.item2 button {
     cursor: pointer;
     color: white;
     background-color: transparent;
@@ -89,10 +84,16 @@ export default {
    font-size: 15px;
     margin-top: 1%;
     font-size: 17px;
+    margin-left: 5%;
+}
+
+.item2 .ok {
+    margin-left: 23%;
 }
 
 #form_control{
     margin-top: 20px;
+    padding-bottom: 1%;
     width:600px;
     border: 0px solid transparent;
     border-bottom: 2px solid #fff;

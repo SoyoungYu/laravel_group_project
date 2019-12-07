@@ -2765,13 +2765,10 @@ __webpack_require__.r(__webpack_exports__);
       Axios.get('/api/logout').then(function (response) {
         console.log(response);
 
-        _this.filter();
+        _this.$router.go(0);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    filter: function filter() {
-      this.token_exist = $cookies.isKey('_token');
     }
   }
 });
@@ -2974,13 +2971,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       qna: '',
       answers: '',
       view_reply: '',
-      button_control: ''
+      button_control: '',
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {
@@ -7674,7 +7673,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.item2[data-v-5a659a05] {\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n#create[data-v-5a659a05] {\r\n    text-align: center;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    border: 0px solid transparent;\n}\n#cancel[data-v-5a659a05] {\r\n    margin-left: 5%;\r\n    margin-right: 43%;\n}\n#ok[data-v-5a659a05], #cancel[data-v-5a659a05] {\r\n    cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n   font-size: 15px;\r\n    margin-top: 1%;\r\n    font-size: 17px;\n}\n#form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    width:600px;\r\n    border: 0px solid transparent;\r\n    border-bottom: 2px solid #fff;\r\n    background-color: transparent;\n}\n#form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\r\n    border: 2px solid #fff;\r\n    background-color: transparent;\n}\r\n", ""]);
+exports.push([module.i, "\n.item2[data-v-5a659a05] {\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n#create[data-v-5a659a05] {\r\n    text-align: center;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    border: 0px solid transparent;\n}\n.item2 button[data-v-5a659a05] {\r\n    cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n   font-size: 15px;\r\n    margin-top: 1%;\r\n    font-size: 17px;\r\n    margin-left: 5%;\n}\n.item2 .ok[data-v-5a659a05] {\r\n    margin-left: 23%;\n}\n#form_control[data-v-5a659a05]{\r\n    margin-top: 20px;\r\n    padding-bottom: 1%;\r\n    width:600px;\r\n    border: 0px solid transparent;\r\n    border-bottom: 2px solid #fff;\r\n    background-color: transparent;\n}\n#form_control2[data-v-5a659a05]{\r\n    margin-top: 10px;\r\n    width:600px;\r\n    border: 2px solid #fff;\r\n    background-color: transparent;\n}\r\n", ""]);
 
 // exports
 
@@ -7693,7 +7692,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.pagination a{\n\ttext-decoration : none;\n\tcolor : white;\n}\n.pagination{\n\tdisplay : inline-block\n}\n.pagination li{\n\tdisplay : inline\n}\n\n\n", ""]);
+exports.push([module.i, "\n.pagination {\n   list-style: none;\n   display: inline-block;\n   margin-top: 3%;\n   width: 100%;\n}\n.pagination li {\n   display: inline;\n}\n.pagination li.previous {\n   visibility: collapse;\n}\n.pagination a{\n   color: #fff;\n   text-decoration: none;\n}\n.sr-only {\n   display: none;\n}\n.pagination button {\n   color: white;\n   background-color: transparent;\n   border: 2px solid #fff;\n   border-radius: 6px;\n   padding: 3px;\n   font-size: 15px;\n   cursor: pointer;\n}\n.pagination button:hover {\n   background-color: #fff;\n   color: #000;\n}\n.pagination-page-nav {\n   padding: 10px;\n}\n.pagination-page-nav {\n   border: 1px solid #fff;\n   border-radius: 50%;\n}\n.pagination-page-nav:hover {\n   background-color: #ff9d73;\n   border-radius: 50%;\n}\n.page-item.active{\n   background-color: #ff5b14;\n   border-radius: 50%;\n}\n", ""]);
 
 // exports
 
@@ -7712,7 +7711,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.qna_list[data-v-fd231e32] {\r\n   margin-top: 13%;\r\n   margin-left: 20%;\r\n   margin-right: 20%;\n}\n.table[data-v-fd231e32]{\r\n    width: 100%;\r\n   height: 100px;\r\n   background-color: transparent;\r\n   color: #fff;\r\n   border-collapse: collapse;\r\n   border-top: 3px solid #3d3d3d;\r\n   border-left: 0px transparent;\r\n   border-right: 0px transparent;\n}\n.table tbody[data-v-fd231e32] {\r\n   cursor: pointer;\n}\n.table th[data-v-fd231e32] {\r\n   color: #3d3d3d;\r\n   background: #b8b8b8;\r\n   text-align: center;\n}\n.table th[data-v-fd231e32], .table td[data-v-fd231e32] {\r\n   padding: 3px;\r\n   border: 1px solid #ddd;\n}\n.table th[data-v-fd231e32]:first-child, .table td[data-v-fd231e32]:first-child {\r\n   border-left: 0;\n}\n.table th[data-v-fd231e32]:last-child, .table td[data-v-fd231e32]:last-child {\r\n   border-right: 0;\n}\n.table tr td[data-v-fd231e32]:first-child {\r\n   text-align: center;\n}\n.table caption[data-v-fd231e32] {caption-side: bottom; display: none;}\n#new[data-v-fd231e32] {\r\n   cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n   border-bottom: 2px solid white;\r\n   float: right;\r\n   font-size: 15px;\r\n   margin-top: 1%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.qna_list[data-v-fd231e32] {\r\n   margin-top: 13%;\r\n   margin-left: 20%;\r\n   margin-right: 20%;\n}\n.table[data-v-fd231e32]{\r\n    width: 100%;\r\n   height: 100px;\r\n   background-color: transparent;\r\n   color: #fff;\r\n   border-collapse: collapse;\r\n   border-top: 3px solid #3d3d3d;\r\n   border-left: 0px transparent;\r\n   border-right: 0px transparent;\n}\n.table tbody[data-v-fd231e32] {\r\n   cursor: pointer;\r\n   text-align: center;\n}\n.table th[data-v-fd231e32] {\r\n   color: #3d3d3d;\r\n   background: #b8b8b8;\r\n   text-align: center;\n}\n.table th[data-v-fd231e32], .table td[data-v-fd231e32] {\r\n   padding: 3px;\r\n   border: 1px solid #ddd;\n}\n.table th[data-v-fd231e32]:first-child, .table td[data-v-fd231e32]:first-child {\r\n   border-left: 0;\n}\n.table th[data-v-fd231e32]:last-child, .table td[data-v-fd231e32]:last-child {\r\n   border-right: 0;\n}\n.table tr td[data-v-fd231e32]:first-child {\r\n   text-align: center;\r\n   padding-top: 1%;\r\n   padding-bottom: 1%;\n}\n.table caption[data-v-fd231e32] {caption-side: bottom; display: none;}\n#new[data-v-fd231e32] {\r\n   cursor: pointer;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n   border-bottom: 2px solid white;\r\n   float: right;\r\n   font-size: 15px;\r\n   margin-top: 1%;\n}\n.table caption[data-v-fd231e32] {caption-side: bottom; display: none;}\r\n\r\n", ""]);
 
 // exports
 
@@ -7731,7 +7730,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.item2[data-v-78809f6e]{\r\n    width: 600px;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n.title[data-v-78809f6e] {\r\n    border-bottom: 2px solid #fff;\r\n    margin-bottom: 1%;\r\n    text-align: center;\r\n    font-size: 24px;\n}\n.data[data-v-78809f6e]{\r\n    height: 300px;\r\n    border: 2px solid #fff;\n}\n.comment[data-v-78809f6e]{\r\n    margin-top: 20px;\r\n    height: 200px;\r\n    border: 2px solid gray;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    height:20px;\r\n    border: 1px solid blue;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 30px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    height: 100px;\n}\r\n", ""]);
+exports.push([module.i, "\n.item2[data-v-78809f6e]{\r\n    width: 600px;\r\n    margin-top: 13%;\r\n    margin-left: 30%;\r\n    color: #fff;\n}\n.item2 button[data-v-78809f6e] {\r\n    margin-top: 1%;\r\n    margin-bottom: 1%;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n    border-bottom: 2px solid white;\r\n    font-size: 18px;\r\n    cursor: pointer;\n}\n.title[data-v-78809f6e] {\r\n    border-bottom: 2px solid #fff;\r\n    margin-bottom: 1%;\r\n    text-align: center;\r\n    font-size: 24px;\n}\n.data[data-v-78809f6e]{\r\n    border: 2px solid #fff;\r\n    padding: 1%;\n}\n.comment[data-v-78809f6e]{\r\n    background-color: #3d3d3d;\r\n    line-height: 1.7;\n}\n.comment button[data-v-78809f6e] {\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n   border: 2px solid #fff;\r\n   border-radius: 6px;\r\n   padding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n.comment button[data-v-78809f6e]:hover {\r\n    background-color: #fff;\r\n    color: #000;\n}\n.comment_table td[data-v-78809f6e] {\r\n    border-bottom: 1px solid #c9c9c9;\n}\n.comment input[data-v-78809f6e] {\r\n    width: 90%;\r\n    height: 10%;\n}\n.comment_text[data-v-78809f6e]{\r\n    margin-left: 30px;\r\n    width:600px;\r\n    border: 1px solid #000;\n}\n.list_btn[data-v-78809f6e]{\r\n    margin-left: 225px;\r\n    font-size: 15px;\n}\n.comment_data[data-v-78809f6e]{\r\n    margin-top: 10px;\r\n    margin-left: 30px;\r\n    width: 90%;\r\n    padding: 1%;\n}\r\n", ""]);
 
 // exports
 
@@ -41710,16 +41709,17 @@ var render = function() {
       _c(
         "pagination",
         {
+          staticClass: "pagination",
           attrs: { data: _vm.qnas },
           on: { "pagination-change-page": _vm.getResults }
         },
         [
-          _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
-            _vm._v("Previous")
+          _c("button", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+            _vm._v("< 이전")
           ]),
           _vm._v(" "),
-          _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
-            _vm._v("Next")
+          _c("button", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+            _vm._v("다음 >")
           ])
         ]
       ),
@@ -41803,9 +41803,20 @@ var render = function() {
       _c("div", { staticClass: "comment_data" }, [
         _c(
           "table",
+          { staticClass: "comment_table" },
           _vm._l(_vm.answers, function(answer) {
             return _c("tr", { key: answer }, [
-              _c("td", [_vm._v(" " + _vm._s(answer.user_id) + " ")]),
+              _c(
+                "td",
+                {
+                  staticStyle: {
+                    color: "#ff9161",
+                    "font-weight": "bold",
+                    "vertical-align": "text-top"
+                  }
+                },
+                [_vm._v(" " + _vm._s(answer.user_id) + " ")]
+              ),
               _vm._v(" "),
               _c("td", [_vm._v(" " + _vm._s(answer.reply) + " ")])
             ])
@@ -41815,40 +41826,60 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("form", { on: { submit: _vm.createAnswer } }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.view_reply,
-              expression: "view_reply"
-            }
-          ],
-          staticClass: "comment_text",
-          attrs: { type: "text", name: "댓글쓰기" },
-          domProps: { value: _vm.view_reply },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _vm.token_exist == true
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.view_reply,
+                  expression: "view_reply"
+                }
+              ],
+              staticClass: "comment_text",
+              staticStyle: { width: "75%", display: "inline-block" },
+              attrs: {
+                type: "text",
+                name: "댓글쓰기",
+                placeholder: "댓글을 남겨주세요..."
+              },
+              domProps: { value: _vm.view_reply },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.view_reply = $event.target.value
+                }
               }
-              _vm.view_reply = $event.target.value
-            }
-          }
-        }),
+            })
+          : _vm._e(),
         _vm._v(" "),
-        _c("button", [_vm._v("글쓰기")])
+        _vm.token_exist == true
+          ? _c("button", [_vm._v("댓글남기기")])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
+    _c(
+      "button",
+      { staticStyle: { "margin-right": "3%" }, on: { click: _vm.goBackList } },
+      [_vm._v("목록")]
+    ),
     _vm._v(" "),
     _vm.button_control == 1
-      ? _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")])
+      ? _c(
+          "button",
+          {
+            staticStyle: { "margin-right": "3%" },
+            on: { click: _vm.updateQnA }
+          },
+          [_vm._v("수정")]
+        )
       : _vm._e(),
     _vm._v(" "),
     _vm.button_control == 1
-      ? _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
+      ? _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")])
       : _vm._e()
   ])
 }

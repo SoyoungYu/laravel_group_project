@@ -9,23 +9,24 @@
         </div>
         <div class="comment">
             <div class="comment_data">
-                <table>
+                <table class="comment_table">
                     <tr v-for = "answer in answers" v-bind:key="answer">
-                        <td> {{ answer.user_id }} </td>
+                        <td style="color: #ff9161; font-weight: bold; vertical-align: text-top;"> {{ answer.user_id }} </td>
                         <td> {{ answer.reply }} </td>
                     </tr>
                 </table>
             </div>
             <form @submit = "createAnswer">
-                <input type="text" name="댓글쓰기" class="comment_text" v-model = "view_reply">
-                <button>글쓰기</button>
+                <input type="text" name="댓글쓰기" class="comment_text" placeholder="댓글을 남겨주세요..." style="width: 75%; display: inline-block" v-model = "view_reply" v-if="token_exist == true">
+                <button v-if="token_exist == true">댓글남기기</button>
             </form>
         </div>
-        <button v-on:click="goBackList">목록</button>
+        <button v-on:click="goBackList" style="margin-right: 3%">목록</button>
+        <button v-on:click = "updateQnA" style="margin-right: 3%" v-if="button_control == 1">수정</button>
         <button v-on:click ="deleteQnA" v-if="button_control == 1">삭제</button>
-        <button v-on:click = "updateQnA" v-if="button_control == 1">수정</button>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -34,7 +35,8 @@ export default {
             qna : '',
             answers : '',
             view_reply : '',
-            button_control : ''
+            button_control : '',
+            token_exist : $cookies.isKey('_token')
         };
     },
     mounted() {
@@ -92,12 +94,24 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .item2{
     width: 600px;
     margin-top: 13%;
     margin-left: 30%;
     color: #fff;
+}
+
+.item2 button {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: white;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 2px solid white;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .title {
@@ -108,32 +122,55 @@ export default {
 }
 
 .data{
-    height: 300px;
     border: 2px solid #fff;
+    padding: 1%;
 }
 
 .comment{
-    margin-top: 20px;
-    height: 200px;
-    border: 2px solid gray;
+    background-color: #3d3d3d;
+    line-height: 1.7;
+}
+
+.comment button {
+    color: white;
+    background-color: transparent;
+    border: 0px;
+   border: 2px solid #fff;
+   border-radius: 6px;
+   padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.comment button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.comment_table td {
+    border-bottom: 1px solid #c9c9c9;
+}
+
+.comment input {
+    width: 90%;
+    height: 10%;
 }
 
 .comment_text{
     margin-left: 30px;
     width:600px;
-    height:20px;
-    border: 1px solid blue;
+    border: 1px solid #000;
 }
+
 .list_btn{
     margin-left: 225px;
     font-size: 15px;
 }
 
 .comment_data{
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 30px;
     width: 90%;
-    height: 100px;
- 
+    padding: 1%;
 }
 </style>

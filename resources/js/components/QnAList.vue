@@ -27,9 +27,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<pagination :data="qnas" @pagination-change-page="getResults">
-			<span slot = "prev-nav">Previous</span>
-			<span slot = "next-nav">Next</span>	
+		<pagination :data="qnas" @pagination-change-page="getResults" class="pagination">
+			<button slot="prev-nav">&lt; 이전</button>
+			<button slot="next-nav">다음 &gt;</button>
 		</pagination>
 		<router-link to="/qna/create" v-if="token_exist == true">
 			<button id = "new">글쓰기</button>
@@ -71,19 +71,55 @@ export default {
 </script>
 
 <style>
-	.pagination a{
-		text-decoration : none;
-		color : white;
-	}
-	.pagination{
-		display : inline-block
-	}
-	.pagination li{
-		display : inline
-	}
-
-
+   .pagination {
+      list-style: none;
+      display: inline-block;
+      margin-top: 3%;
+      width: 100%;
+   }
+   .pagination li {
+      display: inline;
+   }
+   .pagination li.previous {
+      visibility: collapse;
+   }
+   .pagination a{
+      color: #fff;
+      text-decoration: none;
+   }
+   .sr-only {
+      display: none;
+   }
+   .pagination button {
+      color: white;
+      background-color: transparent;
+      border: 2px solid #fff;
+      border-radius: 6px;
+      padding: 3px;
+      font-size: 15px;
+      cursor: pointer;
+   }
+   .pagination button:hover {
+      background-color: #fff;
+      color: #000;
+   }
+   .pagination-page-nav {
+      padding: 10px;
+   }
+   .pagination-page-nav {
+      border: 1px solid #fff;
+      border-radius: 50%;
+   }
+   .pagination-page-nav:hover {
+      background-color: #ff9d73;
+      border-radius: 50%;
+   }
+   .page-item.active{
+      background-color: #ff5b14;
+      border-radius: 50%;
+   }
 </style>
+
 
 <style scoped>
 .qna_list {
@@ -105,6 +141,7 @@ export default {
 
 .table tbody {
    cursor: pointer;
+   text-align: center;
 }
 
 .table th {
@@ -128,6 +165,8 @@ export default {
 
 .table tr td:first-child {
    text-align: center;
+   padding-top: 1%;
+   padding-bottom: 1%;
 }
 
 .table caption {caption-side: bottom; display: none;}
@@ -142,5 +181,7 @@ export default {
    font-size: 15px;
    margin-top: 1%;
 }
+
+.table caption {caption-side: bottom; display: none;}
 
 </style>
