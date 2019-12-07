@@ -10,7 +10,7 @@
         <div class="comment">
             <div class="comment_data">
                 <table>
-                    <tr v-for = "answer in answers">
+                    <tr v-for = "answer in answers" v-bind:key="answer">
                         <td> {{ answer.user_id }} </td>
                         <td> {{ answer.reply }} </td>
                     </tr>
