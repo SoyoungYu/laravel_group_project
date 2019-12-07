@@ -2979,7 +2979,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       qna: '',
       answers: '',
-      view_reply: ''
+      view_reply: '',
+      button_control: ''
     };
   },
   mounted: function mounted() {
@@ -2989,6 +2990,10 @@ __webpack_require__.r(__webpack_exports__);
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
       _this.qna = response.data.qna[0];
       _this.answers = response.data.reply;
+
+      if (_this.qna.user_id == response.data.user) {
+        _this.button_control = 1;
+      }
     })["catch"](function (error) {
       console.log(error);
     });
@@ -41838,9 +41843,13 @@ var render = function() {
     _vm._v(" "),
     _c("button", { on: { click: _vm.goBackList } }, [_vm._v("목록")]),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")]),
+    _vm.button_control == 1
+      ? _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")])
+      : _vm._e(),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
+    _vm.button_control == 1
+      ? _c("button", { on: { click: _vm.updateQnA } }, [_vm._v("수정")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

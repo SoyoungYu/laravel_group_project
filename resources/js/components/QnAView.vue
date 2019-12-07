@@ -22,8 +22,8 @@
             </form>
         </div>
         <button v-on:click="goBackList">목록</button>
-        <button v-on:click ="deleteQnA">삭제</button>
-        <button v-on:click = "updateQnA">수정</button>
+        <button v-on:click ="deleteQnA" v-if="button_control == 1">삭제</button>
+        <button v-on:click = "updateQnA" v-if="button_control == 1">수정</button>
     </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
         return {
             qna : '',
             answers : '',
-            view_reply : ''
+            view_reply : '',
+            button_control : ''
         };
     },
     mounted() {
@@ -42,6 +43,10 @@ export default {
         .then(response => {
             this.qna = response.data.qna[0]
             this.answers = response.data.reply
+            if(this.qna.user_id == response.data.user)
+            {
+                this.button_control = 1
+            }
         })
         .catch(error => {
             console.log(error)
