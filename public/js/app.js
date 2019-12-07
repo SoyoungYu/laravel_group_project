@@ -2488,16 +2488,21 @@ __webpack_require__.r(__webpack_exports__);
 
       // 이미지 파일 찾아내기
       this.image = e.target.files[0];
-      var input = e.target;
+      var input = e.target.files;
+      var filesArr = Array.prototype.slice.call(input);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          alert("확장자는 이미지 확장자만 가능합니다.");
+          return;
+        }
 
-      if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(f);
 
         reader.onload = function (e) {
-          _this.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
+          _this.uploadImageFile = e.target.result;
         };
-      }
+      });
     },
     create: function create(e) {
       var _this2 = this;
@@ -2521,6 +2526,8 @@ __webpack_require__.r(__webpack_exports__);
       form.append('user_name', user_name);
       axios.post("/api/member", form, config).then(function (res) {
         _this2.$router.push('/member');
+
+        console.log(res.data.error);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2743,17 +2750,22 @@ __webpack_require__.r(__webpack_exports__);
 
       // 이미지 파일 찾아내기
       this.image = e.target.files[0];
+      var input = e.target.files;
       this.check = 0;
-      var input = e.target;
+      var filesArr = Array.prototype.slice.call(input);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          alert("확장자는 이미지 확장자만 가능합니다.");
+          return;
+        }
 
-      if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(f);
 
         reader.onload = function (e) {
-          _this3.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
+          _this3.uploadImageFile = e.target.result;
         };
-      }
+      });
     }
   }
 });
@@ -41275,7 +41287,11 @@ var render = function() {
                         _c("br"),
                         _vm._v("\n                                이미지 : "),
                         _c("input", {
-                          attrs: { id: "image", type: "file" },
+                          attrs: {
+                            id: "image",
+                            type: "file",
+                            accept: "image/*"
+                          },
                           on: { change: _vm.onImageChange }
                         }),
                         _vm._v(" "),
@@ -41553,7 +41569,11 @@ var render = function() {
                       _c("br"),
                       _vm._v("\n                                이미지 : "),
                       _c("input", {
-                        attrs: { type: "file", id: _vm.member.id },
+                        attrs: {
+                          type: "file",
+                          accept: "image/*",
+                          id: _vm.member.id
+                        },
                         on: { change: _vm.onImageChange }
                       }),
                       _vm._v(" "),

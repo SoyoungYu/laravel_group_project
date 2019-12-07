@@ -13,7 +13,7 @@
                                     <img v-if="check == 0" :src="uploadImageFile" id="member_member1Image" width="100" height="100"><br />
                                     이름 : <p>{{ user_name }}</p>
                                     소개 : <input type="text" v-model="member_info" :placeholder="member.member_info"> <br />
-                                    이미지 : <input type="file" v-on:change="onImageChange" :id="member.id"> <br />
+                                    이미지 : <input type="file" accept="image/*" v-on:change="onImageChange" :id="member.id"> <br />
                                     <input type="button" value="수정하기" @click="update">
                                     <input type="button" value="뒤로가기" @click="back">
                                 </div>
@@ -85,15 +85,21 @@ export default {
         },
         onImageChange(e){ // 이미지 파일 찾아내기
             this.image = e.target.files[0]
+            var input = e.target.files;
             this.check = 0
-            var input = e.target;
-            if(input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.readAsDataURL(input.files[0]);
-                reader.onload = (e) => {
-                    this.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
-                }
+            var filesArr = Array.prototype.slice.call(input);
+            filesArr.forEach((f)=> {
+            if(!f.type.match("image.*")) {
+                alert("확장자는 이미지 확장자만 가능합니다.");
+                return;
             }
+
+            var reader = new FileReader();
+            reader.readAsDataURL(f);
+            reader.onload = (e) => {
+                this.uploadImageFile = e.target.result;
+            }
+        });
         }
     }
 }

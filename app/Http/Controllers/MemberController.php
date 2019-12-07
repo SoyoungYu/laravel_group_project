@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Validator;
 
 class MemberController extends Controller
 {
@@ -83,14 +84,6 @@ class MemberController extends Controller
      */
     public function update(Request $request, $user_name)
     {
-        $validatedData = $request->validate([
-            'member_info' => 'required|string',
-            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
-        ]);
-        if ($validator->fails())
-        {
-            return response()->json(['error' => $validator->errors()->getMessages()], 400);
-        }
         $members = new Member;
         $users = new User;
 
