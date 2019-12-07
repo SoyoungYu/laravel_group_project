@@ -27,13 +27,11 @@
 				</tr>
 			</tbody>
 		</table>
-		<nav style="text-align:center">
-			<pagination :data="qnas" @pagination-change-page="getResults">
-				<button slot="prev-nav">&lt; 이전</button>
-				<button slot="next-nav">다음 &gt;</button>
-			</pagination>
-		</nav>
-		<router-link to="/qna/create">
+		<pagination :data="qnas" @pagination-change-page="getResults" class="pagination">
+			<button slot="prev-nav">&lt; 이전</button>
+			<button slot="next-nav">다음 &gt;</button>
+		</pagination>
+		<router-link to="/qna/create" v-if="token_exist == true">
 			<button id = "new">글쓰기</button>
 		</router-link>
     </div>
@@ -44,7 +42,8 @@ export default {
 	data:function(){
 		return {
 			qnas: {},
-			page : 0
+			page : 0,
+			token_exist : $cookies.isKey('_token')
 		};
 	},
 	mounted : function(){
@@ -71,73 +70,49 @@ export default {
 }
 </script>
 <style>
-.pagination {
-	list-style: none;
-	display: inline-block;
-	margin-top: 3%;
-	width: 100%;
-}
-
-.pagination li {
-	display: inline;
-}
-
-.pagination li.previous {
-	visibility: collapse;
-}
-
-.pagination a{
-	color: #fff;
-	text-decoration: none;
-}
-
-.sr-only {
-	display: none;
-}
-
-.pagination button {
-	color: white;
-    background-color: transparent;
-	border: 2px solid #fff;
-	border-radius: 6px;
-	padding: 3px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.pagination-page-nav {
-	padding: 10px;
-}
-
-.pagination-page-nav {
-	border: 1px solid #fff;
-	border-radius: 50%;
-}
-
-.pagination-page-nav:hover {
-	background-color: #ff9d73;
-	border-radius: 50%;
-}
-
-.page-item.active{
-	background-color: #ff5b14;
-	border-radius: 50%;
-}
-</style>
-
-<style>
+	.pagination {
+		list-style: none;
+		display: inline-block;
+		margin-top: 3%;
+		width: 100%;
+	}
+	.pagination li {
+		display: inline;
+	}
+	.pagination li.previous {
+		visibility: collapse;
+	}
 	.pagination a{
-		text-decoration : none;
-		color : white;
+		color: #fff;
+		text-decoration: none;
 	}
-	.pagination{
-		display : inline-block
+	.sr-only {
+		display: none;
 	}
-	.pagination li{
-		display : inline
+	.pagination button {
+		color: white;
+		background-color: transparent;
+		border: 2px solid #fff;
+		border-radius: 6px;
+		padding: 3px;
+		font-size: 15px;
+		cursor: pointer;
 	}
-
-
+	.pagination-page-nav {
+		padding: 10px;
+	}
+	.pagination-page-nav {
+		border: 1px solid #fff;
+		border-radius: 50%;
+	}
+	.pagination-page-nav:hover {
+		background-color: #ff9d73;
+		border-radius: 50%;
+	}
+	.page-item.active{
+		background-color: #ff5b14;
+		border-radius: 50%;
+	}
 </style>
 
 <style scoped>
@@ -202,16 +177,5 @@ export default {
 }
 
 .table caption {caption-side: bottom; display: none;}
-
-#new {
-   cursor: pointer;
-    color: white;
-    background-color: transparent;
-    border: 0px;
-   border-bottom: 2px solid white;
-   float: right;
-   font-size: 15px;
-   margin-top: 1%;
-}
 
 </style>

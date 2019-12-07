@@ -139,8 +139,9 @@ export default {
 
 <style scoped>
 
-    .jpn_contents {
+      .jpn_contents {
         margin-top: 13%;
+        text-align: center;
     }
 
     .form_control{
@@ -153,11 +154,11 @@ export default {
         background-color: transparent;
     }
 
-    .jpn_contents .form_control2{
+    .form_control2{
         width:600px;
         border: 2px solid #fff;
         background-color: transparent;
-        margin-left: 30%;
+        margin-top: 1%;
     }
     
     .jpn_contents p {

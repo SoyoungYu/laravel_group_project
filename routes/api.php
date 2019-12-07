@@ -8,6 +8,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/japan', 'JapanController');
+Route::get('/japan/modify/{id}','JapanController@modifyShow' );
 Route::resource('/qna', 'QnaController');
 Route::resource('/join', 'JoinController');
 

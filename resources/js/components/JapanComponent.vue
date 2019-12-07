@@ -3,18 +3,18 @@
         <div class="body">
             <div class="btn-group" id="menu">
                 <!-- week1 ~ week7 버튼 -->
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1" v-on:click="clickWeek(1)">week 1</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2" v-on:click="clickWeek(2)">week 2</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3" v-on:click="clickWeek(3)">week 3</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4" v-on:click="clickWeek(4)">week 4</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >week 5</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">week 6</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">week 7</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1" v-on:click="clickWeek(1)">1주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2" v-on:click="clickWeek(2)">2주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3" v-on:click="clickWeek(3)">3주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4" v-on:click="clickWeek(4)">4주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >5주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">6주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">7주차</button>
             </div>
             
+            <button @click="goCreate(week)" class="new_button">새로 만들기</button>
             <div class="japan_hiddenIntro">
-                <button @click="goCreate(week)">새로 만들기</button>
-                <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
+                <div v-for="japan in japans" v-bind:key="japan" class="japan_list"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
                     <h2>{{ japan.title }}</h2>
                     <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
                     <pre>
@@ -77,18 +77,50 @@ export default {
 </script>
 
 <style scoped>
-#japan_week1Hidden,
-#japan_week2Hidden,
-#japan_week3Hidden,
-#japan_week4Hidden,
-#japan_week5Hidden,
-#japan_week6Hidden,
-#japan_week7Hidden {
-    display: none;
+.japan_hiddenIntro {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.japan_hiddenIntro h2 {
+    background-color: #526646;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: #fff;
+}
+
+.japan_hiddenIntro img {
+    max-width: 80%;
+    margin-top: 2%;
+}
+
+.japan_hiddenIntro input {
+    margin-bottom: 2%;
+    color: #000;
+    background-color: transparent;
+    border: 0px;
+	border: 2px solid #526646;
+	border-radius: 6px;
+	padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.japan_hiddenIntro input:hover {
+    background-color: #526646;
+    color: #fff;
+}
+
+.japan_hiddenIntro p {
+    color: black;
+    font-family: 'Nanum Gothic', sans-serif; 
 }
 
 .body {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,15 +136,34 @@ export default {
 }
 
 .btn-group {
+    margin-top: 13%;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    height: 400px;
+    /* width: 100%; */
+    height: 50px;
 }
 
 .btn-group button {
     outline: 1px solid #000;
     transform-origin: 50% 50%;
+}
+
+.new_button {
+    width: 8%;
+    color: white;
+    background-color: transparent;
+    border: 0px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+    margin-top: 1%;
+	padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.new_button:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 /* 버튼에 마우스를 댔을 때 커질 지 말지 결정 : scale(1.1) ==> 커짐 */
@@ -127,9 +178,9 @@ button {
     flex: 1 1 10%;
     padding: 0.875rem;
     transition: 100ms all ease-in-out;
-    width: 100%;
+    width: 70%;
     font-weight: 600;
-    font-size: 1.7em;
+    font-size: 1.1em;
     text-transform: uppercase;
     background: #424242;
     color: white;
@@ -147,7 +198,7 @@ button:focus {
 .mocean-modal-wrap {
     position: fixed;
     max-width: 320px;
-    width: 100%;
+    width: 80%;
     z-index: 2000;
     visibility: hidden;
     backface-visibility: hidden;

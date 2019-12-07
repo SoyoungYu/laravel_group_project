@@ -134,6 +134,11 @@ export default {
     cursor: pointer;
 }
 
+.comment button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
 .comment_table td {
     border-bottom: 1px solid #c9c9c9;
 }

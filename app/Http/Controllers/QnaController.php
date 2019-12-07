@@ -24,7 +24,7 @@ class QnaController extends Controller
 
         if($request->control == 'qna'){ //qna 만들 때
             $qna = new Qna();
-            $qna->user_id = 'sssssoyyyyyy';
+            $qna->user_id = 'test';
             $qna->title = $request->title;
             $qna->question = $request->question;
             $qna->view = 0;
