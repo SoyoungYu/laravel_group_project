@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <button>완료</button>
+            <button id="ok_modify">완료</button>
         </form>
     </div>
 </template>
@@ -158,5 +158,7 @@ export default {
         margin-right: 50px;
         cursor: pointer;
         margin-left: 50%;
+        margin-top: 2%;
+        margin-bottom: 3%;
     }
 </style>

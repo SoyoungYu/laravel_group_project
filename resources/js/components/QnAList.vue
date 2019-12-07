@@ -18,7 +18,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for = "qna in qnas.data" @click="clickQnA(qna)">
+				<tr v-for = "qna in qnas.data" v-bind:key="qna" @click="clickQnA(qna)">
 					<td>{{ number + (qnas.data.indexOf(qna)+1 )}}</td>
 					<td>{{ qna.title }}</td>
 					<td>{{ qna.user_id }}</td>
@@ -59,7 +59,10 @@ export default {
 			.then(response => {
 				this.page = page
 				this.qnas = response.data;
-			});
+			})
+			.catch(err => {
+				console.log(err)
+			})
 		}
 	},
 	computed : {
@@ -97,6 +100,10 @@ export default {
 		padding: 3px;
 		font-size: 15px;
 		cursor: pointer;
+	}
+	.pagination button:hover {
+		background-color: #fff;
+		color: #000;
 	}
 	.pagination-page-nav {
 		padding: 10px;

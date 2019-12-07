@@ -14,10 +14,10 @@
                     </div>
                 </div>
                 <div>
-                    <input type="file" id="input_img" accept="image/*" />
+                    <input type="file" id="input_img" accept="image/*" @change="uploadImage($event)"/>
                 </div>
             </div>
-            <button>수정</button>
+            <button id="ok_modify">수정</button>
             <!-- <input type="button" value="완료" id="ok_modify"/> -->
         </form>
     </div>
@@ -99,6 +99,7 @@ export default {
             console.log(this.info)
             console.log(this.$route.params.id)
             console.log(this.week)
+            console.log(this.title)
 
             let config = {
                 headers: {
@@ -186,5 +187,7 @@ export default {
         margin-right: 50px;
         cursor: pointer;
         margin-left: 50%;
+        margin-top: 2%;
+        margin-bottom: 3%;
     }
 </style>

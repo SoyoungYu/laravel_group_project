@@ -28,7 +28,6 @@ class JapanController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,10 +36,9 @@ class JapanController extends Controller
      */
     public function store(Request $request)
     {
-        // debug("soyoung");
+        // debug($request);
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
-        // debug($imageName);
         $japan = new Info_program();
         $japan->week=$request->week;
         $japan->image=$imageName;
@@ -80,7 +78,6 @@ class JapanController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -90,7 +87,6 @@ class JapanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $japan = Info_program::find($id);
 
 
@@ -108,7 +104,6 @@ class JapanController extends Controller
         
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
-        
         // $image_path = public_path('images').'/'.$request->image;
         // File::delete($image_path);
 
@@ -121,7 +116,6 @@ class JapanController extends Controller
         $japan->info=$request_modify->info;
         
         $japan->save();
-
         return response()->json(['msg'=>'Update 성공! 내용, 이미지 변경']);
         
       

@@ -42,6 +42,8 @@ export default {
         postLogin(e) {
             e.preventDefault();
             let currentObj = this;
+            console.log(this.user_id)
+            console.log(this.password)
             Axios.post('/api/login',{
                 user_id : this.user_id,
                 password : this.password,

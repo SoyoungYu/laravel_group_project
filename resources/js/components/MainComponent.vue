@@ -1,8 +1,7 @@
 <template>
     <div class="all">
         <div class="body">
-            <div class="scene one">
-            </div>
+            <div class="scene one"></div>
             <div class="scene two">
                 <header>
                     <h1>8조를 소개합니다</h1><br />
