@@ -35,6 +35,7 @@ export default {
             user_name : this.$route.params.user_name,
             uploadImageFile : '',
             check : 1,
+            click : true
         }
     },
     mounted() {
@@ -53,35 +54,39 @@ export default {
             this.$router.push('/member')
         },
         update(e) {
-            let config = {
-                headers: {
-                    processData: true, 
-                    contentType: "multipart/form-data", 
+            if (this.click){
+                this.click = false
+                
+                let config = {
+                    headers: {
+                        processData: true, 
+                        contentType: "multipart/form-data", 
+                    }
+                } 
+                const form = new FormData()
+                const user_name = this.user_name
+                const member_info = this.member_info
+                const image = this.image
+                form.append('_method', 'patch')
+                form.append('user_name', user_name)
+                if(member_info) {
+                    form.append('member_info', member_info)
+                } else {
+                    form.append('member_info', '없음')
                 }
-            } 
-            const form = new FormData()
-            const user_name = this.user_name
-            const member_info = this.member_info
-            const image = this.image
-            form.append('_method', 'patch')
-            form.append('user_name', user_name)
-            if(member_info) {
-                form.append('member_info', member_info)
-            } else {
-                form.append('member_info', '없음')
+                if(image) {
+                    form.append('image',image)
+                } else {
+                    form.append('image', '없음')
+                }
+                Axios.post(`/api/member/${user_name}`, form, config)
+                .then(res => {
+                    this.$router.push('/member')
+                })
+                .catch(err => {
+                    console.log(err)
+                });
             }
-            if(image) {
-                form.append('image',image)
-            } else {
-                form.append('image', '없음')
-            }
-            Axios.post(`/api/member/${user_name}`, form, config)
-            .then(res => {
-                this.$router.push('/member')
-            })
-            .catch(err => {
-                console.log(err)
-            });
         },
         onImageChange(e){ // 이미지 파일 찾아내기
             this.image = e.target.files[0]

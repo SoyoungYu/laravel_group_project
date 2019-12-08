@@ -57,6 +57,15 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->only('member_info','image'), [
+            'member_info' => 'required',
+            'image' => 'required'
+        ], ['member_info.required'=>'내용','image.required'=>'이미지']);
+
+        if($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $member_info = $request->member_info;
         $image = $request->image;
         $user_name = $request->user_name;

@@ -2491,7 +2491,8 @@ __webpack_require__.r(__webpack_exports__);
       member_info: '',
       image: '',
       uploadImageFile: '',
-      user_name: this.$route.params.user_name
+      user_name: this.$route.params.user_name,
+      click: true
     };
   },
   mounted: function mounted() {
@@ -2526,29 +2527,36 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       // 생성하기 및 수정하기
-      e.preventDefault();
-      var config = {
-        headers: {
-          contentType: "multipart/form-data"
-        }
-      };
-      var form = new FormData();
-      var user_name = e.target.id; // ㅇ
+      if (this.click) {
+        this.click = false;
+        e.preventDefault();
+        var config = {
+          headers: {
+            contentType: "multipart/form-data"
+          }
+        };
+        var form = new FormData();
+        var user_name = e.target.id; // ㅇ
 
-      var member_info = this.member_info; // ㅇ
+        var member_info = this.member_info; // ㅇ
 
-      var image = this.image; // ㅇ
+        var image = this.image; // ㅇ
 
-      form.append('member_info', member_info);
-      form.append('image', image);
-      form.append('user_name', user_name);
-      axios.post("/api/member", form, config).then(function (res) {
-        _this2.$router.push('/member');
-
-        console.log(res.data.error);
-      })["catch"](function (err) {
-        console.log(err);
-      });
+        form.append('member_info', member_info);
+        form.append('image', image);
+        form.append('user_name', user_name);
+        axios.post("/api/member", form, config).then(function (res) {
+          if (res.data.error == '내용이미지') {
+            alert(res.data.error[0] + ', ' + res.data.error[1] + '을 입력해 주세요.');
+          } else if (res.data.error) {
+            alert(res.data.error + '을 입력해 주세요.');
+          } else {
+            _this2.$router.push('/member');
+          }
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
     }
   }
 });
@@ -2712,7 +2720,8 @@ __webpack_require__.r(__webpack_exports__);
       image: '',
       user_name: this.$route.params.user_name,
       uploadImageFile: '',
-      check: 1
+      check: 1,
+      click: true
     };
   },
   mounted: function mounted() {
@@ -2732,36 +2741,39 @@ __webpack_require__.r(__webpack_exports__);
     update: function update(e) {
       var _this2 = this;
 
-      var config = {
-        headers: {
-          processData: true,
-          contentType: "multipart/form-data"
+      if (this.click) {
+        this.click = false;
+        var config = {
+          headers: {
+            processData: true,
+            contentType: "multipart/form-data"
+          }
+        };
+        var form = new FormData();
+        var user_name = this.user_name;
+        var member_info = this.member_info;
+        var image = this.image;
+        form.append('_method', 'patch');
+        form.append('user_name', user_name);
+
+        if (member_info) {
+          form.append('member_info', member_info);
+        } else {
+          form.append('member_info', '없음');
         }
-      };
-      var form = new FormData();
-      var user_name = this.user_name;
-      var member_info = this.member_info;
-      var image = this.image;
-      form.append('_method', 'patch');
-      form.append('user_name', user_name);
 
-      if (member_info) {
-        form.append('member_info', member_info);
-      } else {
-        form.append('member_info', '없음');
+        if (image) {
+          form.append('image', image);
+        } else {
+          form.append('image', '없음');
+        }
+
+        Axios.post("/api/member/".concat(user_name), form, config).then(function (res) {
+          _this2.$router.push('/member');
+        })["catch"](function (err) {
+          console.log(err);
+        });
       }
-
-      if (image) {
-        form.append('image', image);
-      } else {
-        form.append('image', '없음');
-      }
-
-      Axios.post("/api/member/".concat(user_name), form, config).then(function (res) {
-        _this2.$router.push('/member');
-      })["catch"](function (err) {
-        console.log(err);
-      });
     },
     onImageChange: function onImageChange(e) {
       var _this3 = this;
@@ -57984,14 +57996,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/js/components/MemberUpdate.vue ***!
   \**************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MemberUpdate_vue_vue_type_template_id_1f2b8e6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MemberUpdate.vue?vue&type=template&id=1f2b8e6e&scoped=true& */ "./resources/js/components/MemberUpdate.vue?vue&type=template&id=1f2b8e6e&scoped=true&");
 /* harmony import */ var _MemberUpdate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MemberUpdate.vue?vue&type=script&lang=js& */ "./resources/js/components/MemberUpdate.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _MemberUpdate_vue_vue_type_style_index_0_id_1f2b8e6e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MemberUpdate.vue?vue&type=style&index=0&id=1f2b8e6e&scoped=true&lang=css& */ "./resources/js/components/MemberUpdate.vue?vue&type=style&index=0&id=1f2b8e6e&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _MemberUpdate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _MemberUpdate_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _MemberUpdate_vue_vue_type_style_index_0_id_1f2b8e6e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MemberUpdate.vue?vue&type=style&index=0&id=1f2b8e6e&scoped=true&lang=css& */ "./resources/js/components/MemberUpdate.vue?vue&type=style&index=0&id=1f2b8e6e&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -58023,7 +58036,7 @@ component.options.__file = "resources/js/components/MemberUpdate.vue"
 /*!***************************************************************************!*\
   !*** ./resources/js/components/MemberUpdate.vue?vue&type=script&lang=js& ***!
   \***************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

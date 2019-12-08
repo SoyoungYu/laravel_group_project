@@ -34,6 +34,7 @@ export default {
             image : '',
             uploadImageFile : '',
             user_name : this.$route.params.user_name,
+            click : true,
         }
     },
     mounted() {
@@ -61,30 +62,39 @@ export default {
             });
         },
         create(e) { // 생성하기 및 수정하기
-            e.preventDefault()
-            const config = {
-                headers: {
-                    contentType: "multipart/form-data", 
-                }
-            }
-            const form = new FormData()
+            if (this.click){
+                this.click = false
             
-            const user_name = e.target.id // ㅇ
-            const member_info = this.member_info // ㅇ
-            const image = this.image // ㅇ
- 
-            form.append('member_info', member_info)
-            form.append('image', image)
-            form.append('user_name', user_name)
-            axios.post("/api/member", form, config)
-                .then(res =>
-                {
-                    this.$router.push('/member') 
-                    console.log(res.data.error)
-                })
-                .catch(err => {
-                    console.log(err)
-            });
+                e.preventDefault()
+                const config = {
+                    headers: {
+                        contentType: "multipart/form-data", 
+                    }
+                }
+                const form = new FormData()
+                
+                const user_name = e.target.id // ㅇ
+                const member_info = this.member_info // ㅇ
+                const image = this.image // ㅇ
+    
+                form.append('member_info', member_info)
+                form.append('image', image)
+                form.append('user_name', user_name)
+                axios.post("/api/member", form, config)
+                    .then(res =>
+                    {
+                        if(res.data.error=='내용이미지') {
+                            alert(res.data.error[0] + ', ' + res.data.error[1] + '을 입력해 주세요.')
+                        } else if(res.data.error) {
+                            alert(res.data.error + '을 입력해 주세요.')
+                        } else {
+                            this.$router.push('/member') 
+                        } 
+                    })
+                    .catch(err => {
+                        console.log(err)
+                });
+            }
         }
     }
 }
