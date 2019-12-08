@@ -2490,8 +2490,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       member_info: '',
       image: '',
-      "class": '',
-      uploadImageFile: ''
+      uploadImageFile: '',
+      user_name: this.$route.params.user_name
     };
   },
   mounted: function mounted() {
@@ -2506,16 +2506,21 @@ __webpack_require__.r(__webpack_exports__);
 
       // 이미지 파일 찾아내기
       this.image = e.target.files[0];
-      var input = e.target;
+      var input = e.target.files;
+      var filesArr = Array.prototype.slice.call(input);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          alert("확장자는 이미지 확장자만 가능합니다.");
+          return;
+        }
 
-      if (input.files && input.files[0]) {
         var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(f);
 
         reader.onload = function (e) {
-          _this.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
+          _this.uploadImageFile = e.target.result;
         };
-      }
+      });
     },
     create: function create(e) {
       var _this2 = this;
@@ -2528,17 +2533,19 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       var form = new FormData();
-      var id = e.target.id; // ㅇ
+      var user_name = e.target.id; // ㅇ
 
       var member_info = this.member_info; // ㅇ
 
       var image = this.image; // ㅇ
 
-      form.append('id', id);
       form.append('member_info', member_info);
       form.append('image', image);
+      form.append('user_name', user_name);
       axios.post("/api/member", form, config).then(function (res) {
         _this2.$router.push('/member');
+
+        console.log(res.data.error);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2592,14 +2599,28 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       members: {},
-      lv: 2
+      lv: 2,
+      user_name: '',
+      admin: '',
+      check: '',
+      image: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.image = ['bird.jpg', 'cat.jpg', 'tiger.jpg', 'hed.jpg', 'lion.jpg', 'dog.jpg'];
     Axios.get("/api/member").then(function (res) {
       _this.members = res.data.member;
+      _this.user_name = res.data.user_name[0].name;
+      _this.admin = res.data.admin[0].admin;
+
+      if (res.data.check[0]) {
+        _this.check = res.data.check[0].user_id;
+        console.log(res.data.check);
+      } else {
+        _this.check = 0;
+      }
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2610,7 +2631,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'MemberCreate',
         params: {
-          "user_id": id
+          "user_name": id
         }
       }); // 로그인 아이디 필요
     },
@@ -2619,7 +2640,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'MemberUpdate',
         params: {
-          "user_id": id
+          "user_name": id
         }
       });
     },
@@ -2629,7 +2650,8 @@ __webpack_require__.r(__webpack_exports__);
       var id = e.target.id;
       axios["delete"]("/api/member/".concat(id)).then(function (res) {
         _this2.members = res.data.member;
-        console.log(res.data.member);
+        _this2.check = 0;
+        _this2.admin = 'admin';
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2674,6 +2696,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2686,15 +2709,18 @@ __webpack_require__.r(__webpack_exports__);
       },
       // 시간차 렌더
       member_info: '',
-      image: ''
+      image: '',
+      user_name: this.$route.params.user_name,
+      uploadImageFile: '',
+      check: 1
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    var user_id = this.$route.params.user_id;
-    Axios.get("/api/member/".concat(user_id)).then(function (res) {
-      _this.member = res.data.member[0];
+    var user_name = this.user_name;
+    Axios.get("/api/member/".concat(user_name)).then(function (res) {
+      _this.member = res.data.member;
     })["catch"](function (err) {
       console.log(err);
     });
@@ -2713,23 +2739,51 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       var form = new FormData();
-      var id = this.$route.params.user_id;
+      var user_name = this.user_name;
       var member_info = this.member_info;
       var image = this.image;
       form.append('_method', 'patch');
-      form.append('id', id);
-      form.append('member_info', member_info);
-      form.append('image', image);
-      Axios.post("/api/member/".concat(id), form, config).then(function (res) {
+      form.append('user_name', user_name);
+
+      if (member_info) {
+        form.append('member_info', member_info);
+      } else {
+        form.append('member_info', '없음');
+      }
+
+      if (image) {
+        form.append('image', image);
+      } else {
+        form.append('image', '없음');
+      }
+
+      Axios.post("/api/member/".concat(user_name), form, config).then(function (res) {
         _this2.$router.push('/member');
       })["catch"](function (err) {
         console.log(err);
       });
     },
     onImageChange: function onImageChange(e) {
+      var _this3 = this;
+
       // 이미지 파일 찾아내기
       this.image = e.target.files[0];
-      console.log(e.target.files[0]);
+      var input = e.target.files;
+      this.check = 0;
+      var filesArr = Array.prototype.slice.call(input);
+      filesArr.forEach(function (f) {
+        if (!f.type.match("image.*")) {
+          alert("확장자는 이미지 확장자만 가능합니다.");
+          return;
+        }
+
+        var reader = new FileReader();
+        reader.readAsDataURL(f);
+
+        reader.onload = function (e) {
+          _this3.uploadImageFile = e.target.result;
+        };
+      });
     }
   }
 });
@@ -41237,7 +41291,7 @@ var render = function() {
                         }),
                         _c("br"),
                         _vm._v("\n                                이름 : "),
-                        _c("p", [_vm._v("하잇!")]),
+                        _c("p", [_vm._v(_vm._s(_vm.user_name))]),
                         _vm._v(" "),
                         _vm._v("\n                                소개 : "),
                         _c("input", {
@@ -41267,14 +41321,22 @@ var render = function() {
                         _c("br"),
                         _vm._v("\n                                이미지 : "),
                         _c("input", {
-                          attrs: { id: "image", type: "file" },
+                          attrs: {
+                            id: "image",
+                            type: "file",
+                            accept: "image/*"
+                          },
                           on: { change: _vm.onImageChange }
                         }),
                         _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
                         _c("input", {
-                          attrs: { type: "button", value: "생성하기", id: "1" },
+                          attrs: {
+                            type: "button",
+                            value: "생성하기",
+                            id: _vm.user_name
+                          },
                           on: { click: _vm.create }
                         }),
                         _vm._v(" "),
@@ -41333,14 +41395,14 @@ var render = function() {
                         staticClass: "AP_accordion_tab",
                         attrs: {
                           role: "tab",
-                          "data-theme": "_bgp1",
+                          "data-theme": "_bgp" + member.user_id,
                           tabindex: "0"
                         }
                       },
                       [
                         _vm._v(
                           " " +
-                            _vm._s(member.id) +
+                            _vm._s(member.user.id) +
                             ". " +
                             _vm._s(member.user.name)
                         )
@@ -41356,7 +41418,9 @@ var render = function() {
                       [
                         _c("img", {
                           staticClass: "mem1",
-                          attrs: { src: "/image/bird.jpg" }
+                          attrs: {
+                            src: "/image/" + _vm.image[member.user_id - 1]
+                          }
                         }),
                         _vm._v(" "),
                         _c("div", { attrs: { id: "member_member1Hidden" } }, [
@@ -41364,7 +41428,9 @@ var render = function() {
                             attrs: {
                               src: "images/" + member.imagename,
                               id: "member_member1Image",
-                              alt: "조원사진"
+                              alt: "조원사진",
+                              width: "100",
+                              height: "100"
                             }
                           }),
                           _c("br"),
@@ -41378,23 +41444,27 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", [
-                            _c("input", {
-                              attrs: {
-                                type: "button",
-                                value: "수정하기",
-                                id: member.id
-                              },
-                              on: { click: _vm.update }
-                            }),
+                            member.user_id == _vm.check
+                              ? _c("input", {
+                                  attrs: {
+                                    type: "button",
+                                    value: "수정하기",
+                                    id: _vm.user_name
+                                  },
+                                  on: { click: _vm.update }
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c("input", {
-                              attrs: {
-                                type: "button",
-                                value: "삭제하기",
-                                id: member.id
-                              },
-                              on: { click: _vm.destroy }
-                            })
+                            member.user_id == _vm.check
+                              ? _c("input", {
+                                  attrs: {
+                                    type: "button",
+                                    value: "삭제하기",
+                                    id: _vm.user_name
+                                  },
+                                  on: { click: _vm.destroy }
+                                })
+                              : _vm._e()
                           ])
                         ])
                       ]
@@ -41402,20 +41472,22 @@ var render = function() {
                   ])
                 }),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass: "AP_accordion_tab",
-                    attrs: {
-                      role: "tab",
-                      "data-theme": "_bgp2",
-                      tabindex: "0",
-                      id: "1"
-                    },
-                    on: { click: _vm.create }
-                  },
-                  [_vm._v("생성하기")]
-                )
+                _vm.check == 0 && _vm.admin == "admin"
+                  ? _c(
+                      "p",
+                      {
+                        staticClass: "AP_accordion_tab",
+                        attrs: {
+                          role: "tab",
+                          "data-theme": "_bgp2",
+                          tabindex: "0",
+                          id: _vm.user_name
+                        },
+                        on: { click: _vm.create }
+                      },
+                      [_vm._v("생성하기")]
+                    )
+                  : _vm._e()
               ],
               2
             )
@@ -41478,15 +41550,31 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { attrs: { id: "member_member1Hidden" } }, [
-                      _c("img", {
-                        attrs: {
-                          src: "/images/" + _vm.member.imagename,
-                          id: "member_member1Image"
-                        }
-                      }),
+                      _vm.check == 1
+                        ? _c("img", {
+                            attrs: {
+                              src: "/images/" + _vm.member.imagename,
+                              id: "member_member1Image",
+                              width: "100",
+                              height: "100"
+                            }
+                          })
+                        : _vm._e(),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm.check == 0
+                        ? _c("img", {
+                            attrs: {
+                              src: _vm.uploadImageFile,
+                              id: "member_member1Image",
+                              width: "100",
+                              height: "100"
+                            }
+                          })
+                        : _vm._e(),
                       _c("br"),
                       _vm._v("\n                                이름 : "),
-                      _c("p", [_vm._v(_vm._s(_vm.member.user.name))]),
+                      _c("p", [_vm._v(_vm._s(_vm.user_name))]),
                       _vm._v("\n                                소개 : "),
                       _c("input", {
                         directives: [
@@ -41515,7 +41603,11 @@ var render = function() {
                       _c("br"),
                       _vm._v("\n                                이미지 : "),
                       _c("input", {
-                        attrs: { type: "file", id: _vm.member.id },
+                        attrs: {
+                          type: "file",
+                          accept: "image/*",
+                          id: _vm.member.id
+                        },
                         on: { change: _vm.onImageChange }
                       }),
                       _vm._v(" "),

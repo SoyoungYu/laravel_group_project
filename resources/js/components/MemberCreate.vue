@@ -11,10 +11,10 @@
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
                                     <img :src="uploadImageFile" id="member_member1Image"><br />
-                                    이름 : <p>하잇!</p> <!-- 로그인 유저 아이디 -->
+                                    이름 : <p>{{ user_name }}</p> <!-- 로그인 유저 아이디 -->
                                     소개 : <input type="text" v-model="member_info" placeholder="소개글 작성하기"> <br />
-                                    이미지 : <input id="image" type="file" v-on:change="onImageChange"> <br />
-                                    <input type="button" value="생성하기" @click="create" id="1"> <!-- session -->
+                                    이미지 : <input id="image" type="file" accept="image/*" v-on:change="onImageChange" > <br />
+                                    <input type="button" value="생성하기" @click="create" :id="user_name"> <!-- session -->
                                     <input type="button" value="뒤로가기" @click="back">
                                 </div>
                             </div>
@@ -32,8 +32,8 @@ export default {
         return {
             member_info : '',
             image : '',
-            class : '',
-            uploadImageFile : ''
+            uploadImageFile : '',
+            user_name : this.$route.params.user_name,
         }
     },
     mounted() {
@@ -45,38 +45,45 @@ export default {
         },
         onImageChange(e){ // 이미지 파일 찾아내기
             this.image = e.target.files[0]
-            var input = e.target;
-            if(input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.readAsDataURL(input.files[0]);
-                reader.onload = (e) => {
-                    this.uploadImageFile = e.target.result; // 로컬 이미지 보여주기 
+            var input = e.target.files;
+            var filesArr = Array.prototype.slice.call(input);
+            filesArr.forEach((f)=> {
+                if(!f.type.match("image.*")) {
+                    alert("확장자는 이미지 확장자만 가능합니다.");
+                    return;
                 }
-            }
+
+                var reader = new FileReader();
+                reader.readAsDataURL(f);
+                reader.onload = (e) => {
+                    this.uploadImageFile = e.target.result;
+                }
+            });
         },
         create(e) { // 생성하기 및 수정하기
             e.preventDefault()
-            let config = {
+            const config = {
                 headers: {
                     contentType: "multipart/form-data", 
                 }
             }
             const form = new FormData()
             
-            const id = e.target.id // ㅇ
+            const user_name = e.target.id // ㅇ
             const member_info = this.member_info // ㅇ
             const image = this.image // ㅇ
  
-            form.append('id', id)
             form.append('member_info', member_info)
             form.append('image', image)
+            form.append('user_name', user_name)
             axios.post("/api/member", form, config)
                 .then(res =>
                 {
                     this.$router.push('/member') 
+                    console.log(res.data.error)
                 })
                 .catch(err => {
-                console.log(err)
+                    console.log(err)
             });
         }
     }
