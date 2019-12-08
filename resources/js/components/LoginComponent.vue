@@ -19,13 +19,13 @@
                         {{ message }}
                     </div>
                     <div class="form-group">
-                        <button>가입</button>
+                        <button>로그인</button>
                         <button v-on:click="back">취소</button>
                     </div>   
                 </form>
             </div>
             <div class="new">
-                <a href="">ID 찾기</a> | <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
+                <router-link to = "/join"><a href="/../join">아직 회원이 아니신가요?</a></router-link>
             </div>
         </div>
     </div>

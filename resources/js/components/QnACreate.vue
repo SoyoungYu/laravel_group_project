@@ -3,7 +3,8 @@
         <form @submit = "postQnA">
             <input type="text" id="form_control" placeholder="제목" style="color: #fff; font-size: 24px" maxlength="100" v-model = "title">
             <textarea id="form_control2" placeholder="내용"  maxlength="2048" style="height: 400px; color: #fff" v-model = "question"></textarea>
-            <button>완료</button>
+            <br/>
+            <button class="ok">완료</button>
             <button v-on:click="back">취소</button>
         </form>
     </div>

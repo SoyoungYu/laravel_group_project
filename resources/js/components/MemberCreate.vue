@@ -11,11 +11,11 @@
                                 <img src="/image/bird.jpg" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
                                     <img :src="uploadImageFile" id="member_member1Image"><br />
-                                    이름 : <p>{{ user_name }}</p> <!-- 로그인 유저 아이디 -->
+                                    <p>이름 : {{ user_name }}</p> <!-- 로그인 유저 아이디 -->
                                     소개 : <input type="text" v-model="member_info" placeholder="소개글 작성하기"> <br />
                                     이미지 : <input id="image" type="file" accept="image/*" v-on:change="onImageChange" > <br />
-                                    <input type="button" value="생성하기" @click="create" :id="user_name"> <!-- session -->
-                                    <input type="button" value="뒤로가기" @click="back">
+                                    <input type="button" value="생성하기" @click="create" :id="user_name" class = "ok-button"> <!-- session -->
+                                    <input type="button" value="뒤로가기" @click="back" class = "cancel-button">
                                 </div>
                             </div>
                             </div>
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style scoped>
-.body {margin-top: 13%;margin-left: 8%;height: auto}
+.body {margin-top: 13%;margin-left: 8%;height: auto;}
 .mem1,
 .mem2,
 .mem3,
@@ -110,6 +110,14 @@ export default {
 .mem6 {
     width: 100%;
 }
+
+.intro {
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-bottom: 2px solid white;
+    color: #fff;
+}
+
 #member_member1Image,
 #member_member2Image,
 #member_member3Image,
@@ -127,62 +135,27 @@ export default {
     padding-top: 20%;
     padding-bottom: 20%;
 }
-#member_member2Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
+#member_member1Hidden .ok-button, .cancel-button {
     color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    background-color: transparent;
+    border: 0px;
+   border: 2px solid #fff;
+   border-radius: 6px;
+    margin-top: 3%;
+   padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
 }
-#member_member3Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+.ok-button:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member4Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+.cancel-button:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member5Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member6Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member1Hidden input {margin: 1%}
 [data-theme*=_bgp1] {
     /* background: url(/image/bird.jpg); */
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);

@@ -2,7 +2,7 @@
     <div>
         <div id="all">
             <div class="navi_title">
-                <h2>8</h2>
+                <a href="/">8</a>
             </div>
             <div class="navi">
                 <div id="navibar">

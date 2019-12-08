@@ -161,4 +161,8 @@ export default {
         margin-top: 2%;
         margin-bottom: 3%;
     }
+
+    .img_wrap img{
+        max-width : 80%;
+    }
 </style>

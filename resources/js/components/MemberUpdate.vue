@@ -14,8 +14,8 @@
                                     이름 : <p>{{ user_name }}</p>
                                     소개 : <input type="text" v-model="member_info" :placeholder="member.member_info"> <br />
                                     이미지 : <input type="file" accept="image/*" v-on:change="onImageChange" :id="member.id"> <br />
-                                    <input type="button" value="수정하기" @click="update">
-                                    <input type="button" value="뒤로가기" @click="back">
+                                    <input type="button" value="수정하기" @click="update" class = "ok-button">
+                                    <input type="button" value="뒤로가기" @click="back" class = "cancel-button">
                                 </div>
                             </div>
                         </div>
@@ -120,6 +120,14 @@ export default {
 .mem6 {
     width: 100%;
 }
+
+.intro {
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-bottom: 2px solid white;
+    color: #fff;
+}
+
 #member_member1Image,
 #member_member2Image,
 #member_member3Image,
@@ -137,62 +145,29 @@ export default {
     padding-top: 20%;
     padding-bottom: 20%;
 }
-#member_member2Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
+
+#member_member1Hidden .ok-button, .cancel-button {
     color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    background-color: transparent;
+    border: 0px;
+   border: 2px solid #fff;
+   border-radius: 6px;
+    margin-top: 3%;
+   padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
 }
-#member_member3Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+.ok-button:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member4Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+.cancel-button:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member5Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member6Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member1Hidden input {margin: 1%}
+
 [data-theme*=_bgp1] {
     /* background: url(/image/bird.jpg); */
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);

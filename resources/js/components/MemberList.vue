@@ -6,13 +6,13 @@
                     <div data-layout="al16">
                         <div class="AP_accordion" role="tablist">
                             <div v-for="member in members" :key="member.id"> <!-- 반복문 v-for 조원 생성 -->
-                            <p class="AP_accordion_tab" role="tab" :data-theme="'_bgp'+member.user_id" tabindex="0"> {{ member.user.id }}. {{ member.user.name }}</p>
+                            <p class="AP_accordion_tab" role="tab" :data-theme="'_bgp'+member.user_id" tabindex="0"> {{ members.indexOf(member) + 1 }}. {{ member.user.name }}</p>
                             <div class="AP_accordion_panel" role="tabpanel"> <!-- 화면 상에 보여지는 탭 -->
                                 <img :src="'/image/'+image[member.user_id-1]" class="mem1"> <!-- 탭 클릭했을 때 보이는 조원1의 배경사진 -->
                                 <div id="member_member1Hidden"> <!-- 탭을 클릭 했을 때 보이는 조원1의 사진, 이름, 한줄소개 -->
                                     <img :src="'images/'+member.imagename" id="member_member1Image" alt="조원사진" width="100" height="100"><br />
-                                    이름 : <p id="member_member1Name"> {{ member.user.name }}</p>
-                                    소개 : <p id="member_member1Intro"> {{ member.member_info }}</p>
+                                    <p id="member_member1Name" style="margin-top: 1%">이름 : {{ member.user.name }}</p>
+                                    <p id="member_member1Intro" style="margin-top: 1%">소개 : {{ member.member_info }}</p>
                                     <div> <!-- lv이 2인 관리자만 보이게 만들기 session 필요 또한 자기것만 보이게 -->
                                     <input v-if="member.user_id == check" @click="update" type="button" value="수정하기" :id="user_name">
                                     <input v-if="member.user_id == check" @click="destroy" type="button" value="삭제하기" :id="user_name">
@@ -89,20 +89,10 @@ export default {
 
 <style scoped>
 .body {margin-top: 13%;margin-left: 8%;height: auto}
-.mem1,
-.mem2,
-.mem3,
-.mem4,
-.mem5,
-.mem6 {
+.mem1 {
     width: 100%;
 }
-#member_member1Image,
-#member_member2Image,
-#member_member3Image,
-#member_member4Image,
-#member_member5Image,
-#member_member6Image {width: 20%;float: inherit}
+#member_member1Image {width: 20%;float: inherit}
 #member_member1Hidden {
     background-color: rgba(0, 0, 0, 0.7);
     text-align: center;
@@ -114,62 +104,24 @@ export default {
     padding-top: 20%;
     padding-bottom: 20%;
 }
-#member_member2Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
+
+#member_member1Hidden input {
     color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    background-color: transparent;
+    border: 0px;
+   border: 2px solid #fff;
+   border-radius: 6px;
+    margin-top: 3%;
+   padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
 }
-#member_member3Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+#member_member1Hidden input:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member4Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member5Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member6Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member1Hidden input {margin: 1%}
+
 [data-theme*=_bgp1] {
     /* background: url(/image/bird.jpg); */
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);

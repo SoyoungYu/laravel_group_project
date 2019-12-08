@@ -104,10 +104,6 @@ class MemberController extends Controller
 
         $image_path = public_path('images').'/'.$member[0]->imagename;
 
-        if (File::exists($image_path)) {
-            File::delete($image_path);
-        }
-
         if($image == '없음' && $member_info == '없음') {
             return response()->json('success');
         } 
@@ -119,6 +115,9 @@ class MemberController extends Controller
             return response()->json('success');
         }
         else if($image && $member_info == '없음') {
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
             $imagename = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move(public_path('images'), $imagename);
 
@@ -129,6 +128,9 @@ class MemberController extends Controller
             return response()->json('success');
         }   
         else {
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            }
             $imagename = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move(public_path('images'), $imagename);
 

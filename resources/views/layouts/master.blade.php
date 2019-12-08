@@ -60,12 +60,21 @@
             padding-right: 12%;
         }
 
+        .navi_title a {
+            text-decoration: none;
+            color: white;
+        }
+        .navi_title a:active{
+            text-decoration: none;
+            color: white;
+        }
+
         .navilog {
             position: fixed;
             z-index: 1001;
-            margin-top: 7%;
+            margin-top: 1%;
             top: 0;
-            left: 75%;
+            left: 90%;
             transition: All 0.4s ease;
             -webkit-transition: All 0.4s ease;
             -moz-transition: All 0.4s ease;
