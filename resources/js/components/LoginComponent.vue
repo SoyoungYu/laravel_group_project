@@ -15,7 +15,7 @@
                             <input type="password" class="form-control" v-model="password" placeholder="비밀번호" required>
                         </div>
                     </div>
-                    <div>
+                    <div class= "message">
                         {{ message }}
                     </div>
                     <div class="form-group">
@@ -68,10 +68,19 @@ export default {
 }
 </script>
 
-
 <style scoped>
+.body {
+    padding-top: 14%;
+    padding-bottom: 13.6%;
+    background-image: url("/image/office.jpg");
+    height: 500%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .login_all {
-    margin-top: 14%;
+    /* margin-top: 14%; */
     margin-right: 35%;
     margin-left: 35%;
     padding-bottom: 2%;
@@ -94,6 +103,11 @@ export default {
     padding-bottom: 5%;
 }
 
+.message {
+    color: #ff7066;
+    font-size: 14px;
+}
+
 .user {
     margin-top: 1.5%;
     margin-bottom: 1%;
@@ -113,14 +127,6 @@ export default {
     width: 44%;
     text-align: center;
 }
-.ok input,
-.cancel input {
-    width: 215px;
-    height: 27px;
-    border-radius: 5px;
-    background-color: darkgray;
-    color: black;
-}
 
 .new {
     margin-top: 5%;
@@ -134,10 +140,37 @@ export default {
     font-size: 13px;
 }
 
-#login_ok,
-#login_cancel {
+#login_ok {
     background-color: #cfcfcf;
     border: 1px solid white;
     margin: 0.2%;
 }
+
+.form-group input {
+    color: #fff;
+    background-color: transparent;
+    border: 0 solid transparent;
+    border-bottom: 1px solid #fff;
+    width: 44%;
+    text-align: center;
+    padding-top: 1%;
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+}
+
+.form-group input::placeholder {
+    color: #fff;
+    font-size: 15px;
+}
+
+.form-group button {
+    width: 215px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: darkgray;
+    color: black;
+    cursor: pointer;
+    margin-top: 5%;
+}
+
 </style>

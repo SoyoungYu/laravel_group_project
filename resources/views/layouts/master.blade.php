@@ -11,6 +11,10 @@
             background-color: black;
         }
 
+        html::-webkit-scrollbar{
+            display : none;
+        }
+
         * {
             margin: 0;
             padding: 0;

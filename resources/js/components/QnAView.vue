@@ -46,7 +46,9 @@ export default {
         .then(response => {
             this.qna = response.data.qna[0]
             this.answers = response.data.reply
-            this.user = response.data.admin[0]
+            if(response.data.admin[0]){
+                this.user = response.data.admin[0]
+            }
             if(this.qna.user_id == response.data.user)
             {
                 this.button_control = 1

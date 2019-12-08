@@ -34,7 +34,7 @@
                                 <input type="text" class="form-control" v-model="sex" placeholder="성별" required>
                             </div>
                         </div>
-                        <div>
+                        <div class = "message">
                             {{ message }}
                         </div>
                         <div class="form-group">
@@ -94,9 +94,18 @@ data() {
 
 
 <style scoped>
+.body {
+    padding-top: 14%;
+    padding-bottom: 9.7%;
+    background-image: url("/image/office.jpg");
+    height: 500%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .join_all {
-    margin-top: 14%;
+    /* margin-top: 14%; */
     margin-right: 35%;
     margin-left: 35%;
     padding-bottom: 2%;
@@ -118,7 +127,8 @@ data() {
     width: 44%;
     text-align: center;
     padding-top: 1%;
-    margin-top: 5%;
+    margin-top: 1.5%;
+    margin-bottom: 1%;
 }
 
 .form-group input::placeholder {
@@ -134,5 +144,10 @@ data() {
     color: black;
     cursor: pointer;
     margin-top: 5%;
+}
+
+.message {
+    color: #ff7066;
+    font-size: 14px;
 }
 </style>

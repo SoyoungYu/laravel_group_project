@@ -1894,7 +1894,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3081,7 +3080,10 @@ __webpack_require__.r(__webpack_exports__);
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
       _this.qna = response.data.qna[0];
       _this.answers = response.data.reply;
-      _this.user = response.data.admin[0];
+
+      if (response.data.admin[0]) {
+        _this.user = response.data.admin[0];
+      }
 
       if (_this.qna.user_id == response.data.user) {
         _this.button_control = 1;
@@ -7595,7 +7597,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#japan_week1Hidden[data-v-79fba742],\r\n#japan_week2Hidden[data-v-79fba742],\r\n#japan_week3Hidden[data-v-79fba742],\r\n#japan_week4Hidden[data-v-79fba742],\r\n#japan_week5Hidden[data-v-79fba742],\r\n#japan_week6Hidden[data-v-79fba742],\r\n#japan_week7Hidden[data-v-79fba742] {\r\n    display: none;\n}\n.body[data-v-79fba742] {\r\n    margin-top: 50px;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    color:black;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.btn-group[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    width: 100%;\r\n    height: 400px;\n}\n.btn-group button[data-v-79fba742] {\r\n    outline: 1px solid #000;\r\n    -webkit-transform-origin: 50% 50%;\r\n            transform-origin: 50% 50%;\n}\r\n\r\n/* 버튼에 마우스를 댔을 때 커질 지 말지 결정 : scale(1.1) ==> 커짐 */\n.btn-group button[data-v-79fba742]:hover {\r\n    -webkit-transform: scale(1.0);\r\n            transform: scale(1.0);\n}\nbutton[data-v-79fba742] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);\r\n    -webkit-box-flex: 1;\r\n            flex: 1 1 10%;\r\n    padding: 0.875rem;\r\n    -webkit-transition: 100ms all ease-in-out;\r\n    transition: 100ms all ease-in-out;\r\n    width: 100%;\r\n    font-weight: 600;\r\n    font-size: 1.7em;\r\n    text-transform: uppercase;\r\n    background: #424242;\r\n    color: white;\n}\nbutton[data-v-79fba742]:hover {\r\n    cursor: pointer;\r\n    background: #1C1C1C;\n}\nbutton[data-v-79fba742]:focus {\r\n    outline: none;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    position: fixed;\r\n    max-width: 320px;\r\n    width: 100%;\r\n    z-index: 2000;\r\n    visibility: hidden;\r\n    -webkit-backface-visibility: hidden;\r\n            backface-visibility: hidden;\r\n    width: 100%;\r\n    margin: auto;\n}\n.mocean-modal-overlay[data-v-79fba742] {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    background: #151515;\n}\n.mocean-show.mocean-modal-wrap[data-v-79fba742] {\r\n    visibility: visible;\n}\n.mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay[data-v-79fba742] {\r\n    visibility: visible;\r\n    opacity: 1;\n}\n.mocean-modal[data-v-79fba742] {\r\n    -webkit-transition-property: all;\r\n    transition-property: all;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n    -webkit-animation-duration: 1000ms;\r\n            animation-duration: 1000ms;\r\n    -webkit-animation-fill-mode: forwards;\r\n            animation-fill-mode: forwards;\r\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\n}\n.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n            transform: translate3d(0, -100%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(30%, 0, 0);\r\n            transform: translate3d(30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 30%, 0);\r\n            transform: translate3d(0, 30%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(-30%, 0, 0);\r\n            transform: translate3d(-30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-out-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(100%);\r\n            transform: translateY(100%);\r\n    opacity: 0;\n}\n.slide-out-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(-100%);\r\n            transform: translateY(-100%);\r\n    opacity: 0;\n}\n.slide-out-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(100%);\r\n            transform: translateX(100%);\r\n    opacity: 0;\n}\n.slide-out-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(-100%);\r\n            transform: translateX(-100%);\r\n    opacity: 0;\n}\n.mocean-perspective[data-v-79fba742] {\r\n    -webkit-perspective: 600px;\r\n            perspective: 600px;\n}\n.mocean-show[data-v-79fba742] {\r\n    visibility: visible;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.japan_hiddenIntro[data-v-79fba742] {\r\n    width: 90%;\r\n    margin: 0 auto;\r\n    margin-top: 1%;\r\n    background-color: #fff;\r\n    text-align: center;\n}\n.japan_hiddenIntro .button_area[data-v-79fba742] {\r\n    background-color: #000;\n}\n.japan_hiddenIntro h2[data-v-79fba742] {\r\n    background-color: #526646;\r\n    width: 100%;\r\n    padding-top: 1%;\r\n    padding-bottom: 1%;\r\n    color: #fff;\n}\n.japan_hiddenIntro img[data-v-79fba742] {\r\n    max-width: 80%;\r\n    margin-top: 2%;\n}\n.japan_hiddenIntro input[data-v-79fba742] {\r\n    margin-bottom: 2%;\r\n    color: #000;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #526646;\r\n\tborder-radius: 6px;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n.japan_hiddenIntro input[data-v-79fba742]:hover {\r\n    background-color: #526646;\r\n    color: #fff;\n}\n.japan_hiddenIntro p[data-v-79fba742] {\r\n    color: black;\r\n    font-family: 'Nanum Gothic', sans-serif;\n}\n.body[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    color:black;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.btn-group[data-v-79fba742] {\r\n    margin-top: 13%;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    /* width: 100%; */\r\n    height: 50px;\n}\n.btn-group button[data-v-79fba742] {\r\n    outline: 1px solid #000;\r\n    -webkit-transform-origin: 50% 50%;\r\n            transform-origin: 50% 50%;\n}\n#new_button[data-v-79fba742] {\r\n    width: 8%;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #fff;\r\n\tborder-radius: 6px;\r\n    margin-top: 1%;\r\n    margin-bottom: 1%;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n#new_button[data-v-79fba742]:hover {\r\n    background-color: #fff;\r\n    color: #000;\n}\r\n\r\n/* 버튼에 마우스를 댔을 때 커질 지 말지 결정 : scale(1.1) ==> 커짐 */\n.btn-group button[data-v-79fba742]:hover {\r\n    -webkit-transform: scale(1.0);\r\n            transform: scale(1.0);\n}\nbutton[data-v-79fba742] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);\r\n    -webkit-box-flex: 1;\r\n            flex: 1 1 10%;\r\n    padding: 0.875rem;\r\n    -webkit-transition: 100ms all ease-in-out;\r\n    transition: 100ms all ease-in-out;\r\n    width: 70%;\r\n    font-weight: 600;\r\n    font-size: 1.1em;\r\n    text-transform: uppercase;\r\n    background: #424242;\r\n    color: white;\n}\nbutton[data-v-79fba742]:hover {\r\n    cursor: pointer;\r\n    background: #1C1C1C;\n}\nbutton[data-v-79fba742]:focus {\r\n    outline: none;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    position: fixed;\r\n    max-width: 320px;\r\n    width: 80%;\r\n    z-index: 2000;\r\n    visibility: hidden;\r\n    -webkit-backface-visibility: hidden;\r\n            backface-visibility: hidden;\r\n    width: 100%;\r\n    margin: auto;\n}\n.mocean-modal-overlay[data-v-79fba742] {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    background: #151515;\n}\n.mocean-show.mocean-modal-wrap[data-v-79fba742] {\r\n    visibility: visible;\n}\n.mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay[data-v-79fba742] {\r\n    visibility: visible;\r\n    opacity: 1;\n}\n.mocean-modal[data-v-79fba742] {\r\n    -webkit-transition-property: all;\r\n    transition-property: all;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n    -webkit-animation-duration: 1000ms;\r\n            animation-duration: 1000ms;\r\n    -webkit-animation-fill-mode: forwards;\r\n            animation-fill-mode: forwards;\r\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\n}\n.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n            transform: translate3d(0, -100%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(30%, 0, 0);\r\n            transform: translate3d(30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 30%, 0);\r\n            transform: translate3d(0, 30%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(-30%, 0, 0);\r\n            transform: translate3d(-30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-out-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(100%);\r\n            transform: translateY(100%);\r\n    opacity: 0;\n}\n.slide-out-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(-100%);\r\n            transform: translateY(-100%);\r\n    opacity: 0;\n}\n.slide-out-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(100%);\r\n            transform: translateX(100%);\r\n    opacity: 0;\n}\n.slide-out-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(-100%);\r\n            transform: translateX(-100%);\r\n    opacity: 0;\n}\n.mocean-perspective[data-v-79fba742] {\r\n    -webkit-perspective: 600px;\r\n            perspective: 600px;\n}\n.mocean-show[data-v-79fba742] {\r\n    visibility: visible;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7614,7 +7616,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.jpn_contents[data-v-5960c6e8] {\n    margin-top: 13%;\n}\n.form_control[data-v-5960c6e8]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.jpn_contents .form_control2[data-v-5960c6e8]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-left: 30%;\n}\n.jpn_contents p[data-v-5960c6e8] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5960c6e8] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5960c6e8] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5960c6e8] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.jpn_contents[data-v-5960c6e8] {\n    margin-top: 13%;\n    text-align: center;\n}\n.form_control[data-v-5960c6e8]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.form_control2[data-v-5960c6e8]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-top: 1%;\n}\n.jpn_contents p[data-v-5960c6e8] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5960c6e8] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5960c6e8] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5960c6e8] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n    margin-top: 2%;\n    margin-bottom: 3%;\n}\n", ""]);
 
 // exports
 
@@ -7633,7 +7635,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.join_all[data-v-ba400dd0] {\r\n    margin-top: 14%;\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.form-group input[data-v-ba400dd0] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 5%;\n}\n.form-group input[data-v-ba400dd0]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-ba400dd0] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n", ""]);
+exports.push([module.i, "\n.body[data-v-ba400dd0] {\r\n    padding-top: 14%;\r\n    padding-bottom: 9.7%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.join_all[data-v-ba400dd0] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.form-group input[data-v-ba400dd0] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-ba400dd0]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-ba400dd0] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\n.message[data-v-ba400dd0] {\r\n    color: #ff7066;\r\n    font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
@@ -7652,7 +7654,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.jpn_contents[data-v-5e0adb84] {\n    margin-top: 13%;\n    text-align: center;\n}\n.form_control[data-v-5e0adb84]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.form_control2[data-v-5e0adb84]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-top: 1%;\n}\n.jpn_contents p[data-v-5e0adb84] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5e0adb84] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5e0adb84] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5e0adb84] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.jpn_contents[data-v-5e0adb84] {\n    margin-top: 13%;\n    text-align: center;\n}\n.form_control[data-v-5e0adb84]{\n    margin-top: 20px;\n    margin: 0 auto;\n    padding-bottom: 1%;\n    width:600px;\n    border: 0px solid transparent;\n    border-bottom: 2px solid #fff;\n    background-color: transparent;\n}\n.form_control2[data-v-5e0adb84]{\n    width:600px;\n    border: 2px solid #fff;\n    background-color: transparent;\n    margin-top: 1%;\n}\n.jpn_contents p[data-v-5e0adb84] {\n    text-align: center; \n    color: #fff; \n    font-size: 20px;\n}\n.img_upload[data-v-5e0adb84] {\n    color: #fff;\n    text-align: center;\n    margin-top: 2%;\n}\n.img_upload input[data-v-5e0adb84] {\n    margin-left: 5%;\n}\n#ok_modify[data-v-5e0adb84] {\n    color: white;\n    background-color: transparent;\n    border: 0px;\n    border-bottom: 2px solid white;\n    font-size: 18px;\n    margin-right: 50px;\n    cursor: pointer;\n    margin-left: 50%;\n    margin-top: 2%;\n    margin-bottom: 3%;\n}\n", ""]);
 
 // exports
 
@@ -7671,7 +7673,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.login_all[data-v-4d2414bf] {\r\n    margin-top: 14%;\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.login[data-v-4d2414bf] {\r\n    margin-top: 15%;\r\n    color: white;\n}\n.login p[data-v-4d2414bf] {\r\n    text-align: center;\r\n    font-size: 24px;\r\n    font-weight: 500;\r\n    padding-top: 4%;\r\n    padding-bottom: 5%;\n}\n.user[data-v-4d2414bf] {\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n#login_pw[data-v-4d2414bf] {\r\n    margin-top: 3%;\r\n    margin-bottom: 3%;\n}\n#login_id[data-v-4d2414bf],\r\n#login_pw[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\n}\n.ok input[data-v-4d2414bf],\r\n.cancel input[data-v-4d2414bf] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\n}\n.new[data-v-4d2414bf] {\r\n    margin-top: 5%;\r\n    text-align: center;\r\n    color: white;\n}\n.new a[data-v-4d2414bf] {\r\n    color: white;\r\n    text-decoration: none;\r\n    font-size: 13px;\n}\n#login_ok[data-v-4d2414bf],\r\n#login_cancel[data-v-4d2414bf] {\r\n    background-color: #cfcfcf;\r\n    border: 1px solid white;\r\n    margin: 0.2%;\n}\r\n", ""]);
+exports.push([module.i, "\n.body[data-v-4d2414bf] {\r\n    padding-top: 14%;\r\n    padding-bottom: 13.6%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.login_all[data-v-4d2414bf] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.login[data-v-4d2414bf] {\r\n    margin-top: 15%;\r\n    color: white;\n}\n.login p[data-v-4d2414bf] {\r\n    text-align: center;\r\n    font-size: 24px;\r\n    font-weight: 500;\r\n    padding-top: 4%;\r\n    padding-bottom: 5%;\n}\n.message[data-v-4d2414bf] {\r\n    color: #ff7066;\r\n    font-size: 14px;\n}\n.user[data-v-4d2414bf] {\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n#login_pw[data-v-4d2414bf] {\r\n    margin-top: 3%;\r\n    margin-bottom: 3%;\n}\n#login_id[data-v-4d2414bf],\r\n#login_pw[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\n}\n.new[data-v-4d2414bf] {\r\n    margin-top: 5%;\r\n    text-align: center;\r\n    color: white;\n}\n.new a[data-v-4d2414bf] {\r\n    color: white;\r\n    text-decoration: none;\r\n    font-size: 13px;\n}\n#login_ok[data-v-4d2414bf] {\r\n    background-color: #cfcfcf;\r\n    border: 1px solid white;\r\n    margin: 0.2%;\n}\n.form-group input[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-4d2414bf]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-4d2414bf] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -40505,7 +40507,11 @@ var render = function() {
           "button",
           {
             staticClass: "mocean-modal-button",
-            attrs: { "data-mocean-type": "slide-in-top", id: "japan_week1" },
+            attrs: {
+              "data-mocean-type": "slide-in-top",
+              id: "japan_week1",
+              onclick: "new_button.style.visibility = 'visible'"
+            },
             on: {
               click: function($event) {
                 return _vm.clickWeek(1)
@@ -40521,7 +40527,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-right",
-              onclick: "myFunction()",
+              onclick: "new_button.style.visibility = 'visible'",
               id: "japan_week2"
             },
             on: {
@@ -40539,7 +40545,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-bottom",
-              onclick: "myFunction()",
+              onclick: "new_button.style.visibility = 'visible'",
               id: "japan_week3"
             },
             on: {
@@ -40555,7 +40561,11 @@ var render = function() {
           "button",
           {
             staticClass: "mocean-modal-button",
-            attrs: { "data-mocean-type": "slide-in-left", id: "japan_week4" },
+            attrs: {
+              "data-mocean-type": "slide-in-left",
+              id: "japan_week4",
+              onclick: "new_button.style.visibility = 'visible'"
+            },
             on: {
               click: function($event) {
                 return _vm.clickWeek(4)
@@ -40571,6 +40581,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-top",
+              onclick: "new_button.style.visibility = 'visible'",
               "data-mocean-out-type": "slide-out-bottom",
               id: "japan_week5"
             },
@@ -40589,6 +40600,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-bottom",
+              onclick: "new_button.style.visibility = 'visible'",
               "data-mocean-out-type": "slide-out-top",
               id: "japan_week6"
             },
@@ -40607,6 +40619,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-left",
+              onclick: "new_button.style.visibility = 'visible'",
               "data-mocean-out-type": "slide-out-right",
               id: "japan_week7"
             },
@@ -40620,66 +40633,66 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _vm.button_control == 1
+        ? _c(
+            "button",
+            {
+              staticStyle: { visibility: "hidden" },
+              attrs: { id: "new_button" },
+              on: {
+                click: function($event) {
+                  return _vm.goCreate(_vm.week)
+                }
+              }
+            },
+            [_vm._v("새로 만들기")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "japan_hiddenIntro" },
-        [
-          _vm.button_control == 1
-            ? _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.goCreate(_vm.week)
-                    }
-                  }
-                },
-                [_vm._v("새로 만들기")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._l(_vm.japans, function(japan) {
-            return _c("div", { key: japan }, [
-              _c("h2", [_vm._v(_vm._s(japan.title))]),
-              _vm._v(" "),
-              _c("img", {
-                attrs: { src: "images/" + japan.image, id: "japan_week1Image" }
-              }),
-              _vm._v(" "),
-              _c("pre", [
-                _vm._v("                    "),
-                _c("p", { attrs: { id: "japan_week1Content" } }, [
-                  _vm._v(_vm._s(japan.info))
-                ]),
-                _vm._v(" "),
-                _vm._v("\n                ")
+        _vm._l(_vm.japans, function(japan) {
+          return _c("div", { key: japan }, [
+            _c("h2", [_vm._v(_vm._s(japan.title))]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: "images/" + japan.image, id: "japan_week1Image" }
+            }),
+            _vm._v(" "),
+            _c("pre", [
+              _vm._v("                    "),
+              _c("p", { attrs: { id: "japan_week1Content" } }, [
+                _vm._v(_vm._s(japan.info))
               ]),
               _vm._v(" "),
-              _vm.button_control == 1
-                ? _c("input", {
-                    attrs: { type: "button", value: "수정" },
-                    on: {
-                      click: function($event) {
-                        return _vm.goModify(japan)
-                      }
+              _vm._v("\n                ")
+            ]),
+            _vm._v(" "),
+            _vm.button_control == 1
+              ? _c("input", {
+                  attrs: { type: "button", value: "수정" },
+                  on: {
+                    click: function($event) {
+                      return _vm.goModify(japan)
                     }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.button_control == 1
-                ? _c("input", {
-                    attrs: { type: "button", value: "삭제" },
-                    on: {
-                      click: function($event) {
-                        return _vm.del(japan.id)
-                      }
+                  }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.button_control == 1
+              ? _c("input", {
+                  attrs: { type: "button", value: "삭제" },
+                  on: {
+                    click: function($event) {
+                      return _vm.del(japan.id)
                     }
-                  })
-                : _vm._e()
-            ])
-          })
-        ],
-        2
+                  }
+                })
+              : _vm._e()
+          ])
+        }),
+        0
       )
     ])
   ])
@@ -40775,7 +40788,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("button", [_vm._v("수정")])
+      _c("button", { attrs: { id: "ok_modify" } }, [_vm._v("수정")])
     ])
   ])
 }
@@ -40953,7 +40966,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", [
+            _c("div", { staticClass: "message" }, [
               _vm._v(
                 "\n                        " +
                   _vm._s(_vm.message) +
@@ -41058,7 +41071,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("button", [_vm._v("완료")])
+      _c("button", { attrs: { id: "ok_modify" } }, [_vm._v("완료")])
     ])
   ])
 }
@@ -41157,7 +41170,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", [
+          _c("div", { staticClass: "message" }, [
             _vm._v(
               "\n                    " +
                 _vm._s(_vm.message) +

@@ -17,7 +17,7 @@
                     <input type="file" id="input_img" accept="image/*" @change="uploadImage($event)"/>
                 </div>
             </div>
-            <button>수정</button>
+            <button id = "ok_modify">수정</button>
             <!-- <input type="button" value="완료" id="ok_modify"/> -->
         </form>
     </div>
@@ -138,10 +138,12 @@ export default {
 }
 </script>
 
+
 <style scoped>
 
-    .jpn_contents {
+      .jpn_contents {
         margin-top: 13%;
+        text-align: center;
     }
 
     .form_control{
@@ -154,11 +156,11 @@ export default {
         background-color: transparent;
     }
 
-    .jpn_contents .form_control2{
+    .form_control2{
         width:600px;
         border: 2px solid #fff;
         background-color: transparent;
-        margin-left: 30%;
+        margin-top: 1%;
     }
     
     .jpn_contents p {
@@ -186,5 +188,7 @@ export default {
         margin-right: 50px;
         cursor: pointer;
         margin-left: 50%;
+        margin-top: 2%;
+        margin-bottom: 3%;
     }
 </style>
