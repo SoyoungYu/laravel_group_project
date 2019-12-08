@@ -13,7 +13,7 @@
             </div>
             
             <div class="japan_hiddenIntro">
-                <button @click="goCreate(week)" v-if="token_exist==true">새로 만들기</button>
+                <button @click="goCreate(week)" v-if="button_control == 1">새로 만들기</button>
                 <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
                     <h2>{{ japan.title }}</h2>
                     <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
@@ -48,10 +48,12 @@ export default {
             .then((response)=>{
                 this.japans = response.data.japans
                 console.log(this.japans)
-                this.japnas.info = this.japans.info.replice('\n').join('<br/>')
-                if(response.japans.user_id == response.data.user)
+                console.log(this.token_exist)
+                console.log(response.data.user)
+                if(response.data.user == 'admin')
                 {
                     this.button_control = 1
+                    
                 }
             })
             .catch(error =>{

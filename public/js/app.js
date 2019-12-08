@@ -1914,9 +1914,10 @@ __webpack_require__.r(__webpack_exports__);
       Axios.get('/api/japan/' + weekId).then(function (response) {
         _this.japans = response.data.japans;
         console.log(_this.japans);
-        _this.japnas.info = _this.japans.info.replice('\n').join('<br/>');
+        console.log(_this.token_exist);
+        console.log(response.data.user);
 
-        if (response.japans.user_id == response.data.user) {
+        if (response.data.user == 'admin') {
           _this.button_control = 1;
         }
       })["catch"](function (error) {
@@ -40537,7 +40538,7 @@ var render = function() {
         "div",
         { staticClass: "japan_hiddenIntro" },
         [
-          _vm.token_exist == true
+          _vm.button_control == 1
             ? _c(
                 "button",
                 {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Info_program;
+use App\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class JapanController extends Controller
@@ -62,7 +63,9 @@ class JapanController extends Controller
     {
         $japans=new Info_program();
         $session = new Session();
-        return response()->json(['japans'=>Info_program::where('week', $id)->get(), 'user' => $session->get('user')]);
+        $user = $session->get('user');
+        $getUser = User::where('user_id',$user)->value('admin');
+        return response()->json(['japans'=>Info_program::where('week', $id)->get(), 'user' => $getUser]);
     }
     public function modifyShow($id)
     {
