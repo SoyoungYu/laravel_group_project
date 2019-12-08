@@ -3,25 +3,26 @@
         <div class="body">
             <div class="btn-group" id="menu">
                 <!-- week1 ~ week7 버튼 -->
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" id="japan_week1" v-on:click="clickWeek(1)">1주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="myFunction()" id="japan_week2" v-on:click="clickWeek(2)">2주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="myFunction()" id="japan_week3" v-on:click="clickWeek(3)">3주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" id="japan_week4" v-on:click="clickWeek(4)">4주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-top" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >5주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">6주차</button>
-                <button class="mocean-modal-button" data-mocean-type="slide-in-left" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">7주차</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" onclick="new_button.style.visibility='visible'" id="japan_week1" v-on:click="clickWeek(1)">week 1</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-right" onclick="new_button.style.visibility='visible'" id="japan_week2" v-on:click="clickWeek(2)">week 2</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="new_button.style.visibility='visible'" id="japan_week3" v-on:click="clickWeek(3)">week 3</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" onclick="new_button.style.visibility='visible'" id="japan_week4" v-on:click="clickWeek(4)">week 4</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-top" onclick="new_button.style.visibility='visible'" data-mocean-out-type="slide-out-bottom" id="japan_week5" v-on:click="clickWeek(5)" >week 5</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-bottom" onclick="new_button.style.visibility='visible'" data-mocean-out-type="slide-out-top" id="japan_week6" v-on:click="clickWeek(6)">week 6</button>
+                <button class="mocean-modal-button" data-mocean-type="slide-in-left" onclick="new_button.style.visibility='visible'" data-mocean-out-type="slide-out-right" id="japan_week7" v-on:click="clickWeek(7)">week 7</button>
             </div>
+
+            <button @click="goCreate(week)" v-if="button_control == 1" id="new_button" style="visibility: hidden">새로 만들기</button>
             
-            <button @click="goCreate(week)" class="new_button">새로 만들기</button>
             <div class="japan_hiddenIntro">
-                <div v-for="japan in japans" v-bind:key="japan" class="japan_list"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
+                <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
                     <h2>{{ japan.title }}</h2>
                     <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
                     <pre>
                         <p id="japan_week1Content">{{ japan.info }}</p> <!-- 1주차 내용 (데이터) -->
                     </pre>
-                    <input type="button" value="수정" @click="goModify(japan)">
-                    <input type="button" value="삭제" @click="del(japan.id)">
+                    <input type="button" value="수정" @click="goModify(japan)" v-if="button_control == 1">
+                    <input type="button" value="삭제" @click="del(japan.id)" v-if="button_control == 1">
                 </div>
             </div>
         </div>
@@ -33,21 +34,28 @@ export default {
         return {
             japans: '',
             week: '',
+            button_control : '',
+            token_exist : $cookies.isKey('_token'),
         };
     },
     mounted: function(){
  
     },
     methods: {
-        clickWeek(weekId){
+         clickWeek(weekId){
             console.log(weekId);
             this.week=weekId
               Axios.get('/api/japan/'+weekId)
             .then((response)=>{
                 this.japans = response.data.japans
                 console.log(this.japans)
-                this.japnas.info = this.japans.info.replice('\n').join('<br/>')
-               
+                console.log(this.token_exist)
+                console.log(response.data.user)
+                if(response.data.user == 'admin')
+                {
+                    this.button_control = 1
+                    
+                }
             })
             .catch(error =>{
                 console.log(error)
@@ -83,6 +91,10 @@ export default {
     margin-top: 1%;
     background-color: #fff;
     text-align: center;
+}
+
+.japan_hiddenIntro .button_area {
+    background-color: #000;
 }
 
 .japan_hiddenIntro h2 {
@@ -148,7 +160,7 @@ export default {
     transform-origin: 50% 50%;
 }
 
-.new_button {
+#new_button {
     width: 8%;
     color: white;
     background-color: transparent;
@@ -156,12 +168,13 @@ export default {
 	border: 2px solid #fff;
 	border-radius: 6px;
     margin-top: 1%;
+    margin-bottom: 1%;
 	padding: 3px;
     font-size: 15px;
     cursor: pointer;
 }
 
-.new_button:hover {
+#new_button:hover {
     background-color: #fff;
     color: #000;
 }

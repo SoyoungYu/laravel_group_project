@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Info_program;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class JapanController extends Controller
 {
@@ -36,7 +37,7 @@ class JapanController extends Controller
      */
     public function store(Request $request)
     {
-        // debug($request);
+        debug($request);
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
         $japan = new Info_program();
@@ -60,12 +61,16 @@ class JapanController extends Controller
     public function show($id)
     {
         $japans=new Info_program();
-        return response()->json(['japans'=>Info_program::where('week', $id)->get()]);
+        $session = new Session();
+        $user = $session->get('user');
+        $getUser = User::where('user_id',$user)->value('admin');
+        return response()->json(['japans'=>Info_program::where('week', $id)->get(), 'user' => $getUser]);
     }
     public function modifyShow($id)
     {
         $japans=new Info_program();
         // return response()->json(['msg'=>"업데이트 성공!"]);
+        $session = new Session();
         return response()->json(['japans'=>Info_program::where('id', $id)->get()]);
     }
     /**
@@ -104,6 +109,7 @@ class JapanController extends Controller
         
         $imageName=time().'.'.$request->image->guessExtension();
         $request->image->move(public_path('images'), $imageName);
+
         // $image_path = public_path('images').'/'.$request->image;
         // File::delete($image_path);
 

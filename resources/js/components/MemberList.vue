@@ -74,20 +74,10 @@ export default {
 
 <style scoped>
 .body {margin-top: 13%;margin-left: 8%;height: auto}
-.mem1,
-.mem2,
-.mem3,
-.mem4,
-.mem5,
-.mem6 {
+.mem1 {
     width: 100%;
 }
-#member_member1Image,
-#member_member2Image,
-#member_member3Image,
-#member_member4Image,
-#member_member5Image,
-#member_member6Image {width: 20%;float: inherit}
+#member_member1Image {width: 20%;float: inherit}
 #member_member1Hidden {
     background-color: rgba(0, 0, 0, 0.7);
     text-align: center;
@@ -99,62 +89,24 @@ export default {
     padding-top: 20%;
     padding-bottom: 20%;
 }
-#member_member2Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
+
+#member_member1Hidden input {
     color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    background-color: transparent;
+    border: 0px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+    margin-top: 3%;
+	padding: 3px;
+    font-size: 15px;
+    cursor: pointer;
 }
-#member_member3Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
+
+#member_member1Hidden input:hover {
+    background-color: #fff;
+    color: #000;
 }
-#member_member4Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member5Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member6Hidden {
-    background-color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    position: relative;
-    z-index: 100;
-    margin-top: -73%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-#member_member1Hidden input {margin: 1%}
+
 [data-theme*=_bgp1] {
     /* background: url(/image/bird.jpg); */
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);

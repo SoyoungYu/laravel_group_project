@@ -14,6 +14,10 @@
             font-family: 'Nanum Gothic', sans-serif;
         }
 
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
         * {
             margin: 0;
             padding: 0;

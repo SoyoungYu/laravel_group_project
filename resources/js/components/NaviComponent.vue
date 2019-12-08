@@ -36,14 +36,11 @@
                 Axios.get('/api/logout')
                 .then(response=>{
                     console.log(response)
-                    this.filter()
+                    this.$router.go(0)
                 })
                 .catch(error => {
                     console.log(error)
                 })
-            },
-            filter(){
-                this.token_exist = $cookies.isKey('_token')
             }
         },
     }

@@ -122,6 +122,7 @@ export default {
 	}
 </style>
 
+
 <style scoped>
 .qna_list {
 	margin-top: 13%;

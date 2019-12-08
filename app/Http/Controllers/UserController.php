@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use Cookie;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,12 +22,21 @@ class UserController extends Controller
     {
         $request['password'] = bcrypt($request->password);
 
+        if(DB::table('users')->where('user_id', $request->user_id)->first())
+        {
+            return response()->json(['error'=>'1']);
+        }else if(DB::table('users')->where('email', $request->email)->first())
+        {
+            return response()->json(['error'=>'2']);
+        }
+
         $user = new User();
         $user->user_id = $request->user_id;
         $user->sex = $request->sex;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->admin = 'no';
 
         $user->save();
         
@@ -47,6 +57,8 @@ class UserController extends Controller
             $token = $user->createToken('Personal Access Token')->accessToken;
             //createToken : User 모델 인스턴스 메소드를 사용해 지정된 사용자에 대한 토큰 발행 / 토큰 이름을 첫 번째 인수, 선택적 범위 배열을 두 번째 인수
             $cookie = $this->getCookieDetails($token);
+            $session = new Session();           //여기서 세션 저장
+            $session->set('user',$user->user_id);
             debug($cookie);
             return response()->json([
                 'logged_in_user' =>$user,
@@ -76,6 +88,8 @@ class UserController extends Controller
     {
         $request->user()->token()->revoke();
         $cookie = Cookie::forget('_token');
+        $session = new Session();   //세션 제거
+        $session->remove('user');
         return response()->json([
             'msg' => 'successful_logout'
         ])->withCookie($cookie);

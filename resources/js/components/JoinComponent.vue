@@ -34,7 +34,9 @@
                                 <input type="text" class="form-control" v-model="sex" placeholder="성별" required>
                             </div>
                         </div>
-
+                        <div class="message">
+                            {{ message }}
+                        </div>
                         <div class="form-group">
                             <button>가입</button>
                             <button v-on:click="back">취소</button>
@@ -57,6 +59,7 @@ export default {
             name : '',
             email : '',
             sex : '',
+            message: ''
         }
     },
     methods : {
@@ -71,7 +74,15 @@ export default {
                 password : this.password,
             })
             .then(response => {
-                this.$router.push('/login')
+                console.log(response)
+                if(response.data.error === '1') {
+                    this.message = '아이디가 중복됩니다.'
+                }else if(response.data.error === '2') {
+                    this.message = '이메일이 중복됩니다.'
+                }else{
+                    alert('회원가입되었습니다.')
+                    this.$router.push('/login')
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -136,5 +147,10 @@ export default {
     color: black;
     cursor: pointer;
     margin-top: 5%;
+}
+
+.message {
+    color: #ff7066;
+    font-size: 14px;
 }
 </style>

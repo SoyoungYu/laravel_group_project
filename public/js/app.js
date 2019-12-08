@@ -1839,6 +1839,8 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NaviComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NaviComponent.vue */ "./resources/js/components/NaviComponent.vue");
+/* harmony import */ var _footerComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footerComponent.vue */ "./resources/js/components/footerComponent.vue");
+//
 //
 //
 //
@@ -1846,9 +1848,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'navigation': _NaviComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    'navigation': _NaviComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'footer': _footerComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -1895,11 +1899,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       japans: '',
-      week: ''
+      week: '',
+      button_control: '',
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {},
@@ -1912,7 +1919,12 @@ __webpack_require__.r(__webpack_exports__);
       Axios.get('/api/japan/' + weekId).then(function (response) {
         _this.japans = response.data.japans;
         console.log(_this.japans);
-        _this.japnas.info = _this.japans.info.replice('\n').join('<br/>');
+        console.log(_this.token_exist);
+        console.log(response.data.user);
+
+        if (response.data.user == 'admin') {
+          _this.button_control = 1;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2153,6 +2165,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2163,7 +2177,8 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       name: '',
       email: '',
-      sex: ''
+      sex: '',
+      message: ''
     };
   },
   methods: {
@@ -2179,7 +2194,17 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         password: this.password
       }).then(function (response) {
-        _this.$router.push('/login');
+        console.log(response);
+
+        if (response.data.error === '1') {
+          _this.message = '아이디가 중복됩니다.';
+        } else if (response.data.error === '2') {
+          _this.message = '이메일이 중복됩니다.';
+        } else {
+          alert('회원가입되었습니다.');
+
+          _this.$router.push('/login');
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2352,6 +2377,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2359,11 +2387,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       user_id: '',
-      password: ''
+      password: '',
+      message: ''
     };
   },
   methods: {
     postLogin: function postLogin(e) {
+      var _this = this;
+
       e.preventDefault();
       var currentObj = this;
       console.log(this.user_id);
@@ -2375,6 +2406,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log($cookies.isKey('_token'));
         window.location.href = '/';
       })["catch"](function (error) {
+        _this.message = '아이디와 비밀번호를 확인해 주세요';
         console.log(error);
       });
     },
@@ -2764,13 +2796,10 @@ __webpack_require__.r(__webpack_exports__);
       Axios.get('/api/logout').then(function (response) {
         console.log(response);
 
-        _this.filter();
+        _this.$router.go(0);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    filter: function filter() {
-      this.token_exist = $cookies.isKey('_token');
     }
   }
 });
@@ -2977,12 +3006,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       qna: '',
       answers: '',
-      view_reply: ''
+      view_reply: '',
+      button_control: '',
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {
@@ -2992,6 +3024,10 @@ __webpack_require__.r(__webpack_exports__);
     Axios.get('/api/qna/' + this.$route.params.id).then(function (response) {
       _this.qna = response.data.qna[0];
       _this.answers = response.data.reply;
+
+      if (_this.qna.user_id == response.data.user) {
+        _this.button_control = 1;
+      }
     })["catch"](function (error) {
       console.log(error);
     });
@@ -3039,6 +3075,32 @@ __webpack_require__.r(__webpack_exports__);
       this.answers = new_answers;
       this.view_reply = '';
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footerComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/footerComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
   }
 });
 
@@ -7501,7 +7563,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.japan_hiddenIntro[data-v-79fba742] {\r\n    width: 90%;\r\n    margin: 0 auto;\r\n    margin-top: 1%;\r\n    background-color: #fff;\r\n    text-align: center;\n}\n.japan_hiddenIntro h2[data-v-79fba742] {\r\n    background-color: #526646;\r\n    width: 100%;\r\n    padding-top: 1%;\r\n    padding-bottom: 1%;\r\n    color: #fff;\n}\n.japan_hiddenIntro img[data-v-79fba742] {\r\n    max-width: 80%;\r\n    margin-top: 2%;\n}\n.japan_hiddenIntro input[data-v-79fba742] {\r\n    margin-bottom: 2%;\r\n    color: #000;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #526646;\r\n\tborder-radius: 6px;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n.japan_hiddenIntro input[data-v-79fba742]:hover {\r\n    background-color: #526646;\r\n    color: #fff;\n}\n.japan_hiddenIntro p[data-v-79fba742] {\r\n    color: black;\r\n    font-family: 'Nanum Gothic', sans-serif;\n}\n.body[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    color:black;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.btn-group[data-v-79fba742] {\r\n    margin-top: 13%;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    /* width: 100%; */\r\n    height: 50px;\n}\n.btn-group button[data-v-79fba742] {\r\n    outline: 1px solid #000;\r\n    -webkit-transform-origin: 50% 50%;\r\n            transform-origin: 50% 50%;\n}\n.new_button[data-v-79fba742] {\r\n    width: 8%;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #fff;\r\n\tborder-radius: 6px;\r\n    margin-top: 1%;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n.new_button[data-v-79fba742]:hover {\r\n    background-color: #fff;\r\n    color: #000;\n}\r\n\r\n/* 버튼에 마우스를 댔을 때 커질 지 말지 결정 : scale(1.1) ==> 커짐 */\n.btn-group button[data-v-79fba742]:hover {\r\n    -webkit-transform: scale(1.0);\r\n            transform: scale(1.0);\n}\nbutton[data-v-79fba742] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);\r\n    -webkit-box-flex: 1;\r\n            flex: 1 1 10%;\r\n    padding: 0.875rem;\r\n    -webkit-transition: 100ms all ease-in-out;\r\n    transition: 100ms all ease-in-out;\r\n    width: 70%;\r\n    font-weight: 600;\r\n    font-size: 1.1em;\r\n    text-transform: uppercase;\r\n    background: #424242;\r\n    color: white;\n}\nbutton[data-v-79fba742]:hover {\r\n    cursor: pointer;\r\n    background: #1C1C1C;\n}\nbutton[data-v-79fba742]:focus {\r\n    outline: none;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    position: fixed;\r\n    max-width: 320px;\r\n    width: 80%;\r\n    z-index: 2000;\r\n    visibility: hidden;\r\n    -webkit-backface-visibility: hidden;\r\n            backface-visibility: hidden;\r\n    width: 100%;\r\n    margin: auto;\n}\n.mocean-modal-overlay[data-v-79fba742] {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    background: #151515;\n}\n.mocean-show.mocean-modal-wrap[data-v-79fba742] {\r\n    visibility: visible;\n}\n.mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay[data-v-79fba742] {\r\n    visibility: visible;\r\n    opacity: 1;\n}\n.mocean-modal[data-v-79fba742] {\r\n    -webkit-transition-property: all;\r\n    transition-property: all;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n    -webkit-animation-duration: 1000ms;\r\n            animation-duration: 1000ms;\r\n    -webkit-animation-fill-mode: forwards;\r\n            animation-fill-mode: forwards;\r\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\n}\n.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n            transform: translate3d(0, -100%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(30%, 0, 0);\r\n            transform: translate3d(30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 30%, 0);\r\n            transform: translate3d(0, 30%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(-30%, 0, 0);\r\n            transform: translate3d(-30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-out-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(100%);\r\n            transform: translateY(100%);\r\n    opacity: 0;\n}\n.slide-out-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(-100%);\r\n            transform: translateY(-100%);\r\n    opacity: 0;\n}\n.slide-out-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(100%);\r\n            transform: translateX(100%);\r\n    opacity: 0;\n}\n.slide-out-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(-100%);\r\n            transform: translateX(-100%);\r\n    opacity: 0;\n}\n.mocean-perspective[data-v-79fba742] {\r\n    -webkit-perspective: 600px;\r\n            perspective: 600px;\n}\n.mocean-show[data-v-79fba742] {\r\n    visibility: visible;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.japan_hiddenIntro[data-v-79fba742] {\r\n    width: 90%;\r\n    margin: 0 auto;\r\n    margin-top: 1%;\r\n    background-color: #fff;\r\n    text-align: center;\n}\n.japan_hiddenIntro .button_area[data-v-79fba742] {\r\n    background-color: #000;\n}\n.japan_hiddenIntro h2[data-v-79fba742] {\r\n    background-color: #526646;\r\n    width: 100%;\r\n    padding-top: 1%;\r\n    padding-bottom: 1%;\r\n    color: #fff;\n}\n.japan_hiddenIntro img[data-v-79fba742] {\r\n    max-width: 80%;\r\n    margin-top: 2%;\n}\n.japan_hiddenIntro input[data-v-79fba742] {\r\n    margin-bottom: 2%;\r\n    color: #000;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #526646;\r\n\tborder-radius: 6px;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n.japan_hiddenIntro input[data-v-79fba742]:hover {\r\n    background-color: #526646;\r\n    color: #fff;\n}\n.japan_hiddenIntro p[data-v-79fba742] {\r\n    color: black;\r\n    font-family: 'Nanum Gothic', sans-serif;\n}\n.body[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n            flex-direction: column;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    color:black;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.btn-group[data-v-79fba742] {\r\n    margin-top: 13%;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    /* width: 100%; */\r\n    height: 50px;\n}\n.btn-group button[data-v-79fba742] {\r\n    outline: 1px solid #000;\r\n    -webkit-transform-origin: 50% 50%;\r\n            transform-origin: 50% 50%;\n}\n#new_button[data-v-79fba742] {\r\n    width: 8%;\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #fff;\r\n\tborder-radius: 6px;\r\n    margin-top: 1%;\r\n    margin-bottom: 1%;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n#new_button[data-v-79fba742]:hover {\r\n    background-color: #fff;\r\n    color: #000;\n}\r\n\r\n/* 버튼에 마우스를 댔을 때 커질 지 말지 결정 : scale(1.1) ==> 커짐 */\n.btn-group button[data-v-79fba742]:hover {\r\n    -webkit-transform: scale(1.0);\r\n            transform: scale(1.0);\n}\nbutton[data-v-79fba742] {\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);\r\n    -webkit-box-flex: 1;\r\n            flex: 1 1 10%;\r\n    padding: 0.875rem;\r\n    -webkit-transition: 100ms all ease-in-out;\r\n    transition: 100ms all ease-in-out;\r\n    width: 70%;\r\n    font-weight: 600;\r\n    font-size: 1.1em;\r\n    text-transform: uppercase;\r\n    background: #424242;\r\n    color: white;\n}\nbutton[data-v-79fba742]:hover {\r\n    cursor: pointer;\r\n    background: #1C1C1C;\n}\nbutton[data-v-79fba742]:focus {\r\n    outline: none;\n}\n.mocean-modal-wrap[data-v-79fba742] {\r\n    position: fixed;\r\n    max-width: 320px;\r\n    width: 80%;\r\n    z-index: 2000;\r\n    visibility: hidden;\r\n    -webkit-backface-visibility: hidden;\r\n            backface-visibility: hidden;\r\n    width: 100%;\r\n    margin: auto;\n}\n.mocean-modal-overlay[data-v-79fba742] {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    background: #151515;\n}\n.mocean-show.mocean-modal-wrap[data-v-79fba742] {\r\n    visibility: visible;\n}\n.mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay[data-v-79fba742] {\r\n    visibility: visible;\r\n    opacity: 1;\n}\n.mocean-modal[data-v-79fba742] {\r\n    -webkit-transition-property: all;\r\n    transition-property: all;\r\n    -webkit-transition-duration: 500ms;\r\n            transition-duration: 500ms;\r\n    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n    -webkit-animation-duration: 1000ms;\r\n            animation-duration: 1000ms;\r\n    -webkit-animation-fill-mode: forwards;\r\n            animation-fill-mode: forwards;\r\n    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\r\n            animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);\n}\n.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n            transform: translate3d(0, -100%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(30%, 0, 0);\r\n            transform: translate3d(30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 30%, 0);\r\n            transform: translate3d(0, 30%, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(-30%, 0, 0);\r\n            transform: translate3d(-30%, 0, 0);\r\n    opacity: 0;\n}\n.mocean-show.slide-in-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translate3d(0, 0, 0);\r\n            transform: translate3d(0, 0, 0);\r\n    opacity: 1;\n}\n.slide-out-bottom .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(100%);\r\n            transform: translateY(100%);\r\n    opacity: 0;\n}\n.slide-out-top .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateY(-100%);\r\n            transform: translateY(-100%);\r\n    opacity: 0;\n}\n.slide-out-right .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(100%);\r\n            transform: translateX(100%);\r\n    opacity: 0;\n}\n.slide-out-left .mocean-content[data-v-79fba742] {\r\n    -webkit-transform: translateX(-100%);\r\n            transform: translateX(-100%);\r\n    opacity: 0;\n}\n.mocean-perspective[data-v-79fba742] {\r\n    -webkit-perspective: 600px;\r\n            perspective: 600px;\n}\n.mocean-show[data-v-79fba742] {\r\n    visibility: visible;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7539,7 +7601,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.body[data-v-ba400dd0] {\r\n    padding-top: 14%;\r\n    padding-bottom: 9.7%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.join_all[data-v-ba400dd0] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.form-group input[data-v-ba400dd0] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-ba400dd0]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-ba400dd0] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n", ""]);
+exports.push([module.i, "\n.body[data-v-ba400dd0] {\r\n    padding-top: 14%;\r\n    padding-bottom: 9.7%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.join_all[data-v-ba400dd0] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.join[data-v-ba400dd0] {margin-top: 15%;color: #fff}\n.join p[data-v-ba400dd0] {text-align: center;font-size: 24px;font-weight: 500;padding-top: 4%;padding-bottom: 5%}\n.form-group input[data-v-ba400dd0] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-ba400dd0]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-ba400dd0]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-ba400dd0] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\n.message[data-v-ba400dd0] {\r\n    color: #ff7066;\r\n    font-size: 14px;\n}\r\n", ""]);
 
 // exports
 
@@ -7577,7 +7639,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.body[data-v-4d2414bf] {\r\n    padding-top: 14%;\r\n    padding-bottom: 13.6%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.login_all[data-v-4d2414bf] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.login[data-v-4d2414bf] {\r\n    margin-top: 15%;\r\n    color: white;\n}\n.login p[data-v-4d2414bf] {\r\n    text-align: center;\r\n    font-size: 24px;\r\n    font-weight: 500;\r\n    padding-top: 4%;\r\n    padding-bottom: 5%;\n}\n.user[data-v-4d2414bf] {\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n#login_pw[data-v-4d2414bf] {\r\n    margin-top: 3%;\r\n    margin-bottom: 3%;\n}\n#login_id[data-v-4d2414bf],\r\n#login_pw[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\n}\n.new[data-v-4d2414bf] {\r\n    margin-top: 5%;\r\n    text-align: center;\r\n    color: white;\n}\n.new a[data-v-4d2414bf] {\r\n    color: white;\r\n    text-decoration: none;\r\n    font-size: 13px;\n}\n#login_ok[data-v-4d2414bf] {\r\n    background-color: #cfcfcf;\r\n    border: 1px solid white;\r\n    margin: 0.2%;\n}\n.form-group input[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-4d2414bf]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-4d2414bf] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.body[data-v-4d2414bf] {\r\n    padding-top: 14%;\r\n    padding-bottom: 13.6%;\r\n    background-image: url(\"/image/office.jpg\");\r\n    height: 500%;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\n}\n.login_all[data-v-4d2414bf] {\r\n    /* margin-top: 14%; */\r\n    margin-right: 35%;\r\n    margin-left: 35%;\r\n    padding-bottom: 2%;\r\n    text-align: center;\r\n    background-color: rgba(0, 0, 0, 0.6);\r\n    border-radius: 10px;\r\n    border : 1px solid white;\n}\n.login[data-v-4d2414bf] {\r\n    margin-top: 15%;\r\n    color: white;\n}\n.login p[data-v-4d2414bf] {\r\n    text-align: center;\r\n    font-size: 24px;\r\n    font-weight: 500;\r\n    padding-top: 4%;\r\n    padding-bottom: 5%;\n}\n.message[data-v-4d2414bf] {\r\n    color: #ff7066;\r\n    font-size: 14px;\n}\n.user[data-v-4d2414bf] {\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n#login_pw[data-v-4d2414bf] {\r\n    margin-top: 3%;\r\n    margin-bottom: 3%;\n}\n#login_id[data-v-4d2414bf],\r\n#login_pw[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\n}\n.new[data-v-4d2414bf] {\r\n    margin-top: 5%;\r\n    text-align: center;\r\n    color: white;\n}\n.new a[data-v-4d2414bf] {\r\n    color: white;\r\n    text-decoration: none;\r\n    font-size: 13px;\n}\n#login_ok[data-v-4d2414bf] {\r\n    background-color: #cfcfcf;\r\n    border: 1px solid white;\r\n    margin: 0.2%;\n}\n.form-group input[data-v-4d2414bf] {\r\n    color: #fff;\r\n    background-color: transparent;\r\n    border: 0 solid transparent;\r\n    border-bottom: 1px solid #fff;\r\n    width: 44%;\r\n    text-align: center;\r\n    padding-top: 1%;\r\n    margin-top: 1.5%;\r\n    margin-bottom: 1%;\n}\n.form-group input[data-v-4d2414bf]::-webkit-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-moz-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]:-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::-ms-input-placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group input[data-v-4d2414bf]::placeholder {\r\n    color: #fff;\r\n    font-size: 15px;\n}\n.form-group button[data-v-4d2414bf] {\r\n    width: 215px;\r\n    height: 27px;\r\n    border-radius: 5px;\r\n    background-color: darkgray;\r\n    color: black;\r\n    cursor: pointer;\r\n    margin-top: 5%;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -7634,7 +7696,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.body[data-v-5b16d9fa] {margin-top: 13%;margin-left: 8%;height: auto}\n.mem1[data-v-5b16d9fa],\r\n.mem2[data-v-5b16d9fa],\r\n.mem3[data-v-5b16d9fa],\r\n.mem4[data-v-5b16d9fa],\r\n.mem5[data-v-5b16d9fa],\r\n.mem6[data-v-5b16d9fa] {\r\n    width: 100%;\n}\n#member_member1Image[data-v-5b16d9fa],\r\n#member_member2Image[data-v-5b16d9fa],\r\n#member_member3Image[data-v-5b16d9fa],\r\n#member_member4Image[data-v-5b16d9fa],\r\n#member_member5Image[data-v-5b16d9fa],\r\n#member_member6Image[data-v-5b16d9fa] {width: 20%;float: inherit}\n#member_member1Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member2Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member3Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member4Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member5Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member6Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member1Hidden input[data-v-5b16d9fa] {margin: 1%}\n[data-theme*=_bgp1][data-v-5b16d9fa] {\r\n    /* background: url(/image/bird.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/bird.jpg);\r\n    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);\r\n    background-repeat: no-repeat;\r\n    /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */\r\n    color: white;\n}\n[data-theme*=_bgp2][data-v-5b16d9fa] {\r\n    /* background: url(/image/cat.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/cat.jpg);\r\n    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/cat.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp3][data-v-5b16d9fa] {\r\n    /* background: url(/image/tiger.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/tiger.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/tiger.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp4][data-v-5b16d9fa] {\r\n    /* background: url(/image/hed.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/hed.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/hed.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp5][data-v-5b16d9fa] {\r\n    /* background: url(/image/lion.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/lion.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/lion.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp6][data-v-5b16d9fa] {\r\n    /* background: url(/image/dog.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/dog.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/dog.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-layout=_r][data-v-5b16d9fa] {\r\n    max-width: 100%;\r\n    margin-left: 3%;\r\n    /*margin: 0 auto;*/\r\n    /*    padding: 2rem 1rem;*/\n}\n[data-layout=_r] > div[data-v-5b16d9fa],\r\n[data-layout=_r] > article[data-v-5b16d9fa],\r\n[data-layout=_r] > aside[data-v-5b16d9fa] {\r\n    padding: 0 1rem 1rem 1rem;\n}\n[data-layout=_r] img[data-v-5b16d9fa] {\r\n    height: auto;\n}\na.btn[data-v-5b16d9fa],\r\nbutton[data-v-5b16d9fa] {\r\n    background-color: #4d36bd;\r\n    color: white;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    padding: 1em;\r\n    border-radius: 5px;\r\n    border: none;\r\n    font-family: sans-serif;\r\n    font-size: 1em;\r\n    cursor: pointer;\n}\na.btn[data-v-5b16d9fa]:hover,\r\nbutton[data-v-5b16d9fa]:hover {\r\n    -webkit-filter: brightness(1.1);\r\n            filter: brightness(1.1);\n}\r\n/*Accordion Generic*/\r\n /*탭 배경사진*/\n.AP_accordion_panel[data-v-5b16d9fa] {\r\n    overflow: hidden;\r\n    -webkit-transition: height 0.3s;\r\n    transition: height 0.3s;\r\n    position: relative;\r\n    width: 88%;\n}\n.AP_accordion_tab[data-v-5b16d9fa] {\r\n    width: 88%;\r\n    height: 60px;\r\n    cursor: pointer;\r\n    margin: 0;\r\n    line-height: 1;\r\n    padding-top: 25px;\r\n    font-weight: bold;\r\n    position: relative;\r\n    font-size: 2.8em;\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-style: oblique; /* italic */\r\n    letter-spacing: -3px;\n}\n.AP_accordion_tab.open[data-v-5b16d9fa] {\r\n    -webkit-filter: brightness(1.05);\r\n            filter: brightness(1.05);\n}\n.AP_accordion_tab.open[data-v-5b16d9fa]:after {\r\n    -webkit-transform: rotateZ(180deg);\r\n            transform: rotateZ(180deg);\n}\n.AP_accordion_tab[data-v-5b16d9fa]:hover {\r\n    -webkit-filter: brightness(1.1);\r\n            filter: brightness(1.1);\n}\n.AP_accordion_tab[data-v-5b16d9fa]:after {\r\n    position: absolute;\r\n    font-size: 1.4em;\r\n    right: 0;\r\n    /* line-height: 1; */\r\n    top: 0;\r\n    height: 100%;\r\n    width: 88%;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\r\n/* Accordion1 */\n.MOD_ACCORDION1 .AP_accordion[data-v-5b16d9fa] {\r\n    margin: 0;\r\n    max-width: 100%;\n}\n.MOD_ACCORDION1_Intro[data-v-5b16d9fa] {\r\n    max-width: 100%;\r\n    margin-bottom: 2rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.body[data-v-5b16d9fa] {margin-top: 13%;margin-left: 8%;height: auto}\n.mem1[data-v-5b16d9fa] {\r\n    width: 100%;\n}\n#member_member1Image[data-v-5b16d9fa] {width: 20%;float: inherit}\n#member_member1Hidden[data-v-5b16d9fa] {\r\n    background-color: rgba(0, 0, 0, 0.7);\r\n    text-align: center;\r\n    color: white;\r\n    font-size: 20px;\r\n    position: relative;\r\n    z-index: 100;\r\n    margin-top: -73%;\r\n    padding-top: 20%;\r\n    padding-bottom: 20%;\n}\n#member_member1Hidden input[data-v-5b16d9fa] {\r\n    color: white;\r\n    background-color: transparent;\r\n    border: 0px;\r\n\tborder: 2px solid #fff;\r\n\tborder-radius: 6px;\r\n    margin-top: 3%;\r\n\tpadding: 3px;\r\n    font-size: 15px;\r\n    cursor: pointer;\n}\n#member_member1Hidden input[data-v-5b16d9fa]:hover {\r\n    background-color: #fff;\r\n    color: #000;\n}\n[data-theme*=_bgp1][data-v-5b16d9fa] {\r\n    /* background: url(/image/bird.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/bird.jpg);\r\n    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/bird.jpg);\r\n    background-repeat: no-repeat;\r\n    /* background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */\r\n    color: white;\n}\n[data-theme*=_bgp2][data-v-5b16d9fa] {\r\n    /* background: url(/image/cat.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/cat.jpg);\r\n    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 70%), url(/image/cat.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp3][data-v-5b16d9fa] {\r\n    /* background: url(/image/tiger.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/tiger.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/tiger.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp4][data-v-5b16d9fa] {\r\n    /* background: url(/image/hed.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/hed.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/hed.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp5][data-v-5b16d9fa] {\r\n    /* background: url(/image/lion.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/lion.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/lion.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-theme*=_bgp6][data-v-5b16d9fa] {\r\n    /* background: url(/image/dog.jpg); */\r\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(70%, rgba(0, 0, 0, 1))), url(/image/dog.jpg);\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1) 70%), url(/image/dog.jpg);\r\n    background-repeat: no-repeat;\r\n    color: white;\n}\n[data-layout=_r][data-v-5b16d9fa] {\r\n    max-width: 100%;\r\n    margin-left: 3%;\r\n    /*margin: 0 auto;*/\r\n    /*    padding: 2rem 1rem;*/\n}\n[data-layout=_r] > div[data-v-5b16d9fa],\r\n[data-layout=_r] > article[data-v-5b16d9fa],\r\n[data-layout=_r] > aside[data-v-5b16d9fa] {\r\n    padding: 0 1rem 1rem 1rem;\n}\n[data-layout=_r] img[data-v-5b16d9fa] {\r\n    height: auto;\n}\na.btn[data-v-5b16d9fa],\r\nbutton[data-v-5b16d9fa] {\r\n    background-color: #4d36bd;\r\n    color: white;\r\n    text-decoration: none;\r\n    display: inline-block;\r\n    padding: 1em;\r\n    border-radius: 5px;\r\n    border: none;\r\n    font-family: sans-serif;\r\n    font-size: 1em;\r\n    cursor: pointer;\n}\na.btn[data-v-5b16d9fa]:hover,\r\nbutton[data-v-5b16d9fa]:hover {\r\n    -webkit-filter: brightness(1.1);\r\n            filter: brightness(1.1);\n}\r\n/*Accordion Generic*/\r\n /*탭 배경사진*/\n.AP_accordion_panel[data-v-5b16d9fa] {\r\n    overflow: hidden;\r\n    -webkit-transition: height 0.3s;\r\n    transition: height 0.3s;\r\n    position: relative;\r\n    width: 88%;\n}\n.AP_accordion_tab[data-v-5b16d9fa] {\r\n    width: 88%;\r\n    height: 60px;\r\n    cursor: pointer;\r\n    margin: 0;\r\n    line-height: 1;\r\n    padding-top: 25px;\r\n    font-weight: bold;\r\n    position: relative;\r\n    font-size: 2.8em;\r\n    color: rgba(255, 255, 255, 0.5);\r\n    font-style: oblique; /* italic */\r\n    letter-spacing: -3px;\n}\n.AP_accordion_tab.open[data-v-5b16d9fa] {\r\n    -webkit-filter: brightness(1.05);\r\n            filter: brightness(1.05);\n}\n.AP_accordion_tab.open[data-v-5b16d9fa]:after {\r\n    -webkit-transform: rotateZ(180deg);\r\n            transform: rotateZ(180deg);\n}\n.AP_accordion_tab[data-v-5b16d9fa]:hover {\r\n    -webkit-filter: brightness(1.1);\r\n            filter: brightness(1.1);\n}\n.AP_accordion_tab[data-v-5b16d9fa]:after {\r\n    position: absolute;\r\n    font-size: 1.4em;\r\n    right: 0;\r\n    /* line-height: 1; */\r\n    top: 0;\r\n    height: 100%;\r\n    width: 88%;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\r\n/* Accordion1 */\n.MOD_ACCORDION1 .AP_accordion[data-v-5b16d9fa] {\r\n    margin: 0;\r\n    max-width: 100%;\n}\n.MOD_ACCORDION1_Intro[data-v-5b16d9fa] {\r\n    max-width: 100%;\r\n    margin-bottom: 2rem;\n}\r\n", ""]);
 
 // exports
 
@@ -39785,7 +39847,13 @@ var render = function() {
   return _c(
     "div",
     { attrs: { id: "app" } },
-    [_c("navigation"), _vm._v(" "), _c("router-view")],
+    [
+      _c("navigation"),
+      _vm._v(" "),
+      _c("router-view"),
+      _vm._v(" "),
+      _c("footer")
+    ],
     1
   )
 }
@@ -39818,14 +39886,18 @@ var render = function() {
           "button",
           {
             staticClass: "mocean-modal-button",
-            attrs: { "data-mocean-type": "slide-in-top", id: "japan_week1" },
+            attrs: {
+              "data-mocean-type": "slide-in-top",
+              onclick: "new_button.style.visibility='visible'",
+              id: "japan_week1"
+            },
             on: {
               click: function($event) {
                 return _vm.clickWeek(1)
               }
             }
           },
-          [_vm._v("1주차")]
+          [_vm._v("week 1")]
         ),
         _vm._v(" "),
         _c(
@@ -39834,7 +39906,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-right",
-              onclick: "myFunction()",
+              onclick: "new_button.style.visibility='visible'",
               id: "japan_week2"
             },
             on: {
@@ -39843,7 +39915,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("2주차")]
+          [_vm._v("week 2")]
         ),
         _vm._v(" "),
         _c(
@@ -39852,7 +39924,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-bottom",
-              onclick: "myFunction()",
+              onclick: "new_button.style.visibility='visible'",
               id: "japan_week3"
             },
             on: {
@@ -39861,21 +39933,25 @@ var render = function() {
               }
             }
           },
-          [_vm._v("3주차")]
+          [_vm._v("week 3")]
         ),
         _vm._v(" "),
         _c(
           "button",
           {
             staticClass: "mocean-modal-button",
-            attrs: { "data-mocean-type": "slide-in-left", id: "japan_week4" },
+            attrs: {
+              "data-mocean-type": "slide-in-left",
+              onclick: "new_button.style.visibility='visible'",
+              id: "japan_week4"
+            },
             on: {
               click: function($event) {
                 return _vm.clickWeek(4)
               }
             }
           },
-          [_vm._v("4주차")]
+          [_vm._v("week 4")]
         ),
         _vm._v(" "),
         _c(
@@ -39884,6 +39960,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-top",
+              onclick: "new_button.style.visibility='visible'",
               "data-mocean-out-type": "slide-out-bottom",
               id: "japan_week5"
             },
@@ -39893,7 +39970,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("5주차")]
+          [_vm._v("week 5")]
         ),
         _vm._v(" "),
         _c(
@@ -39902,6 +39979,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-bottom",
+              onclick: "new_button.style.visibility='visible'",
               "data-mocean-out-type": "slide-out-top",
               id: "japan_week6"
             },
@@ -39911,7 +39989,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("6주차")]
+          [_vm._v("week 6")]
         ),
         _vm._v(" "),
         _c(
@@ -39920,6 +39998,7 @@ var render = function() {
             staticClass: "mocean-modal-button",
             attrs: {
               "data-mocean-type": "slide-in-left",
+              onclick: "new_button.style.visibility='visible'",
               "data-mocean-out-type": "slide-out-right",
               id: "japan_week7"
             },
@@ -39929,28 +40008,31 @@ var render = function() {
               }
             }
           },
-          [_vm._v("7주차")]
+          [_vm._v("week 7")]
         )
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "new_button",
-          on: {
-            click: function($event) {
-              return _vm.goCreate(_vm.week)
-            }
-          }
-        },
-        [_vm._v("새로 만들기")]
-      ),
+      _vm.button_control == 1
+        ? _c(
+            "button",
+            {
+              staticStyle: { visibility: "hidden" },
+              attrs: { id: "new_button" },
+              on: {
+                click: function($event) {
+                  return _vm.goCreate(_vm.week)
+                }
+              }
+            },
+            [_vm._v("새로 만들기")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "japan_hiddenIntro" },
         _vm._l(_vm.japans, function(japan) {
-          return _c("div", { key: japan, staticClass: "japan_list" }, [
+          return _c("div", { key: japan }, [
             _c("h2", [_vm._v(_vm._s(japan.title))]),
             _vm._v(" "),
             _c("img", {
@@ -39966,23 +40048,27 @@ var render = function() {
               _vm._v("\n                ")
             ]),
             _vm._v(" "),
-            _c("input", {
-              attrs: { type: "button", value: "수정" },
-              on: {
-                click: function($event) {
-                  return _vm.goModify(japan)
-                }
-              }
-            }),
+            _vm.button_control == 1
+              ? _c("input", {
+                  attrs: { type: "button", value: "수정" },
+                  on: {
+                    click: function($event) {
+                      return _vm.goModify(japan)
+                    }
+                  }
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("input", {
-              attrs: { type: "button", value: "삭제" },
-              on: {
-                click: function($event) {
-                  return _vm.del(japan.id)
-                }
-              }
-            })
+            _vm.button_control == 1
+              ? _c("input", {
+                  attrs: { type: "button", value: "삭제" },
+                  on: {
+                    click: function($event) {
+                      return _vm.del(japan.id)
+                    }
+                  }
+                })
+              : _vm._e()
           ])
         }),
         0
@@ -40259,6 +40345,14 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "message" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.message) +
+                  "\n                    "
+              )
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("button", [_vm._v("가입")]),
               _vm._v(" "),
@@ -40453,6 +40547,14 @@ var render = function() {
                 }
               })
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "message" }, [
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.message) +
+                "\n                "
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -41214,7 +41316,7 @@ var render = function() {
           "table",
           { staticClass: "comment_table" },
           _vm._l(_vm.answers, function(answer) {
-            return _c("tr", [
+            return _c("tr", { key: answer }, [
               _c(
                 "td",
                 {
@@ -41235,34 +41337,38 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("form", { on: { submit: _vm.createAnswer } }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.view_reply,
-              expression: "view_reply"
-            }
-          ],
-          staticClass: "comment_text",
-          staticStyle: { width: "75%", display: "inline-block" },
-          attrs: {
-            type: "text",
-            name: "댓글쓰기",
-            placeholder: "댓글을 남겨주세요..."
-          },
-          domProps: { value: _vm.view_reply },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _vm.token_exist == true
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.view_reply,
+                  expression: "view_reply"
+                }
+              ],
+              staticClass: "comment_text",
+              staticStyle: { width: "75%", display: "inline-block" },
+              attrs: {
+                type: "text",
+                name: "댓글쓰기",
+                placeholder: "댓글을 남겨주세요..."
+              },
+              domProps: { value: _vm.view_reply },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.view_reply = $event.target.value
+                }
               }
-              _vm.view_reply = $event.target.value
-            }
-          }
-        }),
+            })
+          : _vm._e(),
         _vm._v(" "),
-        _c("button", [_vm._v("댓글남기기")])
+        _vm.token_exist == true
+          ? _c("button", [_vm._v("댓글남기기")])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
@@ -41272,16 +41378,58 @@ var render = function() {
       [_vm._v("목록")]
     ),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticStyle: { "margin-right": "3%" }, on: { click: _vm.updateQnA } },
-      [_vm._v("수정")]
-    ),
+    _vm.button_control == 1
+      ? _c(
+          "button",
+          {
+            staticStyle: { "margin-right": "3%" },
+            on: { click: _vm.updateQnA }
+          },
+          [_vm._v("수정")]
+        )
+      : _vm._e(),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")])
+    _vm.button_control == 1
+      ? _c("button", { on: { click: _vm.deleteQnA } }, [_vm._v("삭제")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "footer" }, [
+        _c("p", [_vm._v("ⓒ2019 Infinite. All rights reserved.")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -57681,6 +57829,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QnAView_vue_vue_type_template_id_78809f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QnAView_vue_vue_type_template_id_78809f6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/footerComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/footerComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footerComponent.vue?vue&type=template&id=5f4e4927& */ "./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&");
+/* harmony import */ var _footerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footerComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/footerComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _footerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/footerComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/footerComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/footerComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./footerComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footerComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./footerComponent.vue?vue&type=template&id=5f4e4927& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/footerComponent.vue?vue&type=template&id=5f4e4927&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_footerComponent_vue_vue_type_template_id_5f4e4927___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

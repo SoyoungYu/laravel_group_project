@@ -10,22 +10,23 @@
         <div class="comment">
             <div class="comment_data">
                 <table class="comment_table">
-                    <tr v-for = "answer in answers">
+                    <tr v-for = "answer in answers" v-bind:key="answer">
                         <td style="color: #ff9161; font-weight: bold; vertical-align: text-top;"> {{ answer.user_id }} </td>
                         <td> {{ answer.reply }} </td>
                     </tr>
                 </table>
             </div>
             <form @submit = "createAnswer">
-                <input type="text" name="댓글쓰기" class="comment_text" placeholder="댓글을 남겨주세요..." style="width: 75%; display: inline-block" v-model = "view_reply">
-                <button>댓글남기기</button>
+                <input type="text" name="댓글쓰기" class="comment_text" placeholder="댓글을 남겨주세요..." style="width: 75%; display: inline-block" v-model = "view_reply" v-if="token_exist == true">
+                <button v-if="token_exist == true">댓글남기기</button>
             </form>
         </div>
         <button v-on:click="goBackList" style="margin-right: 3%">목록</button>
-        <button v-on:click = "updateQnA" style="margin-right: 3%">수정</button>
-        <button v-on:click ="deleteQnA">삭제</button>
+        <button v-on:click = "updateQnA" style="margin-right: 3%" v-if="button_control == 1">수정</button>
+        <button v-on:click ="deleteQnA" v-if="button_control == 1">삭제</button>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -33,7 +34,9 @@ export default {
         return {
             qna : '',
             answers : '',
-            view_reply : ''
+            view_reply : '',
+            button_control : '',
+            token_exist : $cookies.isKey('_token')
         };
     },
     mounted() {
@@ -42,6 +45,10 @@ export default {
         .then(response => {
             this.qna = response.data.qna[0]
             this.answers = response.data.reply
+            if(this.qna.user_id == response.data.user)
+            {
+                this.button_control = 1
+            }
         })
         .catch(error => {
             console.log(error)
@@ -86,6 +93,7 @@ export default {
     }
 }
 </script>
+
 
 <style scoped>
 .item2{
