@@ -13,15 +13,15 @@
             </div>
             
             <div class="japan_hiddenIntro">
-                <button @click="goCreate(week)">새로 만들기</button>
+                <button @click="goCreate(week)" v-if="token_exist==true">새로 만들기</button>
                 <div v-for="japan in japans" v-bind:key="japan"> <!-- 버튼1(week1)을 클릭했을 때 나타나는 숨겨진 1주차 사진, 내용-->
                     <h2>{{ japan.title }}</h2>
                     <img :src="'images/'+japan.image" id="japan_week1Image"> <!-- 1주차 이미지 (데이터) -->
                     <pre>
                         <p id="japan_week1Content">{{ japan.info }}</p> <!-- 1주차 내용 (데이터) -->
                     </pre>
-                    <input type="button" value="수정" @click="goModify(japan)">
-                    <input type="button" value="삭제" @click="del(japan.id)">
+                    <input type="button" value="수정" @click="goModify(japan)" v-if="button_control == 1">
+                    <input type="button" value="삭제" @click="del(japan.id)" v-if="button_control == 1">
                 </div>
             </div>
         </div>
@@ -33,6 +33,8 @@ export default {
         return {
             japans: '',
             week: '',
+            button_control : '',
+            token_exist : $cookies.isKey('_token'),
         };
     },
     mounted: function(){
@@ -47,7 +49,10 @@ export default {
                 this.japans = response.data.japans
                 console.log(this.japans)
                 this.japnas.info = this.japans.info.replice('\n').join('<br/>')
-               
+                if(response.japans.user_id == response.data.user)
+                {
+                    this.button_control = 1
+                }
             })
             .catch(error =>{
                 console.log(error)

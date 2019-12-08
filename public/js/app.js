@@ -1899,7 +1899,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       japans: '',
-      week: ''
+      week: '',
+      button_control: '',
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {},
@@ -1913,6 +1915,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.japans = response.data.japans;
         console.log(_this.japans);
         _this.japnas.info = _this.japans.info.replice('\n').join('<br/>');
+
+        if (response.japans.user_id == response.data.user) {
+          _this.button_control = 1;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -40531,17 +40537,19 @@ var render = function() {
         "div",
         { staticClass: "japan_hiddenIntro" },
         [
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.goCreate(_vm.week)
-                }
-              }
-            },
-            [_vm._v("새로 만들기")]
-          ),
+          _vm.token_exist == true
+            ? _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.goCreate(_vm.week)
+                    }
+                  }
+                },
+                [_vm._v("새로 만들기")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.japans, function(japan) {
             return _c("div", { key: japan }, [
@@ -40560,23 +40568,27 @@ var render = function() {
                 _vm._v("\n                ")
               ]),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "수정" },
-                on: {
-                  click: function($event) {
-                    return _vm.goModify(japan)
-                  }
-                }
-              }),
+              _vm.button_control == 1
+                ? _c("input", {
+                    attrs: { type: "button", value: "수정" },
+                    on: {
+                      click: function($event) {
+                        return _vm.goModify(japan)
+                      }
+                    }
+                  })
+                : _vm._e(),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "삭제" },
-                on: {
-                  click: function($event) {
-                    return _vm.del(japan.id)
-                  }
-                }
-              })
+              _vm.button_control == 1
+                ? _c("input", {
+                    attrs: { type: "button", value: "삭제" },
+                    on: {
+                      click: function($event) {
+                        return _vm.del(japan.id)
+                      }
+                    }
+                  })
+                : _vm._e()
             ])
           })
         ],
@@ -58307,8 +58319,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\workspace\team_project_8\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\workspace\team_project_8\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\DevelopLaravel\team_project\team_project_8\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\DevelopLaravel\team_project\team_project_8\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
