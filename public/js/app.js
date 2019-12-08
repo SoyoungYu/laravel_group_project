@@ -1899,7 +1899,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       japans: '',
-      week: ''
+      week: '',
+      button_control: '',
+      token_exist: $cookies.isKey('_token')
     };
   },
   mounted: function mounted() {},
@@ -1912,7 +1914,12 @@ __webpack_require__.r(__webpack_exports__);
       Axios.get('/api/japan/' + weekId).then(function (response) {
         _this.japans = response.data.japans;
         console.log(_this.japans);
-        _this.japnas.info = _this.japans.info.replice('\n').join('<br/>');
+        console.log(_this.token_exist);
+        console.log(response.data.user);
+
+        if (response.data.user == 'admin') {
+          _this.button_control = 1;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -1923,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
       Axios["delete"]('api/japan/' + id).then(function (response) {
         console.log(response.data);
 
-        _this2.$router.push('/');
+        _this2.$router.go(0);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -40617,17 +40624,19 @@ var render = function() {
         "div",
         { staticClass: "japan_hiddenIntro" },
         [
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.goCreate(_vm.week)
-                }
-              }
-            },
-            [_vm._v("새로 만들기")]
-          ),
+          _vm.button_control == 1
+            ? _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.goCreate(_vm.week)
+                    }
+                  }
+                },
+                [_vm._v("새로 만들기")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.japans, function(japan) {
             return _c("div", { key: japan }, [
@@ -40646,23 +40655,27 @@ var render = function() {
                 _vm._v("\n                ")
               ]),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "수정" },
-                on: {
-                  click: function($event) {
-                    return _vm.goModify(japan)
-                  }
-                }
-              }),
+              _vm.button_control == 1
+                ? _c("input", {
+                    attrs: { type: "button", value: "수정" },
+                    on: {
+                      click: function($event) {
+                        return _vm.goModify(japan)
+                      }
+                    }
+                  })
+                : _vm._e(),
               _vm._v(" "),
-              _c("input", {
-                attrs: { type: "button", value: "삭제" },
-                on: {
-                  click: function($event) {
-                    return _vm.del(japan.id)
-                  }
-                }
-              })
+              _vm.button_control == 1
+                ? _c("input", {
+                    attrs: { type: "button", value: "삭제" },
+                    on: {
+                      click: function($event) {
+                        return _vm.del(japan.id)
+                      }
+                    }
+                  })
+                : _vm._e()
             ])
           })
         ],
