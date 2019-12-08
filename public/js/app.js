@@ -2153,6 +2153,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2163,7 +2165,8 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       name: '',
       email: '',
-      sex: ''
+      sex: '',
+      message: ''
     };
   },
   methods: {
@@ -2179,9 +2182,17 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         password: this.password
       }).then(function (response) {
-        _this.$router.push('/login');
-      })["catch"](function (error) {
-        console.log(error);
+        console.log(response);
+
+        if (response.data.error === '1') {
+          _this.message = '아이디가 중복됩니다.';
+        } else if (response.data.error === '2') {
+          _this.message = '이메일이 중복됩니다.';
+        } else {
+          alert('회원가입되었습니다.');
+
+          _this.$router.push('/login');
+        }
       });
     },
     back: function back() {
@@ -2352,6 +2363,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2359,11 +2373,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       user_id: '',
-      password: ''
+      password: '',
+      message: ''
     };
   },
   methods: {
     postLogin: function postLogin(e) {
+      var _this = this;
+
       e.preventDefault();
       var currentObj = this;
       console.log(this.user_id);
@@ -2375,6 +2392,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log($cookies.isKey('_token'));
         window.location.href = '/';
       })["catch"](function (error) {
+        _this.message = '아이디와 비밀번호를 확인해 주세요';
         console.log(error);
       });
     },
@@ -40854,6 +40872,14 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
+            _c("div", [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.message) +
+                  "\n                    "
+              )
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("button", [_vm._v("가입")]),
               _vm._v(" "),
@@ -41048,6 +41074,14 @@ var render = function() {
                 }
               })
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.message) +
+                "\n                "
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [

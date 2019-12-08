@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use Cookie;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -20,6 +21,14 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $request['password'] = bcrypt($request->password);
+
+        if(DB::table('users')->where('user_id', $request->user_id)->first())
+        {
+            return response()->json(['error'=>'1']);
+        }else if(DB::table('users')->where('email', $request->email)->first())
+        {
+            return response()->json(['error'=>'2']);
+        }
 
         $user = new User();
         $user->user_id = $request->user_id;

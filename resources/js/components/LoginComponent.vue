@@ -15,10 +15,13 @@
                             <input type="password" class="form-control" v-model="password" placeholder="비밀번호" required>
                         </div>
                     </div>
+                    <div>
+                        {{ message }}
+                    </div>
                     <div class="form-group">
                         <button>가입</button>
                         <button v-on:click="back">취소</button>
-                    </div>  
+                    </div>   
                 </form>
             </div>
             <div class="new">
@@ -35,7 +38,8 @@ export default {
     data() {
         return{
             user_id : '',
-            password : ''
+            password : '',
+            message : ''
         }
     },
     methods : {
@@ -53,6 +57,7 @@ export default {
                 window.location.href = '/';
             })
             .catch(error => {
+                this.message = '아이디와 비밀번호를 확인해 주세요'
                 console.log(error)
             });
         },
